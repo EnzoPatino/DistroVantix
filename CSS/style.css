@@ -1,0 +1,23 @@
+:root {
+    /* Colores base */
+    --bg-color: #515c6d;      /* Gris clarito para el fondo general */
+    --text-main: #1e293b;    /* Azul oscuro para el texto (legibilidad) */
+    --accent: #515c6d;       /* Azul brillante para resaltar acciones */
+    --card-bg: #ffffff;      /* Blanco puro para que las cajas destaquen */
+    --footer-bg: #f1f5f9;    /* Gris muy suave para el pie de página */
+    /* Sombra suave para dar efecto de elevación (profundidad) */
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Asegura que el padding no agrande los elementos */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color); /* Aplicamos el gris claro */
+    color: var(--text-main);
+    line-height: 1.6; /* Espaciado entre líneas para mejor lectura */
+}
