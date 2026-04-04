@@ -1,12 +1,12 @@
 :root {
     /* Colores base */
-    --bg-color: #515c6d;      /* Gris clarito para el fondo general */
-    --text-main: #1e293b;    /* Azul oscuro para el texto (legibilidad) */
-    --accent: #515c6d;       /* Azul brillante para resaltar acciones */
+    --bg-color: #1a2028;      /* Gris clarito para el fondo general */
+    --text-main: #ffffff;    /* Azul oscuro para el texto (legibilidad) */
+    --accent: #1a2028;       /* Azul brillante para resaltar acciones */
     --card-bg: #ffffff;      /* Blanco puro para que las cajas destaquen */
     --footer-bg: #f1f5f9;    /* Gris muy suave para el pie de página */
     /* Sombra suave para dar efecto de elevación (profundidad) */
-    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow: 0 10px 15px -3px rgb(255, 255, 255);
 }
 
 * {
@@ -20,4 +20,114 @@ body {
     background-color: var(--bg-color); /* Aplicamos el gris claro */
     color: var(--text-main);
     line-height: 1.6; /* Espaciado entre líneas para mejor lectura */
+}
+
+.navbar {
+    display: flex;             /* Alinea elementos en línea */
+    justify-content: space-between; /* Logo al centro, iconos a los lados */
+    align-items: center;       /* Centra verticalmente */
+    padding: 1.5rem 5%;
+    background: #1a2028; /* Fondo del navbar(navegador) igual al fondo general para integración */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.logo span {
+    color: var(--accent);      /* Resalta "Vantix" en azul */
+}
+
+/* Iconos circulares (Menú y Usuario) */
+.menu-icon, .user-profile {
+    width: 40px;
+    height: 40px;
+    background: var(--footer-bg);
+    border-radius: 50%;        /* Los hace círculos perfectos */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Estilos para el carrusel de distribuciones */
+.carousel-container {
+    padding: 2rem 0;
+    overflow-x: hidden;        /* Evita que aparezca barra de scroll lateral */
+}
+
+.carousel {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;                 /* Espacio entre tarjetas */
+    align-items: center;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 20px;       /* Bordes redondeados modernos */
+    box-shadow: var(--shadow); /* Aplicamos la sombra definida arriba */
+    width: 200px;
+    text-align: center;
+    transition: transform 0.3s ease; /* Suaviza las animaciones */
+}
+
+/* La tarjeta recomendada se ve más grande */
+.card.active {
+    border: 2px solid var(--accent);
+    transform: scale(1.1);     /* Crece un 10% para destacar */
+}
+
+/* Efecto al pasar el mouse */
+.card:hover {
+    transform: translateY(-10px); /* Sube un poco al poner el cursor */
+}
+
+/* Pequeña etiqueta de categoría (ej: "Rendimiento") */
+.tag {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 12px;
+    background: #dbeafe;       /* Azul muy clarito de fondo */
+    color: var(--accent);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Estilos para la sección "Nuestro Propósito" */
+.info-block {
+    max-width: 800px;          /* Limita el ancho para que sea fácil de leer */
+    margin: 4rem auto;         /* Centra el bloque horizontalmente */
+    background: white;
+    padding: 3rem;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.footer {
+    background: var(--footer-bg);
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+.footer nav {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.footer a {
+    text-decoration: none;     /* Quita el subrayado de los links */
+    color: #64748b;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.footer a:hover {
+    color: var(--accent);      /* Cambia a azul al pasar el mouse */
 }

@@ -8,14 +8,28 @@
 </head>
 <body>
 
-    <header>
-        <button id="btn-menu" aria-label="Abrir tablero de opciones">☰</button>
-        <div class="logo">DistroVantix</div>
+<!-- Barra de navegacion (Vercion beta) con el logo -->
+ <header class="navbar-container">
+  <button id="btn-menu" aria-label="Abrir tablero de opciones">☰</button>
         <div class="user-area">
             <img src="user-icon.png" alt="Perfil de Usuario">
         </div>
-    </header>
 
+    <div class="navbar">
+      <a href="#inicio" class="navbar-logo">
+        <img src="HTML/Logo futurista de DistroVantix(1).png" alt="logo" height="70" width="70" id="logo" />
+      </a>
+      <nav aria-label="Navegación principal">
+        <ul class="navbar-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#catalogo">Catálogo</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<!--Carrusel de las ditros (Vercion beta)-->
     <main>
         <section id="carrusel-distros">
             <h2>Distribuciones Recomendadas</h2>
@@ -26,6 +40,7 @@
             </div>
         </section>
 
+<!-- Descripccion de la pagina (Vercion beta) -->
         <section id="about">
             <article>
                 <h2>Nuestro Propósito</h2>
@@ -34,6 +49,7 @@
         </section>
     </main>
 
+<!--parte final Contacto,Redes sociales,creditos y equivalentes (Vercion beta)-->
     <footer>
         <nav>
             <ul>
@@ -45,6 +61,5 @@
         </nav>
     </footer>
 
-    <script src="js/script.js"></script>
 </body>
 </html>
