@@ -52,52 +52,6 @@ body {
     cursor: pointer;
 }
 
-/* Estilos para el carrusel de distribuciones */
-.carousel-container {
-    padding: 2rem 0;
-    overflow-x: hidden;        /* Evita que aparezca barra de scroll lateral */
-}
-
-.carousel {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;                 /* Espacio entre tarjetas */
-    align-items: center;
-}
-
-.card {
-    background: var(--card-bg);
-    padding: 2rem;
-    border-radius: 20px;       /* Bordes redondeados modernos */
-    box-shadow: var(--shadow); /* Aplicamos la sombra definida arriba */
-    width: 200px;
-    text-align: center;
-    transition: transform 0.3s ease; /* Suaviza las animaciones */
-}
-
-/* La tarjeta recomendada se ve más grande */
-.card.active {
-    border: 2px solid var(--accent);
-    transform: scale(1.1);     /* Crece un 10% para destacar */
-}
-
-/* Efecto al pasar el mouse */
-.card:hover {
-    transform: translateY(-10px); /* Sube un poco al poner el cursor */
-}
-
-/* Pequeña etiqueta de categoría (ej: "Rendimiento") */
-.tag {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 5px 12px;
-    background: #dbeafe;       /* Azul muy clarito de fondo */
-    color: var(--accent);
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
 /* Estilos para la sección "Nuestro Propósito" */
 .info-block {
     max-width: 800px;          /* Limita el ancho para que sea fácil de leer */
