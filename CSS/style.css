@@ -1,87 +1,413 @@
+/*DEFINICIÓN DE VARIABLES (COLORES Y SOMBRAS)*/
 :root {
-    /* Colores base */
-    --bg-color: #1a2028;      /* Gris clarito para el fondo general */
-    --text-main: #ffffff;    /* Azul oscuro para el texto (legibilidad) */
-    --accent: #1a2028;       /* Azul brillante para resaltar acciones */
-    --card-bg: #ffffff;      /* Blanco puro para que las cajas destaquen */
-    --footer-bg: #f1f5f9;    /* Gris muy suave para el pie de página */
-    /* Sombra suave para dar efecto de elevación (profundidad) */
-    --shadow: 0 10px 15px -3px rgb(255, 255, 255);
+    --bg-main: #f1f5f9;       /* Gris muy claro para el fondo de la página */
+    --nav-dark: #1e293b;      /* Gris oscuro azulado para la barra superior */
+    --text-light: #f8fafc;    /* Texto casi blanco para fondos oscuros */
+    --text-dark: #0f172a;     /* Texto oscuro para fondos claros */
+    --accent: #22c55e;        /* Verde neón inspirado en el logo para resaltar */
+    --card-bg: #ffffff;       /* Blanco puro para las tarjetas */
 }
 
+/*--------------------------------------------------
+
+/* RESET GENERAL: Limpieza de márgenes y bordes */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Asegura que el padding no agrande los elementos */
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-color); /* Aplicamos el gris claro */
-    color: var(--text-main);
-    line-height: 1.6; /* Espaciado entre líneas para mejor lectura */
+    background-color: var(--bg-main);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/*-------------------------------------
+
+/*BARRA DE NAVEGACIÓN (Versión Beta)*/
+.navbar-container {
+    background-color: var(--nav-dark); /* Color gris oscuro solicitado */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 5%;
+    position: sticky;                  /* Se queda fijo al hacer scroll */
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+#btn-menu {
+    order: 1;
 }
 
 .navbar {
-    display: flex;             /* Alinea elementos en línea */
-    justify-content: space-between; /* Logo al centro, iconos a los lados */
-    align-items: center;       /* Centra verticalmente */
-    padding: 1.5rem 5%;
-    background: #1a2028; /* Fondo del navbar(navegador) igual al fondo general para integración */
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: 600;
-}
-
-.logo span {
-    color: var(--accent);      /* Resalta "Vantix" en azul */
-}
-
-/* Iconos circulares (Menú y Usuario) */
-.menu-icon, .user-profile {
-    width: 40px;
-    height: 40px;
-    background: var(--footer-bg);
-    border-radius: 50%;        /* Los hace círculos perfectos */
+    order: 2;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-area {
+    order: 3;
+}
+
+/* Botón hamburguesa dentro de la barra oscura */
+.menu-toggle {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.8rem;
     cursor: pointer;
 }
 
-/* Estilos para la sección "Nuestro Propósito" */
-.info-block {
-    max-width: 800px;          /* Limita el ancho para que sea fácil de leer */
-    margin: 4rem auto;         /* Centra el bloque horizontalmente */
-    background: white;
-    padding: 3rem;
-    border-radius: 24px;
-    text-align: center;
-    box-shadow: var(--shadow);
+/*------------------------------------------------------------------------------
+
+/* Estilo para los links de la barra (Inicio, Catálogo, etc.) (Version beta)*/
+.navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
 }
 
-.footer {
-    background: var(--footer-bg);
-    padding: 2rem;
-    margin-top: 4rem;
+.navbar-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: 0.3s;
 }
 
-.footer nav {
+.navbar-links a:hover {
+    color: var(--accent); /* Resalta en verde al pasar el mouse */
+}
+
+/*Esta parte ahora es independiente de la barra de navegación (Version beta)*/
+.purpose-section {
+    padding: 80px 20px;
     display: flex;
     justify-content: center;
-    gap: 3rem;
+    align-items: center;
 }
 
-.footer a {
-    text-decoration: none;     /* Quita el subrayado de los links */
+.purpose-card {
+    background-color: var(--card-bg);
+    max-width: 750px;
+    padding: 50px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05); /* Sombra suave para que flote */
+}
+
+.purpose-card h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--nav-dark);
+}
+
+.purpose-card p {
+    font-size: 1.1rem;
     color: #64748b;
-    font-size: 0.9rem;
-    font-weight: 500;
 }
 
-.footer a:hover {
-    color: var(--accent);      /* Cambia a azul al pasar el mouse */
+/*-------------------------------------------------------------------------
+
+/*CONTROLA LA TABLETA QUE SE DESPLIEGA DESDE LA IZQUIERDA (Version beta)*/
+.tablero {
+    position: fixed;
+    left: -300px; /* Escondido por defecto */
+    top: 0;
+    width: 280px;
+    height: 100%;
+    background-color: var(--card-bg);
+    padding: 30px;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2000;
+    box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+}
+
+/* Clase para abrir el tablero con JS (Version beta) */
+.tablero.active {
+    left: 0;
+}
+
+.cat-btn {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: none;
+    text-align: left;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.cat-btn:hover {
+    background-color: var(--nav-dark);
+    color: white;
+    border-color: var(--nav-dark);
+}
+
+/*----------------------------------------------------
+
+/*PARTE FINAL: CONTACTOS, REDES Y CRÉDITOS (FOOTER)*/
+.footer-container {
+    background-color: #0f172a; /* Gris casi negro (muy tech) */
+    color: #f8fafc;            /* Texto casi blanco para contraste */
+    padding: 50px 5% 20px 5%; /* Espaciado interno: arriba, lados, abajo */
+    margin-top: 100px;         /* Separa el footer del contenido de arriba */
+}
+
+/* Contenedor que agrupa las columnas de links */
+.footer-content {
+    display: flex;
+    justify-content: space-around; /* Reparte las secciones de forma simétrica */
+    flex-wrap: wrap;               /* Permite que se acomoden en pantallas chicas */
+    gap: 30px;
+    margin-bottom: 30px;           /* Espacio antes de la línea de copyright */
+}
+
+/* Estilo para los títulos de cada columna (Contacto, Proyecto, etc.) */
+.footer-section h4 {
+    color: #22c55e;                /* Verde neón como el detalle del logo */
+    margin-bottom: 15px;           /* Espacio debajo del título */
+    font-size: 1.1rem;
+    text-transform: uppercase;     /* Pone el título en mayúsculas */
+    letter-spacing: 1px;           /* Separa un poco las letras */
+}
+
+/* Quita los puntos de las listas del footer */
+.footer-section ul {
+    list-style: none;
+}
+
+/* Espaciado entre cada link de la lista */
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+/* Estilo de los enlaces del final */
+.footer-section a {
+    color: #94a3b8;                /* Gris suave para que no brille tanto */
+    text-decoration: none;         /* Quita el subrayado */
+    transition: 0.3s;              /* Animación suave al pasar el mouse */
+    font-size: 0.9rem;
+}
+
+/* Efecto al pasar el mouse por los contactos */
+.footer-section a:hover {
+    color: #ffffff;                /* Se pone blanco puro */
+    text-underline-offset: 5px;    /* Si querés subrayado, que esté separado */
+}
+
+/* LÍNEA FINAL DE COPYRIGHT AL FONDO DE TODO */
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #1e293b; /* Línea divisoria muy sutil */
+    padding-top: 20px;
+    font-size: 0.8rem;
+    color: #64748b;                /* Gris más oscuro para el texto legal */
+}
+
+/* Ajuste para que el contenido principal ocupe el espacio y empuje el texto abajo */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Esto empuja el contenido hacia el fondo */
+    min-height: 60vh; /* Ajusta este valor según cuánto espacio quieras dejar arriba */
+    padding-bottom: 40px; /* Separación con el footer */
+}
+
+/* Estilo para la tarjeta de propósito */
+#about {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto; /* Centra horizontalmente */
+}
+
+/*---------------------------------------------------------
+
+/* CUADRO EXTRA LARGO PARA EXPLICAR LINUX VERSION GAMING */
+.card-extra-large {
+    display: flex;            /* Alinea imagen y texto de lado a lado */
+    align-items: center;      /* Centra verticalmente el contenido */
+    width: 95%;               /* Es el más largo de todos (95% de la pantalla) */
+    max-width: 1200px;        /* Límite de ancho para monitores grandes */
+    background-color: #f5f3e7;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    margin: 20px auto;
+    overflow: hidden;         /* Para que la imagen respete los bordes redondeados */
+}
+
+/* Ajuste para la imagen del lado izquierdo */
+.card-image {
+    flex: 1;                  /* Toma una parte del espacio */
+    height: 100%;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;        /* Ajusta la imagen sin deformarla */
+    display: block;
+}
+
+/* Ajuste para el texto del lado derecho */
+.card-text {
+    flex: 1.5;                /* Le da un poco más de espacio al texto que a la imagen */
+    padding: 40px;
+    text-align: left;         /* Texto alineado a la izquierda para mejor lectura */
+}
+
+/* Versión invertida de la tarjeta grande (texto a la izquierda, imagen a la derecha) */
+.reversed-section {
+    flex-direction: row-reverse !important; /* Invierte el orden de los elementos */
+}
+
+/* Responsivo: Si se ve en celular, que se ponga uno abajo del otro */
+@media (max-width: 768px) {
+    .card-extra-large {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .reversed-section {
+        flex-direction: column;
+    }
+}
+/*-----------
+/* Estilo base para todas las tarjetas largas */
+.card-extra-large {
+    display: flex;
+    flex-direction: row; /* Alinea los elementos en fila */
+    align-items: center; 
+    width: 95%;
+    max-width: 1200px;
+    margin: 40px auto;
+    background-color: #f5f3e7;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Control del texto */
+.card-text {
+    flex: 1; /* Ocupa el 50% del ancho */
+    padding: 50px;
+    text-align: left;
+}
+
+/* Control de la imagen */
+.card-image {
+    flex: 1; /* Ocupa el otro 50% del ancho */
+    height: 100%;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Evita que la imagen se estire feo */
+    display: block;
+}
+
+/*---------------------
+
+/* Aseguramos que el contenedor base sea un flexbox limpio */
+.card-container {
+    display: flex;
+    flex-direction: row; /* Imagen a la izquierda por defecto */
+    width: 95%;
+    max-width: 1200px;
+    margin: 60px auto; 
+    background-color: #f5f3e7;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Forzamos que ambos lados ocupen el 50% pase lo que pase */
+.card-image, .card-text {
+    flex: 1;
+    width: 50%;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/*---------------------------*/
+
+/* Contenedor principal de estas secciones */
+.caja-final {
+    display: flex;
+    flex-direction: row; /* Imagen izquierda por defecto */
+    width: 95%;
+    max-width: 1100px;
+    margin: 50px auto;
+    background-color: #f5f3e7;
+    border-radius: 20px;
+    overflow: hidden; /* Esto evita que la imagen se salga del borde */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* ESTA REGLA MUEVE LA IMAGEN A LA DERECHA */
+.caja-final.invertida {
+    flex-direction: row-reverse;
+}
+
+/* Control del bloque de texto */
+.texto-final {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Control del bloque de imagen */
+.imagen-final {
+    flex: 1;
+    height: 400px; /* Altura fija para que no se vea gigante como en tu captura */
+}
+
+.imagen-final img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Esto hace que la imagen se adapte sin estirarse */
+    display: block;
+}
+
+/* Fix para que en celulares se vea uno abajo del otro */
+@media (max-width: 800px) {
+    .caja-final, .caja-final.invertida {
+        flex-direction: column;
+    }
+    .imagen-final {
+        height: 250px;
+    }
+}
+
+/*------------------------------
+
+/* Usamos el nombre de la sección para darle más peso al selector */
+section.caja-final.invertida, 
+div.caja-final.invertida {
+    flex-direction: row-reverse !important; /* El !important es el último recurso */
+}
+
+/* Por si acaso, forzamos que los hijos no floten */
+.caja-final.invertida .texto-final {
+    order: 2; /* Texto a la derecha (en el orden flex) */
+}
+
+.caja-final.invertida .imagen-final {
+    order: 1; /* Imagen a la izquierda (en el orden flex) */
 }
