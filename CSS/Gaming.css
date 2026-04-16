@@ -513,3 +513,208 @@ body {
 /* Posición exacta: las mandamos afuera del centro */
 .prev { left: -20px; }
 .next { right: -20px; }
+
+/* ============================================ */
+/* ESTILOS DEL CARRUSEL DE DISTRIBUCIONES        */
+/* ============================================ */
+
+.distros-section {
+    padding: 80px 20px;
+    background-color: #0b0f1a; /* Fondo ultra oscuro */
+    text-align: center;
+}
+
+/* 1. Aseguramos que el título tenga su propio espacio */
+.section-title {
+    color: #00ffcc;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 50px;    /* Espacio respecto a lo que haya arriba */
+    margin-bottom: 80px; /* Espacio extra para que el carrusel no lo choque */
+    font-size: 2.5rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* 2. Ajustamos el envolvedor del carrusel */
+.distro-carousel-wrapper {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 80px;
+    /* Quitamos cualquier margen negativo que pueda estar causando el choque */
+    margin-top: 20px; 
+}
+
+/* 3. Ajuste de las flechas para que no se muevan del centro vertical */
+.distro-prev, .distro-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    /* ... el resto de tu estilo de flechas (color, border, etc.) ... */
+    z-index: 100; /* Asegura que estén por encima de las tarjetas */
+}
+
+/* Cada slide contiene 2 tarjetas */
+.distro-slide {
+    display: none; /* Se activa con JS */
+    justify-content: center;
+    gap: 30px;
+    animation: fadeIn 0.5s ease;
+}
+
+.distro-slide.active {
+    display: flex;
+}
+
+/* Tarjeta individual de Distro */
+.distro-card {
+    background: #161b22;
+    border: 2px solid #30363d;
+    border-radius: 15px;
+    padding: 25px;
+    flex: 1;
+    max-width: 450px;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.distro-card:hover {
+    border-color: #00ffcc;
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 255, 204, 0.2);
+}
+
+.distro-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.distro-logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.distro-card h3 {
+    color: #fff;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.distro-body p {
+    color: #8b949e;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.distro-features {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+.distro-features li {
+    color: #00ffcc;
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+}
+
+/* Botones de Navegación */
+.distro-prev, .distro-next {
+    background: rgba(0, 255, 204, 0.1);
+    border: 1px solid #00ffcc;
+    color: #00ffcc;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    transition: 0.3s;
+    z-index: 10;
+}
+
+.distro-prev:hover, .distro-next:hover {
+    background: #00ffcc;
+    color: #0b0f1a;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ============================================ */
+/* AJUSTES DE DISEÑO PARA FLECHAS Y ESPACIADO    */
+/* ============================================ */
+
+/* Contenedor relativo para que las flechas se posicionen respecto a él */
+.distro-carousel-wrapper {
+    position: relative;
+    max-width: 1200px; /* Aumentamos un poco el ancho máximo */
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 60px; /* Espacio para que las flechas no pisen las tarjetas */
+}
+
+/* Espaciado entre tarjetas dentro del slide */
+.distro-slide {
+    display: none;
+    justify-content: center;
+    gap: 40px; /* Más separación entre las dos tarjetas */
+    width: 100%;
+}
+
+.distro-slide.active {
+    display: flex;
+}
+
+/* Posicionamiento de flechas a los extremos */
+.distro-prev, .distro-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 255, 204, 0.1);
+    border: 1px solid #00ffcc;
+    color: #00ffcc;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    z-index: 100;
+}
+
+/* Flecha izquierda al borde izquierdo */
+.distro-prev {
+    left: 0;
+}
+
+/* Flecha derecha al borde derecho */
+.distro-next {
+    right: 0;
+}
+
+.distro-prev:hover, .distro-next:hover {
+    background: #00ffcc;
+    color: #0b0f1a;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+}
+
+/* Ajuste de las tarjetas para que no se vean gigantes */
+.distro-card {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    /* ... resto de tus estilos de borde y fondo ... */
+}

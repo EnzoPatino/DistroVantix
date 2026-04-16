@@ -3,7 +3,7 @@
 /* ============================================ */
 :root {
     --bg-main: #f1f5f9;       /* Gris muy claro para el fondo de la página */
-    --nav-dark: #1e293b;      /* Gris oscuro azulado para la barra superior */
+    --nav-dark: #1a1a1a;      /* Gris oscuro azulado para la barra superior */
     --text-light: #f8fafc;    /* Texto casi blanco para fondos oscuros */
     --text-dark: #0f172a;     /* Texto oscuro para fondos claros */
     --accent: #22c55e;        /* Verde neón inspirado en el logo para resaltar */
@@ -134,16 +134,20 @@ body {
 .main-content {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    /* justify-content: flex-end;  <-- ELIMINAMOS ESTO, era lo que lo empujaba al costado */
+    align-items: center;        /* Centra los elementos hijos horizontalmente */
     min-height: 60vh;
     padding-bottom: 40px;
+    width: 100%;                /* Ocupa todo el ancho disponible */
+    margin: 0 auto;             /* Centra el bloque en la pantalla */
 }
 
-/* Tarjeta de propósito */
-#about {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
+/* Tarjeta de propósito y otras secciones */
+#about, .purpose-card, .info-card, .card-extra-large, .card-container, .caja-final {
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%; /* Mantiene un margen pequeño a los lados */
+    max-width: 1200px; /* Evita que en monitores gigantes se estire demasiado */
 }
 
 .purpose-section {
@@ -390,3 +394,56 @@ body {
     }
 }
 
+/* ============================================ */
+/* AJUSTE NUEVO                         */
+/* ============================================ */
+
+/* Scroll suave nativo */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Evita que la navbar tape los títulos al saltar */
+section, footer {
+    scroll-margin-top: 100px;
+}
+
+/* Sidebar activo (para que funcione el botón ☰) */
+#sidebar.active {
+    left: 0; /* Suponiendo que tu sidebar está oculto con left: -300px o similar */
+    display: block; 
+}
+
+/* Estado inicial: El sidebar está escondido a la izquierda */
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px; /* Lo sacamos de la pantalla */
+    width: 280px;
+    height: 100%;
+    background-color: #1a1a1a;
+    border-right: 2px solid #00ffcc; /* Tu verde cian */
+    transition: all 0.4s ease; /* Esta es la animación de deslizamiento */
+    z-index: 1001;
+    padding-top: 80px;
+}
+
+/* Cuando JS agrega la clase 'active', el sidebar entra */
+#sidebar.active {
+    left: 0;
+}
+
+/* El botón de las 3 rayitas (hamburguesa) */
+#btn-menu {
+    cursor: pointer;
+    font-size: 25px;
+    background: none;
+    border: none;
+    color: #00ffcc;
+    transition: transform 0.3s;
+}
+
+/* Efecto opcional: el botón gira un poquito cuando está activo */
+#sidebar.active ~ .navbar-container #btn-menu {
+    transform: rotate(90deg);
+}
