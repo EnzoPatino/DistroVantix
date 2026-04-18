@@ -1,192 +1,247 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sector Gaming - DistroVantix</title>
-    <link rel="stylesheet" href="CSS/Gaming.css">
-    <link rel="stylesheet" href="CSS/style.css">
-</head>
-<body>
-<!-- Barra de navegación -->
-<header class="navbar-container">
-    <button id="btn-menu" aria-label="Abrir tablero de opciones">☰</button>
-    
-    <div class="user-area">
-        <img src="user-icon.png" alt="Perfil de Usuario">
-    </div>
+    <link rel="stylesheet" href="CSS/Gaming.css" />
+    <link rel="stylesheet" href="CSS/style.css" />
+  </head>
+  <body>
+    <!-- Barra de navegación -->
+    <header class="navbar-container">
+      <button id="btn-menu" aria-label="Abrir tablero de opciones">☰</button>
 
-    <div class="navbar">
+      <div class="user-area">
+        <img src="user-icon.png" alt="Perfil de Usuario" />
+      </div>
+
+      <div class="navbar">
         <a href="../index.html" class="navbar-logo">
-            <img src="./IMGS/Logo futurista de DistroVantix(1).png" alt="logo" height="70" width="70" id="logo" />
+          <img
+            src="./IMGS/Logo futurista de DistroVantix(1).png"
+            alt="logo"
+            height="70"
+            width="70"
+            id="logo"
+          />
         </a>
         <nav aria-label="Navegación principal">
-            <ul class="navbar-links">
-                <li><a href="./Index.html">Inicio</a></li>
-                <li><a href="#Informacion">Informacion</a></li>
-            </ul>
+          <ul class="navbar-links">
+            <li><a href="./Index.html">Inicio</a></li>
+            <li><a href="#Informacion">Informacion</a></li>
+          </ul>
         </nav>
-    </div>
-</header>
+      </div>
+    </header>
 
-<!-- Carrusel de informacion -->
-<main class="main-content">
-
-    <div class="carousel-wrapper" id="Informacion">
-        
+    <!-- Carrusel de informacion -->
+    <main class="main-content">
+      <div class="carousel-wrapper" id="Informacion">
         <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-        
+
         <div class="carousel-container">
-            
-            <div class="slide active">
-                <div class="gaming-info-container image-right">
-                    <div class="gaming-text">
-                        <article>
-                            <h2>El "Traductor" Mágico: Proton y Wine</h2>
-                            <p><strong>La mayoría de los juegos están programados para Windows usando una tecnología llamada DirectX. Linux no entiende DirectX de forma nativa.</strong></p>
-                            <p>
-                                Wine es la base; una capa de compatibilidad que traduce órdenes de Windows a Linux. Proton (de Valve) mejora esto incluyendo DXVK, permitiendo correr juegos casi sin pérdida de rendimiento.
-                            </p>
-                        </article>
-                    </div>
-                    <div class="gaming-image">
-                        <img src="IMGS/DiscordLinux.png" alt="Proton">
-                    </div>
-                </div>
+          <div class="slide active">
+            <div class="gaming-info-container image-right">
+              <div class="gaming-text">
+                <article>
+                  <h2>El "Traductor" Mágico: Proton y Wine</h2>
+                  <p>
+                    <strong
+                      >La mayoría de los juegos están programados para Windows
+                      usando una tecnología llamada DirectX. Linux no entiende
+                      DirectX de forma nativa.</strong
+                    >
+                  </p>
+                  <p>
+                    Wine es la base; una capa de compatibilidad que traduce
+                    órdenes de Windows a Linux. Proton (de Valve) mejora esto
+                    incluyendo DXVK, permitiendo correr juegos casi sin pérdida
+                    de rendimiento.
+                  </p>
+                </article>
+              </div>
+              <div class="gaming-image">
+                <img src="IMGS/DiscordLinux.png" alt="Proton" />
+              </div>
             </div>
+          </div>
 
-            <div class="slide">
-                <div class="gaming-info-container image-right">
-                    <div class="gaming-text">
-                        <article>
-                            <h2>El Efecto Steam Deck</h2>
-                            <p><strong>Valve cambió el juego cuando sacó la Steam Deck.</strong></p>
-                            <p> 
-                                Al usar SteamOS (basado en Arch Linux), los desarrolladores ahora optimizan sus títulos para Linux. Si un juego dice "Steam Deck Verified", sabés que va a andar perfecto. 
-                            </p>
-                        </article>
-                    </div>
-                    <div class="gaming-image">
-                        <img src="IMGS/SteamLinux.png" alt="Steam Deck">
-                    </div>
-                </div>
+          <div class="slide">
+            <div class="gaming-info-container image-right">
+              <div class="gaming-text">
+                <article>
+                  <h2>El Efecto Steam Deck</h2>
+                  <p>
+                    <strong
+                      >Valve cambió el juego cuando sacó la Steam Deck.</strong
+                    >
+                  </p>
+                  <p>
+                    Al usar SteamOS (basado en Arch Linux), los desarrolladores
+                    ahora optimizan sus títulos para Linux. Si un juego dice
+                    "Steam Deck Verified", sabés que va a andar perfecto.
+                  </p>
+                </article>
+              </div>
+              <div class="gaming-image">
+                <img src="IMGS/SteamLinux.png" alt="Steam Deck" />
+              </div>
             </div>
+          </div>
 
-            <div class="slide">
-                <div class="gaming-info-container image-right">
-                    <div class="gaming-text">
-                        <article>
-                            <h2>El Problema de los Anti-Cheats (El "Boss" final)</h2>
-                            <p><strong>El único punto donde Linux todavía sufre.</strong></p>
-                            <p> 
-                                Algunos juegos usan sistemas anti-trampas a nivel de kernel que no permiten el arranque por "seguridad". 
-                                Funcionan: CS2, Dota 2, Apex Legends. NO funcionan: Valorant o CoD.
-                            </p>
-                        </article>
-                    </div>
-                    <div class="gaming-image">
-                        <img src="IMGS/AnticheatLinux.png" alt="Anti-Cheats">
-                    </div>
-                </div>
+          <div class="slide">
+            <div class="gaming-info-container image-right">
+              <div class="gaming-text">
+                <article>
+                  <h2>El Problema de los Anti-Cheats (El "Boss" final)</h2>
+                  <p>
+                    <strong>El único punto donde Linux todavía sufre.</strong>
+                  </p>
+                  <p>
+                    Algunos juegos usan sistemas anti-trampas a nivel de kernel
+                    que no permiten el arranque por "seguridad". Funcionan: CS2,
+                    Dota 2, Apex Legends. NO funcionan: Valorant o CoD.
+                  </p>
+                </article>
+              </div>
+              <div class="gaming-image">
+                <img src="IMGS/AnticheatLinux.png" alt="Anti-Cheats" />
+              </div>
             </div>
+          </div>
+        </div>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+      </div>
+    </main>
 
-        </div> <button class="next" onclick="moveSlide(1)">&#10095;</button>
-
-    </div> 
-</main>
-
-<!-- Carrusel de distros recomendadas -->
+    <!-- Carrusel de distros recomendadas -->
     <section class="distros-section" id="distros-gaming">
-    <h2 class="section-title">Distribuciones Recomendadas</h2>
-    
-    <div class="distro-carousel-wrapper">
-        
+      <h2 class="section-title">Distribuciones Recomendadas</h2>
+
+      <div class="distro-carousel-wrapper">
         <button class="distro-prev" onclick="changeDistroSlide(-1)">❮</button>
         <button class="distro-next" onclick="changeDistroSlide(1)">❯</button>
 
         <div class="distro-carousel-container">
-
-            <div class="distro-slide active">
-                <div class="distro-card">
-                    <div class="distro-header">
-                        <a href="./CachyOS.html">
-                        <img src="./IMGS/Cachyos-Logo.webp" alt="CachyOS Logo" class="distro-logo">
-                        <h3>CachyOS</h3>
-                        </a>
-                    </div>
-                    <div class="distro-body">
-                        <p><strong>Base:</strong> Arch Linux</p>
-                        <p><strong>Especialidad:</strong> Máximo rendimiento (repos v3/v4).</p>
-                        <p>Ideal para hardware moderno por sus optimizaciones de Kernel y compilación.</p>
-                        <ul class="distro-features">
-                            <li>✅ Kernels Sched-ext / Bore</li>
-                            <li>✅ CachyOS Gaming Meta</li>
-                            <li>✅ Instalador amigable</li>
-                        </ul>
-                    </div>
-                </div>
+          <div class="distro-slide active">
+            <div class="distro-card card-cachy">
+              <div class="distro-header">
+                <a href="./CachyOS.html">
+                  <img
+                    src="./IMGS/Cachyos-Logo.webp"
+                    alt="CachyOS Logo"
+                    class="distro-logo"
+                  />
+                  <h3>CachyOS</h3>
+                </a>
+              </div>
+              <div class="distro-body">
+                <p><strong>Base:</strong> Arch Linux</p>
+                <p>
+                  <strong>Especialidad:</strong> Máximo rendimiento (repos
+                  v3/v4).
+                </p>
+                <p>
+                  Ideal para hardware moderno por sus optimizaciones de Kernel y
+                  compilación.
+                </p>
+                <ul class="distro-features">
+                  <li>✅ Kernels Sched-ext / Bore</li>
+                  <li>✅ CachyOS Gaming Meta</li>
+                  <li>✅ Instalador amigable</li>
+                </ul>
+              </div>
             </div>
+          </div>
 
-            <div class="distro-slide">
-                <div class="distro-card">
-                    <div class="distro-header">
-                        <img src="./IMGS/Garuda-Linux.webp" alt="Garuda Logo" class="distro-logo">
-                        <h3>Garuda Linux</h3>
-                    </div>
-                    <div class="distro-body">
-                        <p><strong>Base:</strong> Arch Linux</p>
-                        <p><strong>Especialidad:</strong> Rendimiento con estética Neón.</p>
-                        <p>Usa el Kernel Zen por defecto y está muy enfocada en la estética gamer y facilidad.</p>
-                        <ul class="distro-features">
-                            <li>✅ Asistentes visuales potentes</li>
-                            <li>✅ Estética gamer Dragonized</li>
-                            <li>✅ Foco en el rendimiento Zen</li>
-                        </ul>
-                    </div>
-                </div>
+          <div class="distro-slide">
+            <div class="distro-card card-garuda">
+              <div class="distro-header">
+                <img
+                  src="./IMGS/Garuda-Linux.webp"
+                  alt="Garuda Logo"
+                  class="distro-logo"
+                />
+                <h3>Garuda Linux</h3>
+              </div>
+              <div class="distro-body">
+                <p><strong>Base:</strong> Arch Linux</p>
+                <p>
+                  <strong>Especialidad:</strong> Rendimiento con estética Neón.
+                </p>
+                <p>
+                  Usa el Kernel Zen por defecto y está muy enfocada en la
+                  estética gamer y facilidad.
+                </p>
+                <ul class="distro-features">
+                  <li>✅ Asistentes visuales potentes</li>
+                  <li>✅ Estética gamer Dragonized</li>
+                  <li>✅ Foco en el rendimiento Zen</li>
+                </ul>
+              </div>
             </div>
+          </div>
 
-            <div class="distro-slide">
-                <div class="distro-card">
-                    <div class="distro-header">
-                        <img src="./IMGS/Pop!OS.webp" alt="Pop!_OS Logo" class="distro-logo">
-                        <h3>Pop!_OS</h3>
-                    </div>
-                    <div class="distro-body">
-                        <p><strong>Base:</strong> Ubuntu</p>
-                        <p><strong>Especialidad:</strong> Estabilidad y drivers NVIDIA.</p>
-                        <p>Excelente gestión de ventanas y drivers preinstalados para jugar sin vueltas.</p>
-                        <ul class="distro-features">
-                            <li>✅ ISO específica para NVIDIA</li>
-                            <li>✅ Excelente gestión de ventanas</li>
-                            <li>✅ Soporte comercial (System76)</li>
-                        </ul>
-                    </div>
-                </div>
+          <div class="distro-slide">
+            <div class="distro-card card-pop">
+              <div class="distro-header">
+                <img
+                  src="./IMGS/Pop!OS.webp"
+                  alt="Pop!_OS Logo"
+                  class="distro-logo"
+                />
+                <h3>Pop!_OS</h3>
+              </div>
+              <div class="distro-body">
+                <p><strong>Base:</strong> Ubuntu</p>
+                <p>
+                  <strong>Especialidad:</strong> Estabilidad y drivers NVIDIA.
+                </p>
+                <p>
+                  Excelente gestión de ventanas y drivers preinstalados para
+                  jugar sin vueltas.
+                </p>
+                <ul class="distro-features">
+                  <li>✅ ISO específica para NVIDIA</li>
+                  <li>✅ Excelente gestión de ventanas</li>
+                  <li>✅ Soporte comercial (System76)</li>
+                </ul>
+              </div>
             </div>
+          </div>
 
-            <div class="distro-slide">
-                <div class="distro-card">
-                    <div class="distro-header">
-                        <img src="./IMGS/Bazzite.webp" alt="Bazzite Logo" class="distro-logo">
-                        <h3>Bazzite</h3>
-                    </div>
-                    <div class="distro-body">
-                        <p><strong>Base:</strong> Fedora (uBlue)</p>
-                        <p><strong>Especialidad:</strong> Alternativa abierta a SteamOS.</p>
-                        <p>Ofrece la experiencia de la Steam Deck en PCs de escritorio con mucha fiabilidad.</p>
-                        <ul class="distro-features">
-                            <li>✅ Sistema Atómico inmutable</li>
-                            <li>✅ Deck Experience en escritorio</li>
-                            <li>✅ Altísima fiabilidad</li>
-                        </ul>
-                    </div>
-                </div>
+          <div class="distro-slide">
+            <div class="distro-card card-bazzite">
+              <div class="distro-header">
+                <img
+                  src="./IMGS/Bazzite.webp"
+                  alt="Bazzite Logo"
+                  class="distro-logo"
+                />
+                <h3>Bazzite</h3>
+              </div>
+              <div class="distro-body">
+                <p><strong>Base:</strong> Fedora (uBlue)</p>
+                <p>
+                  <strong>Especialidad:</strong> Alternativa abierta a SteamOS.
+                </p>
+                <p>
+                  Ofrece la experiencia de la Steam Deck en PCs de escritorio
+                  con mucha fiabilidad.
+                </p>
+                <ul class="distro-features">
+                  <li>✅ Sistema Atómico inmutable</li>
+                  <li>✅ Deck Experience en escritorio</li>
+                  <li>✅ Altísima fiabilidad</li>
+                </ul>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        </div> </div> </section>
-
-<script src="JS/Gaming.js"></script>
-
-</body>
+    <script src="JS/Gaming.js"></script>
+  </body>
 </html>

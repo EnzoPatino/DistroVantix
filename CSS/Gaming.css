@@ -582,10 +582,39 @@ body {
     text-align: left;
 }
 
-.distro-card:hover {
+/* Estilos individuales para cada distro al pasar el mouse */
+
+/* CachyOS - Verde */
+.card-cachy:hover {
     border-color: #00ffcc;
+    box-shadow: 0 10px 30px rgba(0, 255, 204, 0.3);
     transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0, 255, 204, 0.2);
+}
+
+/* Garuda - Rojo/Fucsia Neón */
+.card-garuda:hover {
+    border-color: #ff217c;
+    box-shadow: 0 10px 30px rgba(255, 33, 124, 0.3);
+    transform: translateY(-10px);
+}
+
+/* Pop!_OS - Cyan/Azul */
+.card-pop:hover {
+    border-color: #48b9c7;
+    box-shadow: 0 10px 30px rgba(72, 185, 199, 0.3);
+    transform: translateY(-10px);
+}
+
+/* Bazzite - Azul Fedora */
+.card-bazzite:hover {
+    border-color: #3c6eb4;
+    box-shadow: 0 10px 30px rgba(60, 110, 180, 0.3);
+    transform: translateY(-10px);
+}
+
+/* Animación suave para todas */
+.distro-card {
+    transition: all 0.3s ease;
 }
 
 .distro-header {
@@ -718,3 +747,4 @@ body {
     max-width: 500px;
     /* ... resto de tus estilos de borde y fondo ... */
 }
+
