@@ -109,14 +109,70 @@ html {
   color: #a9b1d6; /* Color tipo Tokyo Night, más suave que el blanco puro */
 }
 
-/*Mejora de la info de las tres*/
+/* Contenedor principal del bloque */
 .info-box {
   background: #1a1b26;
   border: 1px solid rgba(0, 255, 204, 0.1);
+  border-bottom: 4px solid #00ffcc;
+  padding: 40px;
+  border-radius: 15px;
   position: relative;
   overflow: hidden;
+  min-height: 250px; /* Altura fija para que no salte el diseño */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra el título al inicio */
+  align-items: center;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
 }
 
+/* El Título */
+.info-box h3 {
+  color: #00ffcc;
+  font-size: 1.5rem;
+  margin: 0;
+  transition: all 0.5s ease;
+  z-index: 2;
+  text-align: center;
+}
+
+/* La Descripción (Oculta al inicio) */
+.info-box p {
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #a9b1d6;
+  opacity: 0; /* Invisible */
+  transform: translateY(30px); /* Un poco hacia abajo */
+  transition: all 0.5s ease;
+  margin-top: 20px;
+  text-align: center;
+  visibility: hidden; /* No interactuable */
+}
+
+/* ============================================ */
+/* EFECTO HOVER (CUANDO PASA EL CURSOR)         */
+/* ============================================ */
+
+.info-box:hover {
+  background: #24283b;
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 255, 204, 0.1);
+}
+
+/* El título sube */
+.info-box:hover h3 {
+  transform: translateY(-10px); /* Sube un poco para dejar espacio */
+}
+
+/* La descripción aparece y sube a su posición */
+.info-box:hover p {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Mantenemos tu efecto de brillo que ya tenías */
 .info-box::before {
   content: "";
   position: absolute;
@@ -127,17 +183,16 @@ html {
   background: linear-gradient(
     45deg,
     transparent,
-    rgba(187, 185, 185, 0.784),
+    rgba(255, 255, 255, 0.1),
     transparent
   );
   transform: translateX(-100%);
-  transition: 0.5s;
+  transition: 0.8s;
 }
 
 .info-box:hover::before {
   transform: translateX(100%);
 }
-
 /* ============================================ */
 /* BARRA DE NAVEGACIÓN                           */
 /* ============================================ */
