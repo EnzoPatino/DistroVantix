@@ -1,5 +1,5 @@
 /* ============================================ */
-/* JAVASCRIPT INTERACTIVO PARA CACHYOS PAGE     */
+/* JAVASCRIPT INTERACTIVO PARA POP!_OS PAGE     */
 /* ============================================ */
 
 // Inicialización cuando el DOM está listo
@@ -23,7 +23,7 @@ function initNavigation() {
   btnMenu?.addEventListener("click", () => {
     navbar?.classList.toggle("active");
     btnMenu.style.background = navbar?.classList.contains("active")
-      ? "rgba(0, 255, 204, 0.2)"
+      ? "rgba(76, 175, 80, 0.2)"
       : "none";
   });
 
@@ -130,9 +130,9 @@ function initInfoBoxes() {
     box.style.animationDelay = `${index * 0.1}s`;
 
     box.addEventListener("mouseenter", () => {
-      // Efecto de glow mejorado
-      box.style.boxShadow = `0 0 30px rgba(0, 255, 204, 0.4), 
-                             inset 0 0 30px rgba(0, 255, 204, 0.05)`;
+      // Efecto de glow mejorado con colores de Pop!_OS
+      box.style.boxShadow = `0 0 30px rgba(76, 175, 80, 0.4), 
+                             inset 0 0 30px rgba(76, 175, 80, 0.05)`;
     });
 
     box.addEventListener("mouseleave", () => {
@@ -165,4 +165,4 @@ function addClassAfterDelay(element, className, delay = 1000) {
 }
 
 // Log de inicialización
-console.log("✨ CachyOS page loaded with interactive features");
+console.log("🖥️ Pop!_OS page loaded with interactive features");

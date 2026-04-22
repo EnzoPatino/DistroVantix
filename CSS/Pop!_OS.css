@@ -1,0 +1,647 @@
+/* ============================================ */
+/* RESET GLOBAL Y ANIMACIONES BASE               */
+/* ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+html {
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #1a1b26;
+  font-family: "Inter", sans-serif;
+}
+
+/* ============================================ */
+/* ANIMACIONES                                  */
+/* ============================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* ============================================ */
+/* SECCIÓN SHOWCASE - IMAGEN Y TEXTO LADO A LADO */
+/* ============================================ */
+
+.intro-showcase {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  margin-bottom: 80px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.showcase-image {
+  flex: 1;
+  min-width: 300px;
+}
+
+.showcase-img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 20px 60px rgba(76, 175, 80, 0.25);
+  transition: all 0.4s ease;
+  border: 2px solid rgba(76, 175, 80, 0.3);
+}
+
+.showcase-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 30px 80px rgba(76, 175, 80, 0.4);
+}
+
+.showcase-content {
+  flex: 1.2;
+  animation: fadeInLeft 0.8s ease-out 0.2s backwards;
+}
+
+.showcase-content h1 {
+  margin-bottom: 20px;
+}
+
+.showcase-content p {
+  margin-bottom: 15px;
+  line-height: 1.8;
+}
+
+.detail-title {
+  color: #ffffff;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 20px;
+}
+
+.highlight {
+  color: #4caf50;
+  text-shadow: 0 0 20px rgba(76, 175, 80, 0.4);
+}
+
+.detail-subtitle {
+  font-size: 1.2rem;
+  color: #4caf50;
+  opacity: 0.8;
+  margin-top: 20px;
+}
+
+.detail-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #a9b1d6;
+}
+
+/* ============================================ */
+/* BOTONES CTA                                  */
+/* ============================================ */
+
+.cta-button {
+  display: inline-block;
+  background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+  color: #ffffff;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  box-shadow: 0 5px 20px rgba(76, 175, 80, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(76, 175, 80, 0.5);
+  background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);
+}
+
+.cta-button:active {
+  transform: translateY(-1px);
+}
+
+/* Grupo de botones lado a lado */
+.button-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Botón secundario (Descargar) */
+.cta-button-secondary {
+  background: transparent;
+  border: 2px solid #4caf50;
+  color: #4caf50;
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.2);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta-button-secondary:hover {
+  background: rgba(76, 175, 80, 0.1);
+  box-shadow: 0 0 25px rgba(76, 175, 80, 0.4);
+  border-color: #66bb6a;
+}
+
+.cta-button-secondary:active {
+  transform: translateY(-1px);
+}
+
+/* Ripple effect */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: ripple-animation 0.6s ease-out;
+  pointer-events: none;
+}
+
+/* ============================================ */
+/* SECCIÓN DE CARACTERÍSTICAS                   */
+/* ============================================ */
+
+.features-section {
+  margin-bottom: 80px;
+}
+
+.section-title {
+  color: #ffffff;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  text-align: center;
+  margin-bottom: 50px;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+/* Cuadrícula de información */
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  width: 100%;
+}
+
+.info-box {
+  background: #24283b;
+  padding: 40px;
+  border-radius: 15px;
+  border-bottom: 4px solid #4caf50;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.info-box h3 {
+  color: #4caf50;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+  transition: transform 0.4s ease;
+}
+
+.info-box p {
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #a9b1d6;
+  text-align: center;
+  transition: all 0.4s ease;
+}
+
+.info-box:hover {
+  background: #242823;
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(76, 175, 80, 0.1);
+}
+
+/* El título sube */
+.info-box:hover h3 {
+  transform: translateY(-10px);
+}
+
+/* La descripción aparece y sube a su posición */
+.info-box:hover p {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Efecto de brillo SOLO en hover */
+.info-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: 0.8s;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.info-box:hover::before {
+  transform: translateX(100%);
+  opacity: 1;
+}
+
+/* ============================================ */
+/* SECCIÓN DE COMPARACIÓN                       */
+/* ============================================ */
+
+.comparison-section {
+  margin-top: 80px;
+  padding: 60px 40px;
+  background: linear-gradient(135deg, #1a1b26 0%, #24283b 100%);
+  border-radius: 20px;
+  border: 2px solid rgba(76, 175, 80, 0.2);
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.comparison-card {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.comparison-item {
+  flex: 1;
+  min-width: 250px;
+  padding: 40px;
+  background: #1a1b26;
+  border-radius: 15px;
+  text-align: center;
+  border: 2px solid rgba(169, 177, 214, 0.1);
+  transition: all 0.4s ease;
+}
+
+.comparison-item h3 {
+  color: #a9b1d6;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.performance-display {
+  color: #4caf50;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+}
+
+.low-display {
+  color: #a9b1d6;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.comparison-divider {
+  color: #4caf50;
+  font-size: 2rem;
+  font-weight: bold;
+  opacity: 0.5;
+  flex: 0 0 auto;
+}
+
+.comparison-item.highlight-winner {
+  border: 2px solid #4caf50;
+  background: rgba(76, 175, 80, 0.05);
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(76, 175, 80, 0.2);
+}
+
+.comparison-item:hover {
+  transform: translateY(-10px);
+  border-color: #4caf50;
+  box-shadow: 0 15px 40px rgba(76, 175, 80, 0.15);
+}
+
+.comparison-item.highlight-winner:hover {
+  transform: scale(1.08) translateY(-10px);
+  box-shadow: 0 20px 50px rgba(76, 175, 80, 0.3);
+}
+
+/* ============================================ */
+/* BARRA DE NAVEGACIÓN MEJORADA                  */
+/* ============================================ */
+
+.navbar-container {
+  background: linear-gradient(90deg, #0f0f15 0%, #1a1b26 50%, #0f0f15 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 5%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.1);
+  border-bottom: 2px solid rgba(76, 175, 80, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.navbar {
+  order: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex: 1;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-logo img {
+  height: 60px;
+  width: 60px;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 10px rgba(76, 175, 80, 0.3));
+}
+
+.navbar-logo img:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 20px rgba(76, 175, 80, 0.5));
+}
+
+#btn-menu {
+  order: 1;
+  background: none;
+  border: 2px solid rgba(76, 175, 80, 0.5);
+  color: #4caf50;
+  font-size: 1.8rem;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: none;
+}
+
+#btn-menu:hover {
+  background: rgba(76, 175, 80, 0.1);
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.navbar-links a {
+  color: #a9b1d6;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.navbar-links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #4caf50 0%, #388e3c 100%);
+  transition: width 0.3s ease;
+}
+
+.navbar-links a:hover {
+  color: #4caf50;
+  text-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+.navbar-links a:hover::after {
+  width: 100%;
+}
+
+.user-area {
+  order: 3;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.distro-badge {
+  background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+  color: #ffffff;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.distro-badge:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.5);
+}
+
+/* ============================================ */
+/* CONTENEDOR PRINCIPAL                         */
+/* ============================================ */
+
+.distro-detail {
+  background-color: #1a1b26;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 0;
+  color: #a9b1d6;
+}
+
+.detail-container {
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ============================================ */
+/* RESPONSIVE DESIGN                            */
+/* ============================================ */
+
+@media (max-width: 768px) {
+  .intro-showcase {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .showcase-image {
+    min-width: auto;
+  }
+
+  .comparison-card {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .comparison-item.highlight-winner {
+    transform: scale(1);
+  }
+
+  .comparison-item.highlight-winner:hover {
+    transform: scale(1.02) translateY(-10px);
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #btn-menu {
+    display: block;
+  }
+
+  .navbar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    gap: 0;
+    background: #1a1b26;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .navbar.active {
+    max-height: 300px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+
+  .navbar-links a {
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(76, 175, 80, 0.1);
+  }
+}
+
+@media (max-width: 480px) {
+  .intro-showcase {
+    gap: 20px;
+  }
+
+  .showcase-content {
+    padding: 20px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .cta-button {
+    width: 100%;
+    padding: 15px 20px;
+  }
+
+  .cta-button-secondary {
+    width: 100%;
+  }
+
+  .comparison-item {
+    min-width: 200px;
+    padding: 20px;
+  }
+
+  .performance-display {
+    font-size: 2rem;
+  }
+}
