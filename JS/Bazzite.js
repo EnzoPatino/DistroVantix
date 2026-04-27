@@ -1,5 +1,5 @@
 /* ============================================ */
-/* JAVASCRIPT INTERACTIVO PARA GARUDA PAGE      */
+/* JAVASCRIPT INTERACTIVO PARA BAZZITE PAGE     */
 /* ============================================ */
 
 // Inicialización cuando el DOM está listo
@@ -23,7 +23,7 @@ function initNavigation() {
   btnMenu?.addEventListener("click", () => {
     navbar?.classList.toggle("active");
     btnMenu.style.background = navbar?.classList.contains("active")
-      ? "rgba(233, 30, 99, 0.2)"
+      ? "rgba(0, 191, 255, 0.2)"
       : "none";
   });
 
@@ -130,9 +130,9 @@ function initInfoBoxes() {
     box.style.animationDelay = `${index * 0.1}s`;
 
     box.addEventListener("mouseenter", () => {
-      // Efecto de glow mejorado con colores de Garuda
-      box.style.boxShadow = `0 0 30px rgba(233, 30, 99, 0.4), 
-                             inset 0 0 30px rgba(233, 30, 99, 0.05)`;
+      // Efecto de glow mejorado con colores de Bazzite
+      box.style.boxShadow = `0 0 30px rgba(0, 191, 255, 0.4), 
+                             inset 0 0 30px rgba(0, 191, 255, 0.05)`;
     });
 
     box.addEventListener("mouseleave", () => {
@@ -158,4 +158,4 @@ function addClassAfterDelay(element, className, delay = 1000) {
 }
 
 // Log de inicialización
-console.log(" Garuda Linux page loaded with interactive features");
+console.log("Bazzite page loaded with gaming features");

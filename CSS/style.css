@@ -1,13 +1,32 @@
 /* ============================================ */
-/* DEFINICIÓN DE VARIABLES  */
+/* DEFINICIÓN DE VARIABLES Y MIXINS              */
 /* ============================================ */
 :root {
-  --bg-main: #f1f5f9; /* Gris muy claro para el fondo de la página */
-  --nav-dark: #1a1a1a; /* Gris oscuro azulado para la barra superior */
-  --text-light: #f8fafc; /* Texto casi blanco para fondos oscuros */
-  --text-dark: #0f172a; /* Texto oscuro para fondos claros */
-  --accent: #22c55e; /* Verde neón inspirado en el logo para resaltar */
-  --card-bg: #ffffff; /* Blanco puro para las tarjetas */
+  /* COLORES */
+  --bg-main: #f1f5f9;
+  --nav-dark: #1a1a1a;
+  --text-light: #f8fafc;
+  --text-dark: #0f172a;
+  --accent: #22c55e;
+  --card-bg: #ffffff;
+  --shadow-dark: rgba(0, 0, 0, 0.2);
+  --accent-dark: #1a7a38;
+
+  /* TRANSICIONES */
+  --transition-fast: 0.3s ease;
+  --transition-smooth: 0.5s ease;
+  --transition-cubic: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ESPACIADOS */
+  --gap-small: 10px;
+  --gap-normal: 20px;
+  --gap-large: 30px;
+  --gap-xl: 60px;
+
+  /* BORDER RADIUS */
+  --radius-small: 12px;
+  --radius-normal: 20px;
+  --radius-large: 25px;
 }
 
 /* ============================================ */
@@ -24,7 +43,6 @@
   }
 }
 
-/* Animación de entrada suave desde abajo */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -36,7 +54,6 @@
   }
 }
 
-/* Animación de entrada suave desde izquierda */
 @keyframes fadeInLeft {
   from {
     opacity: 0;
@@ -48,7 +65,6 @@
   }
 }
 
-/* Animación de entrada suave desde derecha */
 @keyframes fadeInRight {
   from {
     opacity: 0;
@@ -60,7 +76,6 @@
   }
 }
 
-/* Animación de brillo/glow en hover */
 @keyframes glow {
   from {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -70,7 +85,6 @@
   }
 }
 
-/* Animación de elevación suave */
 @keyframes float {
   0%,
   100% {
@@ -81,9 +95,137 @@
   }
 }
 
+@keyframes slideInLeft {
+  from {
+    left: -300px;
+    opacity: 0;
+  }
+  to {
+    left: 0;
+    opacity: 1;
+  }
+}
+
 /* ============================================ */
-/* ARREGLO DE ANIMACIONES DE USUARIO */
+/* FUNCIONES Y UTILIDADES CSS                   */
 /* ============================================ */
+
+/* TRANSICIÓN ESTÁNDAR - Base para todas las transiciones */
+.transition-smooth {
+  transition: all var(--transition-fast);
+}
+
+.transition-smooth-slow {
+  transition: all var(--transition-smooth);
+}
+
+/* CARD STYLES - Reutilizable para todas las tarjetas */
+.card-base {
+  display: flex;
+  align-items: center;
+  width: 95%;
+  max-width: 1200px;
+  background-color: #f5f3e7;
+  border-radius: var(--radius-normal);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  margin: 20px auto;
+  overflow: hidden;
+  animation: fadeInUp 0.8s ease-out;
+  transition:
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.card-base:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(34, 197, 94, 0.15);
+}
+
+/* LINK UNDERLINE EFFECT - Reutilizable para todos los links */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent);
+  transition: width var(--transition-fast);
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+.link-underline:hover {
+  color: var(--accent);
+}
+
+/* FLEX CENTER - Centra contenido horizontalmente */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* GLOW TEXT - Efecto de brillo en títulos */
+.glow-text {
+  transition: all var(--transition-fast);
+  color: var(--text-dark);
+}
+
+.glow-text:hover {
+  color: var(--accent);
+  text-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+}
+
+/* IMAGE ZOOM - Efecto zoom en imágenes */
+.image-zoom {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-smooth);
+}
+
+.image-zoom:hover {
+  transform: scale(1.05);
+}
+
+/* BUTTON BASE - Estilo base para botones */
+.btn-base {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 12px;
+  border: 2px solid var(--accent);
+  border-radius: var(--radius-small);
+  background: none;
+  text-align: left;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: 1rem;
+  color: var(--text-light);
+  animation: fadeInLeft 0.5s ease-out backwards;
+}
+
+.btn-base:hover {
+  background-color: var(--accent);
+  color: #1a1a1a;
+  transform: translateX(10px);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+}
+
+/* ============================================ */
+/* RESET Y ESTILOS BASE                          */
+/* ============================================ */
+
 * {
   margin: 0;
   padding: 0;
@@ -97,12 +239,10 @@ body {
   line-height: 1.6;
 }
 
-/* Scroll suave nativo */
 html {
   scroll-behavior: smooth;
 }
 
-/* Evita que la navbar tape los títulos al saltar */
 section,
 footer {
   scroll-margin-top: 100px;
@@ -111,6 +251,7 @@ footer {
 /* ============================================ */
 /* BARRA DE NAVEGACIÓN                           */
 /* ============================================ */
+
 .navbar-container {
   background-color: var(--nav-dark);
   display: flex;
@@ -120,7 +261,7 @@ footer {
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px var(--shadow-dark);
   animation: fadeInDown 0.6s ease-out;
 }
 
@@ -132,17 +273,15 @@ footer {
   font-size: 1.8rem;
   cursor: pointer;
   transition:
-    transform 0.3s ease,
-    color 0.3s ease;
+    transform var(--transition-fast),
+    color var(--transition-fast);
 }
 
-/* Efecto del botón hamburguesa al pasar el mouse */
 #btn-menu:hover {
   color: var(--accent);
   transform: scale(1.1) rotate(10deg);
 }
 
-/* Rotación cuando el sidebar está activo */
 #sidebar.active ~ .navbar-container #btn-menu {
   transform: rotate(90deg);
   color: var(--accent);
@@ -153,7 +292,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: var(--gap-normal);
 }
 
 .user-area {
@@ -163,19 +302,19 @@ footer {
 .navbar-links {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: var(--gap-normal);
 }
 
 .navbar-links a {
   color: var(--text-light);
-  text-decoration: none;
   font-size: 0.9rem;
-  transition: all 0.3s ease;
-  position: relative;
   padding-bottom: 5px;
+  animation: fadeInDown 0.6s ease-out;
+  position: relative;
+  text-decoration: none;
+  transition: color var(--transition-fast);
 }
 
-/* Efecto subrayado animado en links */
 .navbar-links a::after {
   content: "";
   position: absolute;
@@ -184,7 +323,7 @@ footer {
   width: 0;
   height: 2px;
   background-color: var(--accent);
-  transition: width 0.3s ease;
+  transition: width var(--transition-fast);
 }
 
 .navbar-links a:hover::after {
@@ -198,6 +337,7 @@ footer {
 /* ============================================ */
 /* MENÚ LATERAL / TABLERO                        */
 /* ============================================ */
+
 .tablero {
   position: fixed;
   left: -300px;
@@ -206,65 +346,52 @@ footer {
   height: 100%;
   background: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 100%);
   padding: 30px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-cubic);
   z-index: 2000;
   box-shadow: 10px 0 30px rgba(0, 0, 0, 0.3);
   border-right: 2px solid var(--accent);
 }
 
-/* Cuando el sidebar está activo (abierto) */
 .tablero.active {
   left: 0;
   animation: slideInLeft 0.4s ease-out;
 }
 
-/* Animación de deslizamiento desde la izquierda */
-@keyframes slideInLeft {
-  from {
-    left: -300px;
-    opacity: 0;
-  }
-  to {
-    left: 0;
-    opacity: 1;
-  }
-}
-
 .categorias h3 {
-  margin-bottom: 20px;
+  margin-bottom: var(--gap-normal);
   color: var(--accent);
   font-size: 1.2rem;
   animation: fadeInDown 0.5s ease-out 0.2s backwards;
 }
 
 .cat-btn {
+  margin-bottom: 12px;
+  animation: fadeInLeft 0.5s ease-out backwards;
   width: 100%;
   padding: 15px;
-  margin-bottom: 12px;
   border: 2px solid var(--accent);
-  border-radius: 12px;
+  border-radius: var(--radius-small);
   background: none;
   text-align: left;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-fast);
   font-size: 1rem;
   color: var(--text-light);
-  animation: fadeInLeft 0.5s ease-out backwards;
 }
 
-/* Animación de botón - cada uno con delay */
 .cat-btn:nth-child(2) {
   animation-delay: 0.3s;
 }
+
 .cat-btn:nth-child(3) {
   animation-delay: 0.4s;
 }
+
 .cat-btn:nth-child(4) {
   animation-delay: 0.5s;
 }
 
-/* Efecto hover en botones del sidebar */
 .cat-btn:hover {
   background-color: var(--accent);
   color: #1a1a1a;
@@ -275,6 +402,7 @@ footer {
 /* ============================================ */
 /* CONTENIDO PRINCIPAL                           */
 /* ============================================ */
+
 .main-content {
   display: flex;
   flex-direction: column;
@@ -285,7 +413,6 @@ footer {
   margin: 0 auto;
 }
 
-/* Tarjeta de propósito y otras secciones */
 #about,
 .purpose-card,
 .info-card,
@@ -309,14 +436,13 @@ footer {
   background-color: var(--card-bg);
   max-width: 750px;
   padding: 50px;
-  border-radius: 25px;
+  border-radius: var(--radius-large);
   text-align: center;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
   animation: fadeInUp 0.8s ease-out;
-  transition: all 0.3s ease;
+  transition: all var(--transition-fast);
 }
 
-/* Efecto hover en tarjeta de propósito */
 .purpose-card:hover {
   animation: glow 0.3s ease;
   transform: translateY(-5px);
@@ -324,9 +450,9 @@ footer {
 
 .purpose-card h2 {
   font-size: 2rem;
-  margin-bottom: 20px;
-  color: var(--nav-dark);
-  transition: color 0.3s ease;
+  margin-bottom: var(--gap-normal);
+  transition: all var(--transition-fast);
+  color: var(--text-dark);
 }
 
 .purpose-card:hover h2 {
@@ -347,66 +473,81 @@ footer {
 }
 
 /* ============================================ */
-/* TARJETAS GRANDES CON IMAGEN Y TEXTO          */
+/* TARJETAS CON IMAGEN Y TEXTO                   */
 /* ============================================ */
-.card-extra-large {
+
+.card-extra-large,
+.card-container,
+.caja-final {
   display: flex;
   align-items: center;
   width: 95%;
   max-width: 1200px;
   background-color: #f5f3e7;
-  border-radius: 20px;
+  border-radius: var(--radius-normal);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   margin: 20px auto;
   overflow: hidden;
   animation: fadeInUp 0.8s ease-out;
   transition:
-    box-shadow 0.3s ease,
-    transform 0.3s ease;
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
 }
 
-/* Efecto hover en tarjetas grandes - suavizado para evitar bugs */
-.card-extra-large:hover {
+.card-extra-large:hover,
+.card-container:hover,
+.caja-final:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 40px rgba(34, 197, 94, 0.15);
 }
 
-.card-image {
+.card-image,
+.imagen-final {
   flex: 1;
   height: 100%;
   overflow: hidden;
 }
 
-.card-image img {
+.card-image img,
+.imagen-final img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s ease;
+  transition: transform var(--transition-smooth);
 }
 
-/* Efecto zoom en imagen al pasar el mouse */
-.card-extra-large:hover .card-image img {
+.card-extra-large:hover .card-image img,
+.card-container:hover .card-image img,
+.caja-final:hover .imagen-final img {
   transform: scale(1.05);
 }
 
-.card-text {
+.card-text,
+.texto-final {
   flex: 1.5;
   padding: 40px;
   text-align: left;
-  animation: fadeInLeft 0.8s ease-out;
 }
 
-.card-text h2 {
-  transition: all 0.3s ease;
+.card-text h2,
+.texto-final h2 {
+  transition: all var(--transition-fast);
+  color: var(--text-dark);
 }
 
-.card-extra-large:hover .card-text h2 {
+.card-extra-large:hover .card-text h2,
+.card-container:hover .card-text h2,
+.caja-final:hover .texto-final h2 {
   color: var(--accent);
   text-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
 }
 
-/* Versión invertida (texto a la izquierda, imagen a la derecha) */
+.card-extra-large .card-text {
+  animation: fadeInLeft 0.8s ease-out;
+}
+
+/* Versión invertida (texto antes de imagen) */
 .reversed-section {
   flex-direction: row-reverse !important;
 }
@@ -415,112 +556,6 @@ footer {
   animation: fadeInRight 0.8s ease-out;
 }
 
-/* Alias para compatibilidad - card-container */
-.card-container {
-  display: flex;
-  align-items: center;
-  width: 95%;
-  max-width: 1200px;
-  background-color: #f5f3e7;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  margin: 20px auto;
-  overflow: hidden;
-  animation: fadeInUp 0.8s ease-out;
-  transition:
-    box-shadow 0.3s ease,
-    transform 0.3s ease;
-}
-
-.card-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(34, 197, 94, 0.15);
-}
-
-.card-container .card-image {
-  flex: 1;
-  height: 100%;
-}
-
-.card-container .card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.5s ease;
-}
-
-.card-container:hover .card-image img {
-  transform: scale(1.05);
-}
-
-.card-container .card-text {
-  flex: 1.5;
-  padding: 40px;
-  text-align: left;
-}
-
-.card-container:hover .card-text h2 {
-  color: var(--accent);
-  text-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
-}
-
-/* Alias para compatibilidad - caja-final */
-.caja-final {
-  display: flex;
-  align-items: center;
-  width: 95%;
-  max-width: 1200px;
-  background-color: #f5f3e7;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  margin: 20px auto;
-  overflow: hidden;
-  animation: fadeInUp 0.8s ease-out;
-  transition:
-    box-shadow 0.3s ease,
-    transform 0.3s ease;
-}
-
-.caja-final:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(34, 197, 94, 0.15);
-}
-
-.caja-final .texto-final {
-  flex: 1.5;
-  padding: 40px;
-  text-align: left;
-}
-
-.caja-final .texto-final h2 {
-  transition: all 0.3s ease;
-}
-
-.caja-final:hover .texto-final h2 {
-  color: var(--accent);
-  text-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
-}
-
-.caja-final .imagen-final {
-  flex: 1;
-  height: 100%;
-  overflow: hidden;
-}
-
-.caja-final .imagen-final img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.5s ease;
-}
-
-.caja-final:hover .imagen-final img {
-  transform: scale(1.05);
-}
-
-/* Versión invertida para caja-final - imagen a la derecha */
 .caja-final.invertida {
   flex-direction: row;
 }
@@ -538,6 +573,7 @@ footer {
 /* ============================================ */
 /* FOOTER                                        */
 /* ============================================ */
+
 .footer-container {
   background-color: #0f172a;
   color: #f8fafc;
@@ -550,17 +586,17 @@ footer {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: var(--gap-large);
   margin-bottom: 30px;
 }
 
 .footer-section h4 {
-  color: #22c55e;
+  color: var(--accent);
   margin-bottom: 15px;
   font-size: 1.1rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  transition: all 0.3s ease;
+  transition: all var(--transition-fast);
 }
 
 .footer-section h4:hover {
@@ -579,12 +615,11 @@ footer {
 .footer-section a {
   color: #94a3b8;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all var(--transition-fast);
   font-size: 0.9rem;
   position: relative;
 }
 
-/* Efecto subrayado animado en links del footer */
 .footer-section a::before {
   content: "";
   position: absolute;
@@ -593,7 +628,7 @@ footer {
   width: 0;
   height: 2px;
   background-color: var(--accent);
-  transition: width 0.3s ease;
+  transition: width var(--transition-fast);
 }
 
 .footer-section a:hover::before {
@@ -616,6 +651,7 @@ footer {
 /* ============================================ */
 /* RESPONSIVE DESIGN                             */
 /* ============================================ */
+
 @media (max-width: 768px) {
   .card-extra-large,
   .card-container,
@@ -645,11 +681,11 @@ footer {
   }
 
   .navbar {
-    gap: 15px;
+    gap: var(--gap-small);
   }
 
   .navbar-links {
-    gap: 10px;
+    gap: var(--gap-small);
     font-size: 0.8rem;
   }
 }

@@ -142,13 +142,6 @@ function initInfoBoxes() {
 }
 
 /* ============================================ */
-/* SMOOTH SCROLL BEHAVIOR                       */
-/* ============================================ */
-
-// Scroll suave nativo (CSS: scroll-behavior: smooth)
-// Soportado en navegadores modernos
-
-/* ============================================ */
 /* UTILIDADES                                   */
 /* ============================================ */
 
@@ -165,4 +158,4 @@ function addClassAfterDelay(element, className, delay = 1000) {
 }
 
 // Log de inicialización
-console.log("🖥️ Pop!_OS page loaded with interactive features");
+console.log(" Pop!_OS page loaded with interactive features");
