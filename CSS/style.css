@@ -9,8 +9,13 @@
   --text-dark: #0f172a;
   --accent: #22c55e;
   --card-bg: #ffffff;
+  --card-bg-alt: #f5f3e7;
+  --footer-dark: #0f172a;
+  --sidebar-dark: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 100%);
   --shadow-dark: rgba(0, 0, 0, 0.2);
   --accent-dark: #1a7a38;
+  --accent-light: rgba(34, 197, 94, 0.3);
+  --accent-glow: rgba(34, 197, 94, 0.15);
 
   /* TRANSICIONES */
   --transition-fast: 0.3s ease;
@@ -22,11 +27,19 @@
   --gap-normal: 20px;
   --gap-large: 30px;
   --gap-xl: 60px;
+  --padding-card: 40px;
+  --padding-large: 50px;
 
   /* BORDER RADIUS */
   --radius-small: 12px;
   --radius-normal: 20px;
   --radius-large: 25px;
+
+  /* SOMBRAS */
+  --shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 15px 40px rgba(34, 197, 94, 0.15);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 10px 0 30px rgba(0, 0, 0, 0.3);
 }
 
 /* ============================================ */
@@ -199,7 +212,8 @@
 }
 
 /* BUTTON BASE - Estilo base para botones */
-.btn-base {
+.btn-base,
+.cat-btn {
   width: 100%;
   padding: 15px;
   margin-bottom: 12px;
@@ -215,7 +229,8 @@
   animation: fadeInLeft 0.5s ease-out backwards;
 }
 
-.btn-base:hover {
+.btn-base:hover,
+.cat-btn:hover {
   background-color: var(--accent);
   color: #1a1a1a;
   transform: translateX(10px);
@@ -305,20 +320,18 @@ footer {
   gap: var(--gap-normal);
 }
 
-.navbar-links a {
-  color: var(--text-light);
-  font-size: 0.9rem;
-  padding-bottom: 5px;
-  animation: fadeInDown 0.6s ease-out;
+.navbar-links a,
+.footer-section a {
   position: relative;
   text-decoration: none;
-  transition: color var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
-.navbar-links a::after {
+.navbar-links a::after,
+.footer-section a::after {
   content: "";
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   left: 0;
   width: 0;
   height: 2px;
@@ -326,8 +339,16 @@ footer {
   transition: width var(--transition-fast);
 }
 
-.navbar-links a:hover::after {
+.navbar-links a:hover::after,
+.footer-section a:hover::after {
   width: 100%;
+}
+
+.navbar-links a {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  padding-bottom: 5px;
+  animation: fadeInDown 0.6s ease-out;
 }
 
 .navbar-links a:hover {
@@ -344,11 +365,11 @@ footer {
   top: 0;
   width: 280px;
   height: 100%;
-  background: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 100%);
+  background: var(--sidebar-dark);
   padding: 30px;
   transition: all var(--transition-cubic);
   z-index: 2000;
-  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-hover);
   border-right: 2px solid var(--accent);
 }
 
@@ -365,19 +386,7 @@ footer {
 }
 
 .cat-btn {
-  margin-bottom: 12px;
   animation: fadeInLeft 0.5s ease-out backwards;
-  width: 100%;
-  padding: 15px;
-  border: 2px solid var(--accent);
-  border-radius: var(--radius-small);
-  background: none;
-  text-align: left;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  font-size: 1rem;
-  color: var(--text-light);
 }
 
 .cat-btn:nth-child(2) {
@@ -435,10 +444,10 @@ footer {
 .purpose-card {
   background-color: var(--card-bg);
   max-width: 750px;
-  padding: 50px;
+  padding: var(--padding-large);
   border-radius: var(--radius-large);
   text-align: center;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-lg);
   animation: fadeInUp 0.8s ease-out;
   transition: all var(--transition-fast);
 }
@@ -476,6 +485,7 @@ footer {
 /* TARJETAS CON IMAGEN Y TEXTO                   */
 /* ============================================ */
 
+/* Base compartida para todas las tarjetas */
 .card-extra-large,
 .card-container,
 .caja-final {
@@ -483,10 +493,10 @@ footer {
   align-items: center;
   width: 95%;
   max-width: 1200px;
-  background-color: #f5f3e7;
+  background-color: var(--card-bg-alt);
   border-radius: var(--radius-normal);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  margin: 20px auto;
+  box-shadow: var(--shadow-sm);
+  margin: var(--gap-normal) auto;
   overflow: hidden;
   animation: fadeInUp 0.8s ease-out;
   transition:
@@ -498,7 +508,7 @@ footer {
 .card-container:hover,
 .caja-final:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(34, 197, 94, 0.15);
+  box-shadow: var(--shadow-md);
 }
 
 .card-image,
@@ -526,7 +536,7 @@ footer {
 .card-text,
 .texto-final {
   flex: 1.5;
-  padding: 40px;
+  padding: var(--padding-card);
   text-align: left;
 }
 
@@ -540,7 +550,7 @@ footer {
 .card-container:hover .card-text h2,
 .caja-final:hover .texto-final h2 {
   color: var(--accent);
-  text-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+  text-shadow: 0 0 10px var(--accent-light);
 }
 
 .card-extra-large .card-text {
@@ -575,9 +585,9 @@ footer {
 /* ============================================ */
 
 .footer-container {
-  background-color: #0f172a;
-  color: #f8fafc;
-  padding: 50px 5% 20px 5%;
+  background-color: var(--footer-dark);
+  color: var(--text-light);
+  padding: var(--padding-large) 5% 20px 5%;
   margin-top: 100px;
   animation: fadeInUp 0.8s ease-out 0.4s backwards;
 }
@@ -601,7 +611,7 @@ footer {
 
 .footer-section h4:hover {
   color: #ffffff;
-  text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+  text-shadow: 0 0 10px var(--accent-light);
 }
 
 .footer-section ul {
@@ -614,25 +624,7 @@ footer {
 
 .footer-section a {
   color: #94a3b8;
-  text-decoration: none;
-  transition: all var(--transition-fast);
   font-size: 0.9rem;
-  position: relative;
-}
-
-.footer-section a::before {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--accent);
-  transition: width var(--transition-fast);
-}
-
-.footer-section a:hover::before {
-  width: 100%;
 }
 
 .footer-section a:hover {
