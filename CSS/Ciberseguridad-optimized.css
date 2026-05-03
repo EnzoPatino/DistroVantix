@@ -1,0 +1,662 @@
+/* ============================================ */
+/* CIBERSEGURIDAD PAGE - OPTIMIZADO CON VARIABLES*/
+/* ============================================ */
+
+:root {
+  /* Base colors */
+  --bg-main: #f1f5f9;
+  --nav-dark: #1e293b;
+  --text-light: #1332ab98;
+  --text-dark: #0e27b4aa;
+  --accent: #000000;
+  --card-bg: #ffffff;
+  --ciberseguridad-primary: #181ecd;
+  --ciberseguridad-secondary: #1825d589;
+
+  /* Transitions */
+  --transition-fast: 0.3s ease;
+  --transition-smooth: 0.4s ease;
+  --transition-slow: 0.5s ease;
+  /* Spacing */
+  --gap-sm: 15px;
+  --gap-md: 25px;
+  --gap-lg: 40px;
+  --gap-xs: 15px;
+  --padding-sm: 20px;
+  --padding-md: 30px;
+  --padding-lg: 50px;
+
+  /* Borders */
+  --radius-sm: 12px;
+  --radius-md: 15px;
+  --radius-lg: 20px;
+
+  /* Shadows */
+  --shadow-sm: 0 5px 20px;
+  --shadow-md: 0 10px 40px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: var(--bg-main);
+  color: var(--text-dark);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================ */
+/* NAVBAR                                       */
+/* ============================================ */
+
+.navbar-container {
+  background-color: var(--nav-dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 5%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#btn-menu {
+  order: 1;
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.navbar {
+  order: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap-sm);
+}
+
+.user-area {
+  order: 3;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: var(--gap-sm);
+}
+
+.navbar-links a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color var(--transition-fast);
+}
+
+.navbar-links a:hover {
+  color: var(--accent);
+}
+
+/* ============================================ */
+/* SIDEBAR                                      */
+/* ============================================ */
+
+.tablero {
+  position: fixed;
+  left: -300px;
+  top: 0;
+  width: 280px;
+  height: 100%;
+  background-color: var(--card-bg);
+  padding: var(--padding-md);
+  transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2000;
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.1);
+}
+
+.tablero.active {
+  left: 0;
+}
+
+.categorias h3 {
+  margin-bottom: var(--gap-sm);
+  color: var(--nav-dark);
+  font-size: 1.2rem;
+}
+
+.cat-btn {
+  width: 100%;
+  padding: var(--gap-xs);
+  margin-bottom: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-sm);
+  background: none;
+  text-align: left;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: 1rem;
+}
+
+.cat-btn:hover {
+  background-color: var(--nav-dark);
+  color: white;
+  border-color: var(--nav-dark);
+}
+
+/* ============================================ */
+/* MAIN CONTENT                                 */
+/* ============================================ */
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--padding-lg) 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ============================================ */
+/* HERO SECTION                                 */
+/* ============================================ */
+
+.ciberseguridad-hero {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.ciberseguridad-hero h1 {
+  font-size: 3rem;
+  color: var(--ciberseguridad-primary);
+  margin-bottom: 15px;
+  text-shadow: 0 0 20px rgba(13, 11, 149, 0.546);
+}
+
+.ciberseguridad-hero p {
+  font-size: 1.2rem;
+  color: #64748b;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ============================================ */
+/* CAROUSEL                                     */
+/* ============================================ */
+
+.carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.carousel-container {
+  flex: 1;
+  position: relative;
+  width: 100%;
+}
+
+.slide {
+  display: none;
+  width: 100%;
+  animation: fadeIn 0.5s ease;
+}
+
+.slide.active {
+  display: block;
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(80, 123, 241, 0.2);
+  border: 2px solid var(--ciberseguridad-primary);
+  color: var(--ciberseguridad-primary);
+  padding: 12px 18px;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  font-size: 1.5rem;
+  transition: all var(--transition-fast);
+  z-index: 10;
+  user-select: none;
+}
+
+.prev {
+  left: -60px;
+}
+
+.next {
+  right: -60px;
+}
+
+.prev:hover,
+.next:hover {
+  background: var(--ciberseguridad-primary);
+  color: var(--card-bg);
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.463);
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* ============================================ */
+/* INFO CONTAINER                               */
+/* ============================================ */
+
+.ciberseguridad-info-container {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-lg);
+  background-color: var(--card-bg);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md) rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  padding: var(--padding-lg);
+}
+
+.ciberseguridad-info-container.image-right {
+  flex-direction: row;
+}
+
+.ciberseguridad-info-container.image-left {
+  flex-direction: row-reverse;
+}
+
+.ciberseguridad-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+
+.ciberseguridad-text h2 {
+  font-size: 2rem;
+  color: var(--ciberseguridad-primary);
+  margin-bottom: 20px;
+}
+
+.ciberseguridad-text p {
+  font-size: 1rem;
+  color: #475569;
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.ciberseguridad-text strong {
+  color: var(--ciberseguridad-secondary);
+}
+
+.ciberseguridad-image {
+  flex: 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm) rgba(0, 0, 0, 0.15);
+}
+
+.ciberseguridad-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ============================================ */
+/* FEATURES GRID                                */
+/* ============================================ */
+
+.ciberseguridad-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--gap-md);
+  margin: 60px 0;
+}
+
+.feature-card {
+  background: linear-gradient(
+    135deg,
+    var(--ciberseguridad-primary) 0%,
+    var(--ciberseguridad-secondary) 100%
+  );
+  border-radius: var(--radius-md);
+  padding: var(--padding-md);
+  color: white;
+  text-align: center;
+  box-shadow: var(--shadow-sm) rgba(0, 255, 65, 0.3);
+  transition: all var(--transition-fast);
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md) rgba(0, 255, 65, 0.5);
+}
+
+.feature-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.feature-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ============================================ */
+/* FOOTER                                       */
+/* ============================================ */
+
+.footer-container {
+  background-color: var(--nav-dark);
+  color: var(--text-light);
+  padding: var(--padding-lg) 5%;
+  margin-top: auto;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: var(--gap-lg);
+  margin-bottom: 30px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-section h4 {
+  color: var(--accent);
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section a {
+  color: #94a3b8;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  font-size: 0.9rem;
+}
+
+.footer-section a:hover {
+  color: #ffffff;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #1e293b;
+  padding-top: 20px;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+/* ============================================ */
+/* DISTRO CAROUSEL                              */
+/* ============================================ */
+
+.distros-section {
+  padding: 80px 20px;
+  background-color: #0b0f1a;
+  text-align: center;
+}
+
+.section-title {
+  color: #2b6acfba;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 80px;
+  font-size: 2.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.distro-carousel-wrapper {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 90px;
+  margin-top: 90px;
+}
+
+.distro-slide {
+  display: none;
+  justify-content: center;
+  gap: var(--gap-lg);
+  width: 100%;
+  animation: fadeIn 0.5s ease;
+}
+
+.distro-slide.active {
+  display: flex;
+}
+
+.distro-card {
+  background: #161b22;
+  border: 2px solid #30363d;
+  border-radius: var(--radius-md);
+  padding: 25px;
+  flex: 1;
+  max-width: 450px;
+  transition: all var(--transition-fast);
+  text-align: left;
+}
+
+.card-kali:hover {
+  border-color: #2969f6ed;
+  box-shadow: 0 10px 30px rgba(37, 160, 209, 0.3);
+  transform: translateY(-10px);
+}
+
+.card-parrot:hover {
+  border-color: #004eccbc;
+  box-shadow: 0 10px 30px rgba(3, 125, 255, 0.3);
+  transform: translateY(-10px);
+}
+
+.card-blackarch:hover {
+  border-color: #9900ff;
+  box-shadow: 0 10px 30px rgba(153, 0, 255, 0.3);
+  transform: translateY(-10px);
+}
+
+.distro-header {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xs);
+  margin-bottom: 15px;
+}
+
+.distro-logo {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+}
+
+.distro-card h3 {
+  color: #fff;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.distro-body p {
+  color: #8b949e;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.distro-features {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+.distro-features li {
+  color: #007bff;
+  font-size: 0.85rem;
+  margin-bottom: 5px;
+}
+
+.distro-prev,
+.distro-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(61, 146, 243, 0.1);
+  border: 1px solid #34466b;
+  color: #4e74b0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  z-index: 100;
+}
+
+.distro-prev {
+  left: 0;
+}
+
+.distro-next {
+  right: 0;
+}
+
+.distro-prev:hover,
+.distro-next:hover {
+  background: #7587ec;
+  color: #0b0f1a;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ============================================ */
+/* RESPONSIVE                                   */
+/* ============================================ */
+
+@media (max-width: 1024px) {
+  .ciberseguridad-info-container {
+    gap: var(--gap-md);
+    padding: var(--padding-md);
+  }
+
+  .ciberseguridad-text h2 {
+    font-size: 1.6rem;
+  }
+
+  .ciberseguridad-hero h1 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .ciberseguridad-info-container,
+  .ciberseguridad-info-container.image-right,
+  .ciberseguridad-info-container.image-left {
+    flex-direction: column;
+    padding: var(--padding-md);
+    gap: var(--gap-sm);
+  }
+
+  .ciberseguridad-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .ciberseguridad-hero p {
+    font-size: 1rem;
+  }
+
+  .ciberseguridad-text h2 {
+    font-size: 1.4rem;
+  }
+
+  .ciberseguridad-text p {
+    font-size: 0.9rem;
+  }
+
+  .ciberseguridad-features {
+    grid-template-columns: 1fr;
+  }
+
+  .main-content {
+    padding: var(--padding-sm) 5%;
+  }
+
+  .navbar-links {
+    gap: var(--gap-xs);
+    font-size: 0.8rem;
+  }
+
+  .distro-carousel-wrapper {
+    padding: 0 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ciberseguridad-hero h1 {
+    font-size: 1.4rem;
+  }
+
+  .ciberseguridad-text h2 {
+    font-size: 1.2rem;
+  }
+
+  .ciberseguridad-info-container {
+    padding: var(--padding-sm);
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: var(--gap-sm);
+  }
+
+  .distro-carousel-wrapper {
+    padding: 0;
+  }
+
+  .distro-prev,
+  .distro-next {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}

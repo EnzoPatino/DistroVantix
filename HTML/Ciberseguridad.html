@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ciberseguridad - DistroVantix</title>
+    <link rel="stylesheet" href="../CSS/Ciberseguridad-optimized.css" />
+    <link rel="stylesheet" href="../CSS/style.css" />
+  </head>
+  <body>
+    <!-- Barra de navegación -->
+    <header class="navbar-container">
+      <button id="btn-menu" aria-label="Abrir tablero de opciones">☰</button>
+
+      <div class="user-area">
+        <img src="../IMGS/user-icon.png" alt="Perfil de Usuario" />
+      </div>
+
+      <div class="navbar">
+        <a href="./Index.html" class="navbar-logo">
+          <img
+            src="../IMGS/Logo futurista de DistroVantix(1).png"
+            alt="logo"
+            height="70"
+            width="70"
+            id="logo"
+          />
+        </a>
+        <nav aria-label="Navegación principal">
+          <ul class="navbar-links">
+            <li><a href="./Trabajo.html">Trabajo</a></li>
+            <li><a href="#Informacion">Informacion</a></li>
+            <li><a href="#Carrusel">Carrusel</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Sectores de distros -->
+    <aside id="sidebar" class="tablero">
+      <nav class="categorias">
+        <h3>Categorías</h3>
+        <a href="./Gaming.html" style="text-decoration: none">
+          <button class="cat-btn">Gaming</button>
+        </a>
+        <a href="./Ciberseguridad.html" style="text-decoration: none">
+          <button class="cat-btn">Ciberseguridad</button>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Contenido principal con carrusel informativo -->
+    <main class="main-content">
+      <div class="carousel-wrapper" id="Informacion">
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+
+        <div class="carousel-container">
+          <div class="slide active">
+            <div class="ciberseguridad-info-container image-right">
+              <div class="ciberseguridad-text">
+                <article>
+                  <h2>¿Por qué Linux es más seguro?</h2>
+                  <p>
+                    <strong
+                      >Linux es el sistema favorito para profesionales de
+                      ciberseguridad por su arquitectura.</strong
+                    >
+                  </p>
+                  <p>
+                    El modelo de permisos (root vs usuario), la gestión de
+                    paquetes por repositorios verificados, y el código abierto
+                    que permite auditorías constantes hacen de Linux una opción
+                    robusta.
+                  </p>
+                </article>
+              </div>
+              <div class="ciberseguridad-image">
+                <img src="../IMGS/Ubuntu-pinguino.webp" alt="Seguridad Linux" />
+              </div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <div class="ciberseguridad-info-container image-right">
+              <div class="ciberseguridad-text">
+                <article>
+                  <h2>El Modelo de Permisos</h2>
+                  <p>
+                    <strong
+                      >A diferencia de Windows, Linux separa claramente entre el
+                      usuario normal y el administrador (root).</strong
+                    >
+                  </p>
+                  <p>
+                    Esto significa que incluso si un atacante compromete tu
+                    cuenta, no podrá modificar el sistema sin permisos
+                    específicos. Los paquetes también requieren autenticación
+                    para instalarse.
+                  </p>
+                </article>
+              </div>
+              <div class="ciberseguridad-image">
+                <img src="../IMGS/LinuxPermissions.png" alt="Permisos Linux" />
+              </div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <div class="ciberseguridad-info-container image-right">
+              <div class="ciberseguridad-text">
+                <article>
+                  <h2>Comunidad y Código Abierto</h2>
+                  <p>
+                    <strong
+                      >Miles de desarrolladores revisan el código
+                      constantemente.</strong
+                    >
+                  </p>
+                  <p>
+                    Al ser open source, cualquier vulnerabilidad puede ser
+                    detectada y corregida por la comunidad. No hay "security
+                    through obscurity" - la seguridad real viene de código
+                    auditado.
+                  </p>
+                </article>
+              </div>
+              <div class="cibersuridad-image">
+                <img
+                  src="../IMGS/OpenSourceSecurity.png"
+                  alt="Código Abierto"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+      </div>
+    </main>
+
+    <!-- Carrusel de distros recomendadas -->
+    <section id="Carrusel" class="distros-section" id="distros-ciberseguridad">
+      <h2 class="section-title">Distribuciones Recomendadas</h2>
+
+      <div class="distro-carousel-wrapper">
+        <button class="distro-prev" onclick="changeDistroSlide(-1)">❮</button>
+        <button class="distro-next" onclick="changeDistroSlide(1)">❯</button>
+
+        <div class="distro-carousel-container">
+          <div class="distro-slide active">
+            <div class="distro-card card-kali">
+              <div class="distro-header">
+                <a href="./Kali.html">
+                  <img
+                    src="../IMGS/Inge-Ciberseguridad.png"
+                    alt="Kali Linux Logo"
+                    class="distro-logo"
+                  />
+                  <h3>Kali Linux</h3>
+                </a>
+              </div>
+              <div class="distro-body">
+                <p><strong>Base:</strong> Debian Testing</p>
+                <p>
+                  <strong>Especialidad:</strong> Pruebas de penetración y
+                  auditoría de seguridad.
+                </p>
+                <p>La distribución más popular para ethical hacking.</p>
+
+                <ul class="distro-features">
+                  <li>Soporte multiarch</li>
+                  <li>Personalización completa</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="distro-slide">
+            <div class="distro-card card-parrot">
+              <div class="distro-header">
+                <a href="../HTML/Kali.html">
+                  <img
+                    src="../IMGS/ParrotOS.png"
+                    alt="ParrotOS Logo"
+                    class="distro-logo"
+                  />
+                  <h3>ParrotOS</h3>
+                </a>
+              </div>
+              <div class="distro-body">
+                <p><strong>Base:</strong> Debian Stable</p>
+                <p><strong>Especialidad:</strong> Seguridad y privacidad.</p>
+                <p>
+                  Alternativa más ligera a Kali. Ideal para trabajo diario
+                  mezclando seguridad con productividad.
+                </p>
+                <ul class="distro-features">
+                  <li>✅ Interfaz amigable</li>
+                  <li>✅ Enfoque en privacidad</li>
+                  <li>✅ Más ligero que Kali</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="distro-slide">
+            <div class="distro-card card-blackarch">
+              <div class="distro-header">
+                <a href="./Kali.html">
+                  <img
+                    src="../IMGS/BlackArch.png"
+                    alt="BlackArch Logo"
+                    class="distro-logo"
+                  />
+                  <h3>BlackArch</h3>
+                </a>
+              </div>
+              <div class="distro-body">
+                <p><strong>Base:</strong> Arch Linux</p>
+                <p>
+                  <strong>Especialidad:</strong> Herramientas de penetration
+                  testing.
+                </p>
+                <p>
+                  La colección más grande de herramientas de seguridad. Se
+                  integra con Arch Linux existente.
+                </p>
+                <ul class="distro-features">
+                  <li>✅ +2000 herramientas</li>
+                  <li>✅ Instalación modular</li>
+                  <li>✅ Rolling release</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="../JS/Ciberseguridad.js"></script>
+    <script src="../JS/script.js"></script>
+  </body>
+</html>

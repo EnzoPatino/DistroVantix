@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sector Trabajo - DistroVantix</title>
+    <link rel="stylesheet" href="../CSS/Trabajo.css" />
+    <link rel="stylesheet" href="../CSS/style.css" />
+  </head>
+  <body>
+    <!-- Barra de navegación -->
+    <header class="navbar-container">
+      <button id="btn-menu" aria-label="Abrir tablero de opciones">☰</button>
+
+      <div class="user-area">
+        <img src="user-icon.png" alt="Perfil de Usuario" />
+      </div>
+
+      <div class="navbar">
+        <a href="../Index.html" class="navbar-logo">
+          <img
+            src="../IMGS/Logo futurista de DistroVantix(1).png"
+            alt="logo"
+            height="70"
+            width="70"
+            id="logo"
+          />
+        </a>
+        <nav aria-label="Navegación principal">
+          <ul class="navbar-links">
+            <li><a href="../HTML/Index.html">Inicio</a></li>
+            <li><a href="#Informacion">Informacion</a></li>
+            <li><a href="#Carrusel">Carrusel</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Sectores de distros -->
+    <aside id="sidebar" class="tablero">
+      <nav class="categorias">
+        <h3>Categorías</h3>
+        <a href="./Gaming.html" style="text-decoration: none">
+          <button class="cat-btn">Gaming</button>
+        </a>
+        <button class="cat-btn">Trabajo</button>
+        <a href="./Ciberseguridad.html" style="text-decoration: none">
+          <button class="cat-btn">Ciberseguridad</button>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Carrusel de información -->
+    <main class="main-content">
+      <div class="carousel-wrapper" id="Informacion">
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+
+        <div class="carousel-container">
+          <div class="slide active">
+            <div class="trabajo-info-container image-right">
+              <div class="trabajo-text">
+                <article>
+                  <h2>Linux en la Oficina: ¿Realidad o Reto?</h2>
+                  <p>
+                    <strong
+                      >Las empresas más grandes del mundo usanLinux para sus
+                      servidores y estaciones de trabajo.</strong
+                    >
+                  </p>
+                  <p>
+                    Desde Google hasta Amazon, pasando por NASA y Netflix,
+                    confían en Linux. Pero, ¿qué pasa en tu escritorio? La
+                    respuesta: compatibilidad total con alternativas ofimáticas.
+                  </p>
+                </article>
+              </div>
+              <div class="trabajo-image">
+                <img
+                  src="../IMGS/LinuxGamer Image 5 abr 2026, 02_26_15 a.m..png"
+                  alt="Linux Oficina"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <div class="trabajo-info-container image-right">
+              <div class="trabajo-text">
+                <article>
+                  <h2>Documentos incompatible o inexistentes?</h2>
+                  <p>
+                    <strong
+                      >LibreOffice es tu mejor aliado para documentos.</strong
+                    >
+                  </p>
+                  <p>
+                    Compatible con Microsoft Office (.docx, .xlsx, .pptx).
+                    También podés usar OnlyOffice o Google Docs online. Para
+                    PDFs, tu opción es Okular. Todo gratis, siempre.
+                  </p>
+                </article>
+              </div>
+              <div class="trabajo-image">
+                <img src="../IMGS/LibreOfficeLinux.png" alt="LibreOffice" />
+              </div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <div class="trabajo-info-container image-right">
+              <div class="trabajo-text">
+                <article>
+                  <h2>Desarrollo sin Complicaciones</h2>
+                  <p>
+                    <strong
+                      >Linux es el ecosistema definitivo para devs.</strong
+                    >
+                  </p>
+                  <p>
+                    Git, Docker, Python, Node, Rust, Go... todo viene
+                    preinstalado o a un comando de distancia. Sin antivirus
+                    consumiendo recursos, sin actualizaciones forzadas.
+                  </p>
+                </article>
+              </div>
+              <div class="trabajo-image">
+                <img src="../IMGS/programacion-en-linux.png" alt="Desarrollo" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+      </div>
+    </main>
+
+    <!-- Sección de Carrusel de Trabajos (Mini Info) -->
+    <section class="distros-section">
+      <h2 class="section-title">Encontrá tu herramienta indispensable</h2>
+
+      <div class="distro-carousel-wrapper">
+        <button class="distro-prev" onclick="moveDistroSlide(-1)">
+          &#10094;
+        </button>
+
+        <div class="distro-slide active">
+          <article class="distro-card card-pentesting">
+            <div class="distro-header">
+              <a href="../HTML/Ciberseguridad.html">
+                <img
+                  src="../IMGS/Seguridad-informatica.png"
+                  alt="Ciberseguridad"
+                  class="distro-logo"
+                />
+              </a>
+            </div>
+            <div class="distro-body">
+              <h3>Ciberseguridad</h3>
+              <p>
+                ¿Buscas trabajar con <strong>Seguridad Informática</strong>? Si
+                entras aquí podrás dominar herramientas indispensables.
+              </p>
+              <ul class="distro-features">
+                <li>Auditorías de Red</li>
+                <li>Pentesting Ético</li>
+                <li>Criptografía</li>
+              </ul>
+              <a href="#detalles-seguridad" class="btn-more"
+                >Ver Info y Distros</a
+              >
+            </div>
+          </article>
+        </div>
+
+        <div class="distro-slide">
+          <article class="distro-card card-debian">
+            <div class="distro-header">
+              <img
+                src="../IMGS/desarrollador programador.png"
+                alt="Desarrollo"
+                class="distro-logo"
+              />
+            </div>
+            <div class="distro-body">
+              <h3>Desarrollo</h3>
+              <p>
+                Linux es el lugar donde nace el software. Es el entorno favorito
+                de los programadores porque te da el control total sobre tu
+                código y tus herramientas.
+              </p>
+              <ul class="distro-features">
+                <li>Aplicacion de lenguajes</li>
+                <li>Herramientas de Desarrollo</li>
+                <li>Configurá tu espacio de trabajo</li>
+              </ul>
+              <a href="#detalles-servidores" class="btn-more">Explorar</a>
+            </div>
+          </article>
+        </div>
+
+        <button class="distro-next" onclick="moveDistroSlide(1)">
+          &#10095;
+        </button>
+      </div>
+    </section>
+
+    <script src="../JS/Trabajo.js"></script>
+    <script src="../JS/script.js"></script>
+  </body>
+</html>
