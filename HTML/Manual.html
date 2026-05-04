@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manual de Kali Linux</title>
+    <link rel="stylesheet" href="../CSS/style.css" />
+    <link rel="stylesheet" href="../CSS/Manual-optimized.css" />
+  </head>
+  <body>
+    <!-- Barra de navegación mejorada -->
+    <header class="navbar-container">
+      <button id="btn-menu" class="menu-toggle" aria-label="Abrir menú">
+        ☰
+      </button>
+
+      <div class="navbar">
+        <a href="../Index.html" class="navbar-logo">
+          <img
+            src="../IMGS/Logo futurista de DistroVantix(1).png"
+            alt="logo DistroVantix"
+            height="60"
+            width="60"
+            id="logo"
+          />
+        </a>
+        <nav aria-label="Navegación principal">
+          <ul class="navbar-links">
+            <li><a href="../HTML/Index.html">Inicio</a></li>
+            <li><a href="../HTML/Trabajo.html">Trabajo</a></li>
+            <li><a href="../HTML/Gaming.html">Gaming</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="user-area">
+        <span class="distro-badge">Cuaderno</span>
+      </div>
+    </header>
+
+    <!-- Carpeta Cerrada (Pantalla Inicial) -->
+    <div id="closed-folder" class="folder-exterior">
+      <div class="folder-front">
+        <h1>MANUAL DE COMANDOAS DE KALI LINUX</h1>
+        <p>Conoce tus herramientas</p>
+        <button class="open-btn" onclick="openBook()">ABRIR</button>
+      </div>
+    </div>
+
+    <!-- Contenido del Libro Abierto (Oculto al inicio) -->
+    <div id="main-content" class="book-wrapper" style="display: none">
+      <!-- Botón de Cerrar -->
+      <button class="close-book-btn" onclick="closeBook()">CERRAR ✖</button>
+
+      <!-- Flechas de navegación -->
+      <button class="nav-btn prev" onclick="movePage(-1)">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+          ></path>
+        </svg>
+      </button>
+
+      <div class="book-container" id="book">
+        <!-- PORTADA INTERNA -->
+        <div class="spread active">
+          <div class="page cover">
+            <h1>Las herramientas que Manejamos en kali linux</h1>
+            <p>
+              Conocer tus herramientas es casi tan Importante como que un
+              mecanico sepa Reparar un motor. Pero no es facil, Manejar tus
+              herramientas adecuadamente Para eso tenes este manual, a tus manos
+            </p>
+          </div>
+        </div>
+
+        <!-- BLOQUE 1: Actualización del Sistema -->
+        <div class="spread">
+          <div class="page left-page">
+            <h2>Comandos de Red</h2>
+            <p>
+              <strong>ifconfig:</strong> Para ver tu dirección IP y estado de
+              las interfaces.
+            </p>
+            <p>
+              <strong>nmcli device:</strong> Para ver las tarjetas de red
+              detectadas.
+            </p>
+            <p><strong>hostname -I:</strong> Tu IP local de forma rápida.</p>
+            <p>
+              <strong>ip route:</strong> Muestra la tabla de rutas del sistema.
+            </p>
+
+            <h2>Paquetes y Actualización</h2>
+            <p>
+              <strong>sudo apt update:</strong> Busca nuevas versiones de
+              herramientas.
+            </p>
+            <p>
+              <strong>sudo apt install (nombre):</strong> Para instalar
+              herramientas nuevas.
+            </p>
+            <p>
+              <strong>sudo apt full-upgrade:</strong> Actualiza todo el sistema
+              Kali.
+            </p>
+            <p>
+              <strong>systemctl start [servicio]:</strong> Inicia una
+              herramienta (ej: apache2).
+            </p>
+          </div>
+          <div class="page right-page">
+            <h2>Exploración de Archivos Críticos:</h2>
+
+            <p>
+              <strong>cat /etc/os-release:</strong> Muestra info detallada de la
+              versión de Kali que estás corriendo.
+            </p>
+          </div>
+        </div>
+
+        <!-- BLOQUE 2: Nmap -->
+        <div class="spread">
+          <div class="page left-page">
+            <h2>Nmap - Escaneo de Red</h2>
+            <p>nmap -sV [objetivo] - Escaneo de versiones</p>
+            <p>nmap -O [objetivo] - Detecta sistema operativo</p>
+            <p>nmap -p- [objetivo] - Escanea todos los puertos</p>
+          </div>
+          <div class="page right-page">
+            <h2>Nmap - Avanzado</h2>
+            <p>nmap -sS [objetivo] - Escaneo TCP SYN</p>
+            <p>nmap -sU [objetivo] - Escaneo UDP</p>
+            <p>nmap -A [objetivo] - Escaneo agresivo</p>
+          </div>
+        </div>
+
+        <!-- BLOQUE 3: Metasploit -->
+        <div class="spread">
+          <div class="page left-page">
+            <h2>Metasploit - Inicio</h2>
+            <p>msfconsole - Inicia la consola</p>
+            <p>msfdb init - Inicializa la base de datos</p>
+            <p>db_status - Verifica el estado</p>
+          </div>
+          <div class="page right-page">
+            <h2>Metasploit - Comandos</h2>
+            <p>search [tipo]:[nombre] - Busca módulos</p>
+            <p>use [módulo] - Selecciona un módulo</p>
+            <p>show options - Muestra las opciones</p>
+          </div>
+        </div>
+
+        <!-- BLOQUE 4: Wireshark y John -->
+        <div class="spread">
+          <div class="page left-page">
+            <h2>Wireshark</h2>
+            <p>wireshark - Inicia en modo gráfico</p>
+            <p>tshark - Modo línea de comandos</p>
+          </div>
+          <div class="page right-page">
+            <h2>John the Ripper</h2>
+            <p>john archivo.hash - Crackea contraseñas</p>
+            <p>john --show archivo.hash - Muestra crackeadas</p>
+            <p>unshadow passwd shadow > archivo - Combina archivos</p>
+          </div>
+        </div>
+
+        <!-- BLOQUE 5: Aircrack y SQLmap -->
+        <div class="spread">
+          <div class="page left-page">
+            <h2>Aircrack-ng</h2>
+            <p>airodump-ng [interfaz] - Escanea redes WiFi</p>
+            <p>
+              airodump-ng --channel [canal] --write [archivo] - Captura
+              handshakes
+            </p>
+            <p>aireplay-ng --deauth 0 -a [MAC] - Desautentica</p>
+          </div>
+          <div class="page right-page">
+            <h2>SQLmap</h2>
+            <p>sqlmap -u [URL] - Inicia análisis SQL</p>
+            <p>sqlmap -u [URL] --dbs - Lista bases de datos</p>
+            <p>sqlmap -u [URL] --dump - Extrae datos</p>
+          </div>
+        </div>
+
+        <!-- BLOQUE 6: Hashcat y Netcat -->
+        <div class="spread">
+          <div class="page left-page">
+            <h2>Hashcat</h2>
+            <p>hashcat -m [modo] -a [ataque] hash wordlist - Crackea</p>
+            <p>hashcat -m 0 hash wordlist - Crackea MD5</p>
+          </div>
+          <div class="page right-page">
+            <h2>Netcat y Otros</h2>
+            <p>nc -lvp [puerto] - Abre puerto en escucha</p>
+            <p>nc [objetivo] [puerto] - Conecta a objetivo</p>
+            <p>netstat -tulpn - Muestra puertos</p>
+          </div>
+        </div>
+      </div>
+
+      <button class="nav-btn next" onclick="movePage(1)">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"
+          ></path>
+        </svg>
+      </button>
+    </div>
+
+    <script src="../JS/Manual.js"></script>
+  </body>
+</html>
