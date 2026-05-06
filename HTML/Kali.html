@@ -15,7 +15,7 @@
       </button>
 
       <div class="navbar">
-        <a href="../Index.html" class="navbar-logo">
+        <a href="../Index.html" target="_self" class="navbar-logo">
           <img
             src="../IMGS/Logo futurista de DistroVantix(1).png"
             alt="logo DistroVantix"
@@ -26,9 +26,11 @@
         </a>
         <nav aria-label="Navegación principal">
           <ul class="navbar-links">
-            <li><a href="Ciberseguridad.html">Ciberseguridad</a></li>
-            <li><a href="#herramientas">Herramientas</a></li>
-            <li><a href="#comparacion">Comparación</a></li>
+            <li>
+              <a href="Ciberseguridad.html" target="_self">Ciberseguridad</a>
+            </li>
+            <li><a href="#herramientas" target="_self">Herramientas</a></li>
+            <li><a href="#comparacion" target="_self">Comparación</a></li>
           </ul>
         </nav>
       </div>
@@ -76,7 +78,7 @@
               </button>
               <a
                 href="../HTML/Manual.html"
-                target="_blank"
+                target="_self"
                 class="cta-button cta-button-secondary"
               >
                 Comandos
@@ -210,11 +212,20 @@
     <!-- Sidebar/Menú -->
     <aside class="tablero" id="sidebar">
       <nav class="nav-sidebar">
-        <a href="../Index.html" class="sidebar-link">Inicio</a>
-        <a href="#informacion" class="sidebar-link">Información</a>
-        <a href="#caracteristicas" class="sidebar-link">Características</a>
-        <a href="#herramientas" class="sidebar-link">Herramientas</a>
-        <a href="../HTML/Ciberseguridad.html" class="sidebar-link"
+        <a href="../Index.html" target="_self" class="sidebar-link">Inicio</a>
+        <a href="#informacion" target="_self" class="sidebar-link"
+          >Información</a
+        >
+        <a href="#caracteristicas" target="_self" class="sidebar-link"
+          >Características</a
+        >
+        <a href="#herramientas" target="_self" class="sidebar-link"
+          >Herramientas</a
+        >
+        <a
+          href="../HTML/Ciberseguridad.html"
+          target="_self"
+          class="sidebar-link"
           >Ciberseguridad</a
         >
       </nav>

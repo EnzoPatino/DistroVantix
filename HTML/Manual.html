@@ -15,7 +15,7 @@
       </button>
 
       <div class="navbar">
-        <a href="../Index.html" class="navbar-logo">
+        <a href="../Index.html" target="_self" class="navbar-logo">
           <img
             src="../IMGS/Logo futurista de DistroVantix(1).png"
             alt="logo DistroVantix"
@@ -26,9 +26,9 @@
         </a>
         <nav aria-label="Navegación principal">
           <ul class="navbar-links">
-            <li><a href="../HTML/Index.html">Inicio</a></li>
-            <li><a href="../HTML/Trabajo.html">Trabajo</a></li>
-            <li><a href="../HTML/Gaming.html">Gaming</a></li>
+            <li><a href="../HTML/Index.html" target="_self">Inicio</a></li>
+            <li><a href="../HTML/Trabajo.html" target="_self">Trabajo</a></li>
+            <li><a href="../HTML/Gaming.html" target="_self">Gaming</a></li>
           </ul>
         </nav>
       </div>
@@ -111,10 +111,31 @@
           </div>
           <div class="page right-page">
             <h2>Exploración de Archivos Críticos:</h2>
-
             <p>
               <strong>cat /etc/os-release:</strong> Muestra info detallada de la
               versión de Kali que estás corriendo.
+            </p>
+            <p>
+              <strong>ls -la /home/:</strong> Lista todos los usuarios y
+              archivos ocultos del sistema.
+            </p>
+            <p>
+              <strong>cat /etc/apt/sources.list:</strong> Verifica los
+              repositorios de donde Kali baja sus herramientas.
+            </p>
+
+            <h2>Gestión de Herramientas:</h2>
+            <p>
+              <strong>apt remove [nombre]:</strong> Desinstala una herramienta
+              que ya no necesites.
+            </p>
+            <p>
+              <strong>apt search [término]:</strong> Busca herramientas nuevas
+              en los repositorios de Kali.
+            </p>
+            <p>
+              <strong>sudo apt autoremove:</strong> Borra paquetes viejos para
+              liberar espacio en el disco.
             </p>
           </div>
         </div>
