@@ -1,5 +1,5 @@
 /* ============================================ */
-/* TRABAJO PAGE - OPTIMIZADO CON VARIABLES       */
+/* TRABAJO PAGE - ESTILO GAMING                */
 /* ============================================ */
 
 :root {
@@ -17,14 +17,15 @@
   --transition-fast: 0.3s ease;
   --transition-smooth: 0.4s ease;
   --transition-slow: 0.5s ease;
+
   /* Spacing */
-  --gap-sm: 15px;
-  --gap-md: 25px;
-  --gap-lg: 40px;
+  --gap-sm: clamp(10px, 2vw, 15px);
+  --gap-md: clamp(15px, 4vw, 25px);
+  --gap-lg: clamp(20px, 6vw, 40px);
   --gap-xs: 15px;
-  --padding-sm: 20px;
-  --padding-md: 30px;
-  --padding-lg: 50px;
+  --padding-sm: clamp(10px, 3vw, 20px);
+  --padding-md: clamp(15px, 5vw, 30px);
+  --padding-lg: clamp(25px, 8vw, 50px);
 
   /* Borders */
   --radius-sm: 12px;
@@ -43,21 +44,30 @@
   font-family: "Inter", sans-serif;
 }
 
-html,
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
 body {
   height: 100%;
   background-color: var(--bg-main);
   color: var(--text-dark);
-}
-
-body {
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 /* ============================================ */
 /* NAVBAR                                       */
 /* ============================================ */
+
 .navbar-container {
   background-color: var(--nav-dark);
   display: flex;
@@ -111,11 +121,13 @@ body {
 /* ============================================ */
 /* SIDEBAR                                      */
 /* ============================================ */
+
 .tablero {
   position: fixed;
   left: -300px;
   top: 0;
   width: 280px;
+  max-width: 80%;
   height: 100%;
   background-color: var(--card-bg);
   padding: var(--padding-md);
@@ -169,28 +181,6 @@ body {
 }
 
 /* ============================================ */
-/* HERO SECTION                                 */
-/* ============================================ */
-.trabajo-hero {
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-.trabajo-hero h1 {
-  font-size: 3rem;
-  color: var(--trabajo-primary);
-  margin-bottom: 15px;
-  text-shadow: 0 2px 10px rgba(37, 99, 235, 0.3);
-}
-
-.trabajo-hero p {
-  font-size: 1.2rem;
-  color: #64748b;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-/* ============================================ */
 /* CAROUSEL                                     */
 /* ============================================ */
 
@@ -199,7 +189,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 60px;
+  margin-bottom: clamp(30px, 8vw, 60px);
 }
 
 .carousel-container {
@@ -236,11 +226,11 @@ body {
 }
 
 .prev {
-  left: -60px;
+  left: -20px;
 }
 
 .next {
-  right: -60px;
+  right: -20px;
 }
 
 .prev:hover,
@@ -263,7 +253,7 @@ body {
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-md) rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px;
+  margin-bottom: clamp(20px, 6vw, 40px);
   padding: var(--padding-lg);
 }
 
@@ -280,16 +270,17 @@ body {
   flex-direction: column;
   justify-content: center;
   flex: 1;
+  min-width: 0;
 }
 
 .trabajo-text h2 {
-  font-size: 2rem;
+  font-size: clamp(1.4rem, 4vw, 2rem);
   color: var(--trabajo-primary);
   margin-bottom: 20px;
 }
 
 .trabajo-text p {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   color: #475569;
   line-height: 1.8;
   margin-bottom: 15px;
@@ -300,17 +291,24 @@ body {
 }
 
 .trabajo-image {
-  flex: 1;
+  flex: 1.5;
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow-sm) rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 350px;
+  background: #f8fafc;
 }
 
 .trabajo-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  max-height: 400px;
+  object-fit: contain;
   display: block;
+  padding: 10px;
 }
 
 /* ============================================ */
@@ -319,9 +317,9 @@ body {
 
 .trabajo-features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 30vw, 300px), 1fr));
   gap: var(--gap-md);
-  margin: 60px 0;
+  margin: clamp(30px, 8vw, 60px) 0;
 }
 
 .feature-card {
@@ -344,78 +342,21 @@ body {
 }
 
 .feature-card h3 {
-  font-size: 1.4rem;
+  font-size: clamp(1.2rem, 3vw, 1.4rem);
   margin-bottom: 10px;
 }
 
 .feature-card p {
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
   line-height: 1.6;
 }
 
 /* ============================================ */
-/* FOOTER                                       */
-/* ============================================ */
-
-.footer-container {
-  background-color: var(--nav-dark);
-  color: var(--text-light);
-  padding: var(--padding-lg) 5%;
-  margin-top: auto;
-}
-
-.footer-content {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  gap: var(--gap-lg);
-  margin-bottom: 30px;
-  max-width: 1400px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.footer-section h4 {
-  color: var(--accent);
-  margin-bottom: 15px;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.footer-section ul {
-  list-style: none;
-}
-
-.footer-section ul li {
-  margin-bottom: 10px;
-}
-
-.footer-section a {
-  color: #94a3b8;
-  text-decoration: none;
-  transition: color var(--transition-fast);
-  font-size: 0.9rem;
-}
-
-.footer-section a:hover {
-  color: #ffffff;
-}
-
-.footer-bottom {
-  text-align: center;
-  border-top: 1px solid #1e293b;
-  padding-top: 20px;
-  font-size: 0.8rem;
-  color: #64748b;
-}
-
-/* ============================================ */
-/* DISTRO CAROUSEL - SECCIÓN TRABAJOS           */
+/* DISTRO CAROUSEL (SECTORES)                  */
 /* ============================================ */
 
 .distros-section {
-  padding: 80px 20px;
+  padding: clamp(40px, 10vw, 80px) 20px;
   background-color: #0b0f1a;
   text-align: center;
 }
@@ -424,9 +365,9 @@ body {
   color: #00d4ff;
   text-transform: uppercase;
   text-align: center;
-  margin-top: 50px;
-  margin-bottom: 80px;
-  font-size: 2.5rem;
+  margin-top: clamp(30px, 8vw, 50px);
+  margin-bottom: clamp(40px, 10vw, 80px);
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
   position: relative;
   z-index: 10;
 }
@@ -438,44 +379,53 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 80px;
-  margin-top: 20px;
+  padding: 0 clamp(20px, 10vw, 80px);
+  margin-top: clamp(20px, 5vw, 40px);
 }
 
 .distro-slide {
   display: none;
   justify-content: center;
+  gap: var(--gap-lg);
   width: 100%;
   animation: fadeIn 0.5s ease;
 }
 
 .distro-slide.active {
   display: flex;
-  justify-content: center;
 }
 
-/* Carta de trabajo */
 .distro-card {
   background: #161b22;
   border: 2px solid #30363d;
   border-radius: var(--radius-md);
-  padding: 50px;
-  width: 100%;
+  padding: 25px;
+  flex: 1;
   max-width: 450px;
   transition: all var(--transition-fast);
   text-align: left;
 }
 
-/* Efectos de shadow para cada carta */
-.card-pentesting:hover {
+.distro-card a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-ciberseguridad:hover {
   border-color: #00d4ff;
   box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
   transform: translateY(-10px);
 }
 
-.card-debian:hover {
-  border-color: #ff6b6b;
-  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+.card-desarrollo:hover {
+  border-color: #22c55e;
+  box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
+  transform: translateY(-10px);
+}
+
+.card-administracion:hover {
+  border-color: #f59e0b;
+  box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
   transform: translateY(-10px);
 }
 
@@ -487,15 +437,15 @@ body {
 }
 
 .distro-logo {
-  width: 190px;
-  height: 190px;
+  width: clamp(70px, 12vw, 90px);
+  height: clamp(70px, 12vw, 90px);
   object-fit: contain;
 }
 
 .distro-card h3 {
   color: #fff;
   margin: 0;
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
 }
 
 .distro-body p {
@@ -563,93 +513,110 @@ body {
 }
 
 /* ============================================ */
+/* FOOTER                                       */
+/* ============================================ */
+
+.footer-container {
+  background-color: var(--nav-dark);
+  color: var(--text-light);
+  padding: var(--padding-lg) 5%;
+  margin-top: auto;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: var(--gap-lg);
+  margin-bottom: 30px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-section h4 {
+  color: var(--accent);
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section a {
+  color: #94a3b8;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  font-size: 0.9rem;
+}
+
+.footer-section a:hover {
+  color: #ffffff;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #1e293b;
+  padding-top: 20px;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+/* ============================================ */
 /* RESPONSIVE                                   */
 /* ============================================ */
 
-@media (max-width: 1024px) {
-  .trabajo-info-container {
-    gap: var(--gap-md);
-    padding: var(--padding-md);
+@media (max-width: 992px) {
+  .navbar-links {
+    display: none;
   }
 
-  .trabajo-text h2 {
-    font-size: 1.6rem;
-  }
-
-  .trabajo-hero h1 {
-    font-size: 2.2rem;
-  }
-}
-
-@media (max-width: 768px) {
   .trabajo-info-container,
   .trabajo-info-container.image-right,
   .trabajo-info-container.image-left {
     flex-direction: column;
-    padding: var(--padding-md);
-    gap: var(--gap-sm);
+    text-align: center;
   }
 
-  .trabajo-hero h1 {
-    font-size: 1.8rem;
+  .distro-slide.active {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .trabajo-hero p {
-    font-size: 1rem;
+  .distro-card {
+    width: 100%;
+    max-width: none;
   }
 
-  .trabajo-text h2 {
-    font-size: 1.4rem;
+  .prev {
+    left: 10px;
   }
 
-  .trabajo-text p {
-    font-size: 0.9rem;
-  }
-
-  .trabajo-features {
-    grid-template-columns: 1fr;
-  }
-
-  .main-content {
-    padding: var(--padding-sm) 5%;
-  }
-
-  .navbar-links {
-    gap: var(--gap-xs);
-    font-size: 0.8rem;
-  }
-
-  .distro-carousel-wrapper {
-    padding: 0 60px;
+  .next {
+    right: 10px;
   }
 }
 
-@media (max-width: 480px) {
-  .trabajo-hero h1 {
-    font-size: 1.4rem;
-  }
-
-  .trabajo-text h2 {
-    font-size: 1.2rem;
-  }
-
-  .trabajo-info-container {
-    padding: var(--padding-sm);
-  }
-
+@media (max-width: 600px) {
   .footer-content {
     flex-direction: column;
-    gap: var(--gap-sm);
+    text-align: center;
   }
 
   .distro-carousel-wrapper {
-    padding: 0;
+    padding: 0 40px;
   }
 
   .distro-prev,
   .distro-next {
     width: 40px;
     height: 40px;
-    font-size: 1.2rem;
   }
 }

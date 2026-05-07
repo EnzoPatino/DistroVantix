@@ -18,13 +18,13 @@
   --transition-smooth: 0.4s ease;
   --transition-slow: 0.5s ease;
   /* Spacing */
-  --gap-sm: 15px;
-  --gap-md: 25px;
-  --gap-lg: 40px;
+  --gap-sm: clamp(10px, 2vw, 15px);
+  --gap-md: clamp(15px, 4vw, 25px);
+  --gap-lg: clamp(20px, 6vw, 40px);
   --gap-xs: 15px;
-  --padding-sm: 20px;
-  --padding-md: 30px;
-  --padding-lg: 50px;
+  --padding-sm: clamp(10px, 3vw, 20px);
+  --padding-md: clamp(15px, 5vw, 30px);
+  --padding-lg: clamp(25px, 8vw, 50px);
 
   /* Borders */
   --radius-sm: 12px;
@@ -43,16 +43,24 @@
   font-family: "Inter", sans-serif;
 }
 
-html,
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
 body {
   height: 100%;
   background-color: var(--bg-main);
   color: var(--text-dark);
-}
-
-body {
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 /* ============================================ */
@@ -118,6 +126,7 @@ body {
   left: -300px;
   top: 0;
   width: 280px;
+  max-width: 80%;
   height: 100%;
   background-color: var(--card-bg);
   padding: var(--padding-md);
@@ -176,18 +185,18 @@ body {
 
 .ciberseguridad-hero {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: clamp(30px, 8vw, 60px);
 }
 
 .ciberseguridad-hero h1 {
-  font-size: 3rem;
+  font-size: clamp(1.8rem, 5vw, 3rem);
   color: var(--ciberseguridad-primary);
   margin-bottom: 15px;
   text-shadow: 0 0 20px rgba(13, 11, 149, 0.546);
 }
 
 .ciberseguridad-hero p {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   color: #64748b;
   max-width: 800px;
   margin: 0 auto;
@@ -202,7 +211,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 60px;
+  margin-bottom: clamp(30px, 8vw, 60px);
 }
 
 .carousel-container {
@@ -239,11 +248,11 @@ body {
 }
 
 .prev {
-  left: -60px;
+  left: -20px;
 }
 
 .next {
-  right: -60px;
+  right: -20px;
 }
 
 .prev:hover,
@@ -266,7 +275,7 @@ body {
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-md) rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px;
+  margin-bottom: clamp(20px, 6vw, 40px);
   padding: var(--padding-lg);
 }
 
@@ -286,13 +295,13 @@ body {
 }
 
 .ciberseguridad-text h2 {
-  font-size: 2rem;
+  font-size: clamp(1.4rem, 4vw, 2rem);
   color: var(--ciberseguridad-primary);
   margin-bottom: 20px;
 }
 
 .ciberseguridad-text p {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   color: #475569;
   line-height: 1.8;
   margin-bottom: 15px;
@@ -322,9 +331,9 @@ body {
 
 .ciberseguridad-features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 30vw, 300px), 1fr));
   gap: var(--gap-md);
-  margin: 60px 0;
+  margin: clamp(30px, 8vw, 60px) 0;
 }
 
 .feature-card {
@@ -347,12 +356,12 @@ body {
 }
 
 .feature-card h3 {
-  font-size: 1.4rem;
+  font-size: clamp(1.2rem, 3vw, 1.4rem);
   margin-bottom: 10px;
 }
 
 .feature-card p {
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
   line-height: 1.6;
 }
 
@@ -418,7 +427,7 @@ body {
 /* ============================================ */
 
 .distros-section {
-  padding: 80px 20px;
+  padding: clamp(40px, 10vw, 80px) 20px;
   background-color: #0b0f1a;
   text-align: center;
 }
@@ -427,9 +436,9 @@ body {
   color: #2b6acfba;
   text-transform: uppercase;
   text-align: center;
-  margin-top: 50px;
-  margin-bottom: 80px;
-  font-size: 2.5rem;
+  margin-top: clamp(30px, 8vw, 50px);
+  margin-bottom: clamp(40px, 10vw, 80px);
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
   position: relative;
   z-index: 10;
 }
@@ -441,8 +450,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 90px;
-  margin-top: 90px;
+  padding: 0 clamp(20px, 10vw, 90px);
+  margin-top: clamp(40px, 12vw, 90px);
 }
 
 .distro-slide {
@@ -494,15 +503,15 @@ body {
 }
 
 .distro-logo {
-  width: 160px;
-  height: 160px;
+  width: clamp(100px, 20vw, 160px);
+  height: clamp(100px, 20vw, 160px);
   object-fit: contain;
 }
 
 .distro-card h3 {
   color: #fff;
   margin: 0;
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
 }
 
 .distro-body p {
@@ -573,90 +582,50 @@ body {
 /* RESPONSIVE                                   */
 /* ============================================ */
 
-@media (max-width: 1024px) {
-  .ciberseguridad-info-container {
-    gap: var(--gap-md);
-    padding: var(--padding-md);
+@media (max-width: 992px) {
+  .navbar-links {
+    display: none;
   }
 
-  .ciberseguridad-text h2 {
-    font-size: 1.6rem;
-  }
-
-  .ciberseguridad-hero h1 {
-    font-size: 2.2rem;
-  }
-}
-
-@media (max-width: 768px) {
   .ciberseguridad-info-container,
   .ciberseguridad-info-container.image-right,
   .ciberseguridad-info-container.image-left {
     flex-direction: column;
-    padding: var(--padding-md);
-    gap: var(--gap-sm);
+    text-align: center;
   }
 
-  .ciberseguridad-hero h1 {
-    font-size: 1.8rem;
+  .distro-slide.active {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .ciberseguridad-hero p {
-    font-size: 1rem;
+  .distro-card {
+    width: 100%;
+    max-width: none;
   }
 
-  .ciberseguridad-text h2 {
-    font-size: 1.4rem;
+  .prev {
+    left: 10px;
   }
 
-  .ciberseguridad-text p {
-    font-size: 0.9rem;
-  }
-
-  .ciberseguridad-features {
-    grid-template-columns: 1fr;
-  }
-
-  .main-content {
-    padding: var(--padding-sm) 5%;
-  }
-
-  .navbar-links {
-    gap: var(--gap-xs);
-    font-size: 0.8rem;
-  }
-
-  .distro-carousel-wrapper {
-    padding: 0 60px;
+  .next {
+    right: 10px;
   }
 }
 
-@media (max-width: 480px) {
-  .ciberseguridad-hero h1 {
-    font-size: 1.4rem;
-  }
-
-  .ciberseguridad-text h2 {
-    font-size: 1.2rem;
-  }
-
-  .ciberseguridad-info-container {
-    padding: var(--padding-sm);
-  }
-
+@media (max-width: 600px) {
   .footer-content {
     flex-direction: column;
-    gap: var(--gap-sm);
+    text-align: center;
   }
 
   .distro-carousel-wrapper {
-    padding: 0;
+    padding: 0 40px;
   }
 
   .distro-prev,
   .distro-next {
     width: 40px;
     height: 40px;
-    font-size: 1.2rem;
   }
 }

@@ -10,12 +10,10 @@
   <body>
     <!-- Barra de navegación mejorada -->
     <header class="navbar-container">
-      <button id="btn-menu" class="menu-toggle" aria-label="Abrir menú">
-        ☰
-      </button>
+      <button id="btn-menu" aria-label="Abrir tablero de opciones">☰</button>
 
       <div class="navbar">
-        <a href="../Index.html" target="_self" class="navbar-logo">
+        <a href="Index.html" target="_self" class="navbar-logo">
           <img
             src="../IMGS/Logo futurista de DistroVantix(1).png"
             alt="logo DistroVantix"
@@ -169,17 +167,14 @@
 
     <!-- Sidebar/Menú -->
     <aside class="tablero" id="sidebar">
-      <nav class="nav-sidebar">
-        <a href="../Index.html" target="_self" class="sidebar-link">Inicio</a>
-        <a href="#informacion" target="_self" class="sidebar-link"
-          >Información</a
-        >
-        <a href="#caracteristicas" target="_self" class="sidebar-link"
-          >Características</a
-        >
-        <a href="../HTML/Gaming.html" target="_self" class="sidebar-link"
-          >Gaming</a
-        >
+      <nav class="categorias">
+        <h3 class="sidebar-title">Navegación</h3>
+        <ul class="sidebar-links">
+          <li><a href="Index.html" class="cat-btn">Inicio</a></li>
+          <li><a href="#informacion" class="cat-btn">Información</a></li>
+          <li><a href="#caracteristicas" class="cat-btn">Características</a></li>
+          <li><a href="Gaming.html" class="cat-btn">Gaming</a></li>
+        </ul>
       </nav>
     </aside>
 

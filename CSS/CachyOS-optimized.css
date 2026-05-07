@@ -20,7 +20,7 @@
   display: flex;
   align-items: center;
   gap: var(--gap-lg);
-  margin-bottom: 80px;
+  margin-bottom: clamp(40px, 10vw, 80px);
   animation: fadeInUp 0.8s ease-out;
 }
 
@@ -31,10 +31,11 @@
   box-shadow: var(--shadow-lg) var(--color-shadow);
   transition: all var(--transition-smooth);
   border: 2px solid var(--color-transparent);
+  display: block;
 }
 
 .showcase-img:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
   box-shadow: var(--shadow-xl) var(--color-shadow-hover);
 }
 
@@ -50,7 +51,7 @@
 }
 
 .detail-subtitle {
-  font-size: 1.2rem;
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
   color: var(--color-primary);
   opacity: 0.8;
   margin-top: 20px;
@@ -75,6 +76,8 @@
   box-shadow: var(--shadow-sm) var(--color-shadow);
   position: relative;
   overflow: hidden;
+  text-decoration: none;
+  text-align: center;
 }
 
 .cta-button:hover {
@@ -109,7 +112,7 @@
   color: var(--text-white);
   font-size: clamp(1.8rem, 4vw, 2.8rem);
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: clamp(30px, 6vw, 50px);
   animation: fadeInDown 0.8s ease-out;
 }
 
@@ -131,7 +134,7 @@
 
 .info-box h3 {
   color: var(--color-primary);
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   margin-bottom: 20px;
   text-align: center;
   transition: transform var(--transition-smooth);
@@ -139,7 +142,7 @@
 
 .info-box p {
   line-height: 1.6;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   color: var(--text-main);
   text-align: center;
   transition: all var(--transition-smooth);
@@ -186,7 +189,7 @@
 }
 
 .comparison-section {
-  margin-top: 80px;
+  margin-top: clamp(40px, 10vw, 80px);
   padding: var(--padding-lg);
   background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-card) 100%);
   border-radius: var(--radius-lg);
@@ -196,7 +199,6 @@
 
 .comparison-item {
   flex: 1;
-  min-width: 250px;
   padding: var(--padding-md);
   background: var(--bg-dark);
   border-radius: var(--radius-md);
@@ -207,7 +209,7 @@
 
 .fps-display {
   color: var(--color-primary);
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
   font-weight: bold;
   margin-bottom: 10px;
   text-shadow: 0 0 20px var(--color-glow);
@@ -344,19 +346,20 @@
 
 .distro-detail {
   background-color: var(--bg-dark);
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 60px 0;
+  padding: clamp(30px, 8vw, 60px) 0;
   color: var(--text-main);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .intro-showcase {
     flex-direction: column;
+    text-align: center;
     gap: var(--gap-md);
   }
 
@@ -373,36 +376,20 @@
   }
 
   .navbar {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    flex-direction: column;
-    gap: 0;
-    background: var(--bg-dark);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height var(--transition-fast);
-  }
-
-  .navbar.active {
-    max-height: 300px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    display: none;
   }
 
   .navbar-links {
-    flex-direction: column;
-    gap: 0;
-    width: 100%;
+    display: none;
   }
 
-  .navbar-links a {
-    padding: 15px 20px;
-    border-bottom: 1px solid var(--color-transparent);
+  .comparison-card {
+    flex-direction: column;
+    gap: 20px;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .intro-showcase {
     gap: var(--gap-sm);
   }
@@ -423,7 +410,7 @@
   }
 
   .comparison-item {
-    min-width: 200px;
+    width: 100%;
     padding: var(--padding-sm);
   }
 
@@ -431,3 +418,4 @@
     font-size: 2rem;
   }
 }
+

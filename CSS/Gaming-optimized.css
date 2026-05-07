@@ -19,13 +19,13 @@
   --transition-slow: 0.5s ease;
 
   /* Spacing */
-  --gap-sm: 15px;
-  --gap-md: 25px;
-  --gap-lg: 40px;
+  --gap-sm: clamp(10px, 2vw, 15px);
+  --gap-md: clamp(15px, 4vw, 25px);
+  --gap-lg: clamp(20px, 6vw, 40px);
   --gap-xs: 15px;
-  --padding-sm: 20px;
-  --padding-md: 30px;
-  --padding-lg: 50px;
+  --padding-sm: clamp(10px, 3vw, 20px);
+  --padding-md: clamp(15px, 5vw, 30px);
+  --padding-lg: clamp(25px, 8vw, 50px);
 
   /* Borders */
   --radius-sm: 12px;
@@ -44,16 +44,24 @@
   font-family: "Inter", sans-serif;
 }
 
-html,
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
 body {
   height: 100%;
   background-color: var(--bg-main);
   color: var(--text-dark);
-}
-
-body {
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 /* ============================================ */
@@ -119,6 +127,7 @@ body {
   left: -300px;
   top: 0;
   width: 280px;
+  max-width: 80%;
   height: 100%;
   background-color: var(--card-bg);
   padding: var(--padding-md);
@@ -177,18 +186,18 @@ body {
 
 .gaming-hero {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: clamp(30px, 8vw, 60px);
 }
 
 .gaming-hero h1 {
-  font-size: 3rem;
+  font-size: clamp(1.8rem, 5vw, 3rem);
   color: var(--gaming-primary);
   margin-bottom: 15px;
   text-shadow: 0 2px 10px rgba(156, 39, 176, 0.3);
 }
 
 .gaming-hero p {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   color: #64748b;
   max-width: 800px;
   margin: 0 auto;
@@ -203,7 +212,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 60px;
+  margin-bottom: clamp(30px, 8vw, 60px);
 }
 
 .carousel-container {
@@ -240,11 +249,11 @@ body {
 }
 
 .prev {
-  left: -60px;
+  left: -20px;
 }
 
 .next {
-  right: -60px;
+  right: -20px;
 }
 
 .prev:hover,
@@ -267,7 +276,7 @@ body {
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-md) rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px;
+  margin-bottom: clamp(20px, 6vw, 40px);
   padding: var(--padding-lg);
 }
 
@@ -287,13 +296,13 @@ body {
 }
 
 .gaming-text h2 {
-  font-size: 2rem;
+  font-size: clamp(1.4rem, 4vw, 2rem);
   color: var(--gaming-primary);
   margin-bottom: 20px;
 }
 
 .gaming-text p {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   color: #475569;
   line-height: 1.8;
   margin-bottom: 15px;
@@ -323,9 +332,9 @@ body {
 
 .gaming-features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 30vw, 300px), 1fr));
   gap: var(--gap-md);
-  margin: 60px 0;
+  margin: clamp(30px, 8vw, 60px) 0;
 }
 
 .feature-card {
@@ -348,12 +357,12 @@ body {
 }
 
 .feature-card h3 {
-  font-size: 1.4rem;
+  font-size: clamp(1.2rem, 3vw, 1.4rem);
   margin-bottom: 10px;
 }
 
 .feature-card p {
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
   line-height: 1.6;
 }
 
@@ -419,7 +428,7 @@ body {
 /* ============================================ */
 
 .distros-section {
-  padding: 80px 20px;
+  padding: clamp(40px, 10vw, 80px) 20px;
   background-color: #0b0f1a;
   text-align: center;
 }
@@ -428,9 +437,9 @@ body {
   color: #00ffcc;
   text-transform: uppercase;
   text-align: center;
-  margin-top: 50px;
-  margin-bottom: 80px;
-  font-size: 2.5rem;
+  margin-top: clamp(30px, 8vw, 50px);
+  margin-bottom: clamp(40px, 10vw, 80px);
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
   position: relative;
   z-index: 10;
 }
@@ -442,8 +451,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 80px;
-  margin-top: 20px;
+  padding: 0 clamp(20px, 10vw, 80px);
+  margin-top: clamp(20px, 5vw, 40px);
 }
 
 .distro-slide {
@@ -501,15 +510,15 @@ body {
 }
 
 .distro-logo {
-  width: 60px;
-  height: 60px;
+  width: clamp(50px, 10vw, 60px);
+  height: clamp(50px, 10vw, 60px);
   object-fit: contain;
 }
 
 .distro-card h3 {
   color: #fff;
   margin: 0;
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
 }
 
 .distro-body p {
@@ -580,90 +589,51 @@ body {
 /* RESPONSIVE                                   */
 /* ============================================ */
 
-@media (max-width: 1024px) {
-  .gaming-info-container {
-    gap: var(--gap-md);
-    padding: var(--padding-md);
+@media (max-width: 992px) {
+  .navbar-links {
+    display: none;
   }
 
-  .gaming-text h2 {
-    font-size: 1.6rem;
-  }
-
-  .gaming-hero h1 {
-    font-size: 2.2rem;
-  }
-}
-
-@media (max-width: 768px) {
   .gaming-info-container,
   .gaming-info-container.image-right,
   .gaming-info-container.image-left {
     flex-direction: column;
-    padding: var(--padding-md);
-    gap: var(--gap-sm);
+    text-align: center;
   }
 
-  .gaming-hero h1 {
-    font-size: 1.8rem;
+  .distro-slide.active {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .gaming-hero p {
-    font-size: 1rem;
+  .distro-card {
+    width: 100%;
+    max-width: none;
   }
 
-  .gaming-text h2 {
-    font-size: 1.4rem;
+  .prev {
+    left: 10px;
   }
 
-  .gaming-text p {
-    font-size: 0.9rem;
-  }
-
-  .gaming-features {
-    grid-template-columns: 1fr;
-  }
-
-  .main-content {
-    padding: var(--padding-sm) 5%;
-  }
-
-  .navbar-links {
-    gap: var(--gap-xs);
-    font-size: 0.8rem;
-  }
-
-  .distro-carousel-wrapper {
-    padding: 0 60px;
+  .next {
+    right: 10px;
   }
 }
 
-@media (max-width: 480px) {
-  .gaming-hero h1 {
-    font-size: 1.4rem;
-  }
-
-  .gaming-text h2 {
-    font-size: 1.2rem;
-  }
-
-  .gaming-info-container {
-    padding: var(--padding-sm);
-  }
-
+@media (max-width: 600px) {
   .footer-content {
     flex-direction: column;
-    gap: var(--gap-sm);
+    text-align: center;
   }
 
   .distro-carousel-wrapper {
-    padding: 0;
+    padding: 0 40px;
   }
 
   .distro-prev,
   .distro-next {
     width: 40px;
     height: 40px;
-    font-size: 1.2rem;
   }
 }
+

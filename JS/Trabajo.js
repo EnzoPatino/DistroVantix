@@ -25,11 +25,11 @@ function moveSlide(step) {
 }
 
 /* ============================================ */
-/* LÓGICA DEL CARRUSEL DE DISTROS                */
+/* LÓGICA DEL CARRUSEL DE CATEGORÍAS             */
 /* ============================================ */
 
 let currentDistroSlide = 0;
-function moveDistroSlide(direction) {
+function changeDistroSlide(direction) {
   const slides = document.querySelectorAll(".distro-slide");
 
   // Quitamos la clase active del slide actual

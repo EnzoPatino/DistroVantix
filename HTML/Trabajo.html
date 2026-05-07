@@ -17,7 +17,7 @@
       </div>
 
       <div class="navbar">
-        <a href="../Index.html" target="_self" class="navbar-logo">
+        <a href="Index.html" target="_self" class="navbar-logo">
           <img
             src="../IMGS/Logo futurista de DistroVantix(1).png"
             alt="logo"
@@ -28,7 +28,7 @@
         </a>
         <nav aria-label="Navegación principal">
           <ul class="navbar-links">
-            <li><a href="../HTML/Index.html">Inicio</a></li>
+            <li><a href="Index.html">Inicio</a></li>
             <li><a href="#Informacion">Informacion</a></li>
             <li><a href="#Carrusel">Carrusel</a></li>
           </ul>
@@ -39,12 +39,17 @@
     <!-- Sectores de distros -->
     <aside id="sidebar" class="tablero">
       <nav class="categorias">
+        <h3 class="sidebar-title">Navegación</h3>
+        <ul class="sidebar-links">
+          <li><a href="Index.html" class="cat-btn">Inicio</a></li>
+          <li><a href="#Informacion" class="cat-btn">Información</a></li>
+          <li><a href="Index.html#contacto" class="cat-btn">Contacto</a></li>
+        </ul>
         <h3>Categorías</h3>
-        <a href="./Gaming.html" target="_self" style="text-decoration: none">
+        <a href="Gaming.html" style="text-decoration: none">
           <button class="cat-btn">Gaming</button>
         </a>
-
-        <a href="./Trabajo.html" target="_self" style="text-decoration: none">
+        <a href="Trabajo.html" style="text-decoration: none">
           <button class="cat-btn">Trabajo</button>
         </a>
       </nav>
@@ -53,7 +58,9 @@
     <!-- Carrusel de información -->
     <main class="main-content">
       <div class="carousel-wrapper" id="Informacion">
-        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="prev" onclick="moveSlide(-1)" aria-label="Anterior">
+          &#10094;
+        </button>
 
         <div class="carousel-container">
           <div class="slide active">
@@ -63,45 +70,51 @@
                   <h2>Linux en la Oficina: ¿Realidad o Reto?</h2>
                   <p>
                     <strong
-                      >Las empresas más grandes del mundo usanLinux para sus
+                      >Las empresas más grandes del mundo usan Linux para sus
                       servidores y estaciones de trabajo.</strong
                     >
                   </p>
                   <p>
                     Desde Google hasta Amazon, pasando por NASA y Netflix,
                     confían en Linux. Pero, ¿qué pasa en tu escritorio? La
-                    respuesta: compatibilidad total con alternativas ofimáticas.
+                    respuesta: compatibilidad total con alternativas ofimáticas
+                    modernas y seguras.
                   </p>
                 </article>
               </div>
               <div class="trabajo-image">
                 <img
-                  src="../IMGS/LinuxGamer Image 5 abr 2026, 02_26_15 a.m..png"
-                  alt="Linux Oficina"
+                  src="../IMGS/LibreOfficeLinux.png"
+                  alt="Espacio de trabajo en Linux con LibreOffice"
                 />
               </div>
             </div>
           </div>
 
           <div class="slide">
-            <div class="trabajo-info-container image-right">
+            <div class="trabajo-info-container image-left">
               <div class="trabajo-text">
                 <article>
-                  <h2>Documentos incompatible o inexistentes?</h2>
+                  <h2>¿Documentos incompatibles? Ya no.</h2>
                   <p>
                     <strong
-                      >LibreOffice es tu mejor aliado para documentos.</strong
+                      >LibreOffice es tu mejor aliado para la gestión
+                      documental.</strong
                     >
                   </p>
                   <p>
-                    Compatible con Microsoft Office (.docx, .xlsx, .pptx).
-                    También podés usar OnlyOffice o Google Docs online. Para
-                    PDFs, tu opción es Okular. Todo gratis, siempre.
+                    Compatible con formatos de Microsoft Office (.docx, .xlsx,
+                    .pptx). También podés usar OnlyOffice o herramientas en la
+                    nube. Recuperá el control de tu privacidad sin perder
+                    productividad.
                   </p>
                 </article>
               </div>
               <div class="trabajo-image">
-                <img src="../IMGS/LibreOfficeLinux.png" alt="LibreOffice" />
+                <img
+                  src="../IMGS/LibreOfficeLinux.png"
+                  alt="Suite ofimática LibreOffice en Linux"
+                />
               </div>
             </div>
           </div>
@@ -113,93 +126,134 @@
                   <h2>Desarrollo sin Complicaciones</h2>
                   <p>
                     <strong
-                      >Linux es el ecosistema definitivo para devs.</strong
+                      >Linux es el ecosistema definitivo para programadores y
+                      científicos de datos.</strong
                     >
                   </p>
                   <p>
-                    Git, Docker, Python, Node, Rust, Go... todo viene
-                    preinstalado o a un comando de distancia. Sin antivirus
-                    consumiendo recursos, sin actualizaciones forzadas.
+                    Git, Docker, Python, Node, Rust, Go... todo funciona de
+                    forma nativa. Sin procesos basura consumiendo tus recursos y
+                    con una terminal que realmente te da poder.
                   </p>
                 </article>
               </div>
               <div class="trabajo-image">
-                <img src="../IMGS/programacion-en-linux.png" alt="Desarrollo" />
+                <img
+                  src="../IMGS/programacion-en-linux.png"
+                  alt="Entorno de desarrollo de software en Linux"
+                />
               </div>
             </div>
           </div>
         </div>
-        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+        <button class="next" onclick="moveSlide(1)" aria-label="Siguiente">
+          &#10095;
+        </button>
       </div>
     </main>
 
-    <!-- Sección de Carrusel de Trabajos (Mini Info) -->
-    <section class="distros-section">
-      <h2 class="section-title">Encontrá tu herramienta indispensable</h2>
+    <!-- Carrusel de sectores laborales -->
+    <section id="Carrusel" class="distros-section">
+      <h2 class="section-title">Sectores Laborales en Linux</h2>
 
       <div class="distro-carousel-wrapper">
-        <button class="distro-prev" onclick="moveDistroSlide(-1)">
-          &#10094;
-        </button>
+        <button class="distro-prev" onclick="changeDistroSlide(-1)">❮</button>
+        <button class="distro-next" onclick="changeDistroSlide(1)">❯</button>
 
-        <div class="distro-slide active">
-          <article class="distro-card card-pentesting">
-            <div class="distro-header">
-              <a href="../HTML/Ciberseguridad.html" target="_self">
-                <img
-                  src="../IMGS/Seguridad-informatica.png"
-                  alt="Ciberseguridad"
-                  class="distro-logo"
-                />
-              </a>
+        <div class="distro-carousel-container">
+          <div class="distro-slide active">
+            <div class="distro-card card-ciberseguridad">
+              <div class="distro-header">
+                <a href="./Kali.html">
+                  <img
+                    src="../IMGS/Inge-Ciberseguridad.png"
+                    alt="Ciberseguridad"
+                    class="distro-logo"
+                  />
+                  <h3>Ciberseguridad</h3>
+                </a>
+              </div>
+              <div class="distro-body">
+                <p><strong>Base:</strong> Debian</p>
+                <p>
+                  <strong>Especialidad:</strong> Seguridad, auditoría y pruebas
+                  de penetración.
+                </p>
+                <p>
+                  Más de 600 herramientas de seguridad preinstaladas.
+                  Ideal para profesionales de seguridad.
+                </p>
+                <ul class="distro-features">
+                  <li>Kali Linux + herramientas</li>
+                  <li>Entorno de auditoría</li>
+                  <li>Documentación extensa</li>
+                </ul>
+              </div>
             </div>
-            <div class="distro-body">
-              <h3>Ciberseguridad</h3>
-              <p>
-                ¿Buscas trabajar con <strong>Seguridad Informática</strong>? Si
-                entras aquí podrás dominar herramientas indispensables.
-              </p>
-              <ul class="distro-features">
-                <li>Auditorías de Red</li>
-                <li>Pentesting Ético</li>
-                <li>Criptografía</li>
-              </ul>
-              <a href="#detalles-seguridad" class="btn-more"
-                >Ver Info y Distros</a
-              >
+          </div>
+
+          <div class="distro-slide">
+            <div class="distro-card card-desarrollo">
+              <div class="distro-header">
+                <a href="./CachyOS.html">
+                  <img
+                    src="../IMGS/programacion-en-linux.png"
+                    alt="Desarrollo"
+                    class="distro-logo"
+                  />
+                  <h3>Desarrollo de Software</h3>
+                </a>
+              </div>
+              <div class="distro-body">
+                <p><strong>Base:</strong> Arch Linux</p>
+                <p>
+                  <strong>Especialidad:</strong> Programación, DevOps y
+                  desarrollo full-stack.
+                </p>
+                <p>
+                  Entorno nativo para desarrolladores. Git, Docker, Node,
+                  Python, todo integrado.
+                </p>
+                <ul class="distro-features">
+                  <li>Paquetes actualizados</li>
+                  <li>Entorno de contenedores</li>
+                  <li>Terminal potente</li>
+                </ul>
+              </div>
             </div>
-          </article>
+          </div>
+
+          <div class="distro-slide">
+            <div class="distro-card card-administracion">
+              <div class="distro-header">
+                <a href="./Pop!_OS.html">
+                  <img
+                    src="../IMGS/LibreOfficeLinux.png"
+                    alt="Administración"
+                    class="distro-logo"
+                  />
+                  <h3>Administración de Sistemas</h3>
+                </a>
+              </div>
+              <div class="distro-body">
+                <p><strong>Base:</strong> Ubuntu</p>
+                <p>
+                  <strong>Especialidad:</strong> Gestión de servidores,
+                  infraestructura y redes.
+                </p>
+                <p>
+                  Linux domina en servidores empresariales. Excelente para
+                  administración de sistemas.
+                </p>
+                <ul class="distro-features">
+                  <li>Estabilidad comprobada</li>
+                  <li>Soporte comercial</li>
+                  <li>Gestión de ventanas</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="distro-slide">
-          <article class="distro-card card-debian">
-            <div class="distro-header">
-              <img
-                src="../IMGS/desarrollador programador.png"
-                alt="Desarrollo"
-                class="distro-logo"
-              />
-            </div>
-            <div class="distro-body">
-              <h3>Desarrollo</h3>
-              <p>
-                Linux es el lugar donde nace el software. Es el entorno favorito
-                de los programadores porque te da el control total sobre tu
-                código y tus herramientas.
-              </p>
-              <ul class="distro-features">
-                <li>Aplicacion de lenguajes</li>
-                <li>Herramientas de Desarrollo</li>
-                <li>Configurá tu espacio de trabajo</li>
-              </ul>
-              <a href="#detalles-servidores" class="btn-more">Explorar</a>
-            </div>
-          </article>
-        </div>
-
-        <button class="distro-next" onclick="moveDistroSlide(1)">
-          &#10095;
-        </button>
       </div>
     </section>
 

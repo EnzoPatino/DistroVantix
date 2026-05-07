@@ -10,12 +10,10 @@
   <body>
     <!-- Barra de navegación mejorada -->
     <header class="navbar-container">
-      <button id="btn-menu" class="menu-toggle" aria-label="Abrir menú">
-        ☰
-      </button>
+      <button id="btn-menu" aria-label="Abrir tablero de opciones">☰</button>
 
       <div class="navbar">
-        <a href="../Index.html" target="_self" class="navbar-logo">
+        <a href="Index.html" target="_self" class="navbar-logo">
           <img
             src="../IMGS/Logo futurista de DistroVantix(1).png"
             alt="logo DistroVantix"
@@ -26,9 +24,9 @@
         </a>
         <nav aria-label="Navegación principal">
           <ul class="navbar-links">
-            <li><a href="../HTML/Index.html" target="_self">Inicio</a></li>
-            <li><a href="../HTML/Trabajo.html" target="_self">Trabajo</a></li>
-            <li><a href="../HTML/Gaming.html" target="_self">Gaming</a></li>
+            <li><a href="Index.html" target="_self">Inicio</a></li>
+            <li><a href="Trabajo.html" target="_self">Trabajo</a></li>
+            <li><a href="Gaming.html" target="_self">Gaming</a></li>
           </ul>
         </nav>
       </div>
@@ -37,6 +35,18 @@
         <span class="distro-badge">Cuaderno</span>
       </div>
     </header>
+
+    <!-- Sidebar/Menú -->
+    <aside class="tablero" id="sidebar">
+      <nav class="categorias">
+        <h3 class="sidebar-title">Navegación</h3>
+        <ul class="sidebar-links">
+          <li><a href="Index.html" class="cat-btn">Inicio</a></li>
+          <li><a href="Trabajo.html" class="cat-btn">Trabajo</a></li>
+          <li><a href="Gaming.html" class="cat-btn">Gaming</a></li>
+        </ul>
+      </nav>
+    </aside>
 
     <!-- Carpeta Cerrada (Pantalla Inicial) -->
     <div id="closed-folder" class="folder-exterior">
