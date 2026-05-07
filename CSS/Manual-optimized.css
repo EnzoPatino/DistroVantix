@@ -1,153 +1,102 @@
-/* --- Estilos Generales --- */
+/* --- Reset y Base --- */
 body {
-  background-color: #000000;
-  font-family: "Courier New", Courier, monospace;
-  display: flex;
-  flex-direction: column;
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: 'Inter', -apple-system, sans-serif;
   margin: 0;
-  min-height: 100vh;
-}
-
-html {
   overflow-x: hidden;
 }
 
-/* --- Navbar --- */
+/* --- Barra de Navegación (Heredada de style.css) --- */
 .navbar-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.8rem 5%;
-  position: sticky;
-  top: 0;
-  z-index: 999;
   background-color: #1e293b;
+  border-bottom: 1px solid #334155;
 }
 
-.navbar {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.navbar-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
-
-.navbar-links a {
-  color: white;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-#btn-menu {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.8rem;
-  cursor: pointer;
-  display: none;
-}
-
-/* --- Estilo de la Carpeta Cerrada --- */
+/* --- Carpeta Cerrada --- */
 .folder-exterior {
-  width: 100%;
-  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #000000;
-  position: relative;
-  z-index: 10;
+  min-height: 80vh;
   padding: 20px;
 }
 
 .folder-front {
-  width: clamp(280px, 90vw, 450px);
-  height: clamp(400px, 80vh, 600px);
-  background: #334155;
-  color: white;
-  border-radius: 10px 20px 20px 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.3);
-  border-left: 15px solid #1e293b;
-  padding: 20px;
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  border: 1px solid #334155;
+  border-left: 10px solid #3b82f6;
+  border-radius: 12px;
+  padding: 40px;
   text-align: center;
+  max-width: 400px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
 }
 
 .folder-front h1 {
-  font-size: clamp(1.2rem, 4vw, 2rem);
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #3b82f6;
 }
 
 .open-btn {
-  margin-top: 20px;
-  padding: 12px 25px;
-  background: #3b82f6;
+  background-color: #3b82f6;
   color: white;
   border: none;
-  border-radius: 5px;
-  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
-  transition:
-    transform 0.2s,
-    background 0.2s;
+  transition: all 0.2s;
+  margin-top: 20px;
 }
 
 .open-btn:hover {
-  transform: scale(1.1);
-  background: #2563eb;
+  background-color: #2563eb;
+  transform: translateY(-2px);
 }
 
-/* --- Estilos del Libro Abierto --- */
+/* --- Contenedor del Libro Abierto --- */
 .book-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.close-book-btn {
+  align-self: flex-end;
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+/* --- Controles de Navegación --- */
+.nav-controls {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(10px, 3vw, 20px);
-  width: 100%;
+  gap: 20px;
   flex: 1;
-  background-color: #000000;
-  position: relative;
-  padding: clamp(10px, 2vw, 40px);
-}
-
-/* Botón de CERRAR */
-.close-book-btn {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  padding: 8px 15px;
-  background-color: #ef4444;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 20;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  transition: background 0.2s;
-}
-
-.close-book-btn:hover {
-  background-color: #dc2626;
+  width: 100%;
 }
 
 .book-container {
-  width: clamp(300px, 95vw, 900px);
-  height: clamp(400px, 85vh, 600px);
   background: white;
-  border: 2px solid #333;
-  border-radius: 15px;
+  color: #1e293b;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 1000px;
+  height: 600px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   display: flex;
-  position: relative;
-  overflow-y: auto;
-  box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
 .spread {
@@ -162,28 +111,38 @@ html {
 }
 
 .page {
-  padding: clamp(15px, 4vw, 40px);
-  box-sizing: border-box;
+  padding: 40px;
   overflow-y: auto;
 }
 
 .left-page {
-  border-right: 1px solid #ccc;
+  border-right: 1px solid #e2e8f0;
 }
 
 .page h2 {
+  color: #3b82f6;
+  font-size: 1.25rem;
   margin-top: 0;
-  color: #333;
-  font-size: clamp(1rem, 3vw, 1.5rem);
+  border-bottom: 2px solid #eff6ff;
+  padding-bottom: 10px;
 }
 
 .page p {
   line-height: 1.6;
-  color: #555;
-  font-size: clamp(0.85rem, 2vw, 1rem);
+  margin-bottom: 15px;
 }
 
-/* Portada interior */
+.page strong {
+  display: block;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  background: #f1f5f9;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+/* Portada interna */
 .page.cover {
   grid-column: span 2;
   display: flex;
@@ -191,83 +150,80 @@ html {
   justify-content: center;
   align-items: center;
   text-align: center;
+  background: #f8fafc;
 }
 
 .page.cover h1 {
-  font-size: clamp(1.2rem, 5vw, 2rem);
-  color: #333;
+  font-size: 2.5rem;
+  color: #1e293b;
 }
 
-.page.cover p {
-  font-size: clamp(0.9rem, 3vw, 1.2rem);
-  color: #666;
-}
-
-/* Botones de navegación */
+/* Botones de flechas */
 .nav-btn {
-  width: clamp(40px, 10vw, 60px);
-  height: clamp(40px, 10vw, 60px);
+  background: #3b82f6;
+  border: none;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  cursor: pointer;
-  border: 2px solid #333;
-  background: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  z-index: 10;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
 .nav-btn:hover {
-  background: #f0f0f0;
+  background: #2563eb;
+  transform: scale(1.1);
 }
 
 .nav-btn svg {
+  fill: white;
   width: 24px;
   height: 24px;
-  fill: #333;
 }
 
-@media (max-width: 992px) {
-  .navbar-links {
-    display: none;
-  }
-
-  #btn-menu {
-    display: block;
-  }
-}
-
-@media (max-width: 768px) {
-  .spread {
+/* --- Responsive Design --- */
+@media (max-width: 850px) {
+  .spread.active {
     grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+
+  .book-container {
+    height: 70vh;
   }
 
   .left-page {
     border-right: none;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #e2e8f0;
   }
 
-  .page.cover {
-    grid-column: span 1;
+  .nav-controls {
+    flex-direction: column;
   }
 
-  .book-wrapper {
-    flex-wrap: wrap;
-    justify-content: center;
+  .nav-btn-container {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
   }
 
-  .nav-btn.prev {
-    order: 2;
+  .nav-btn.prev { order: 1; }
+  .book-container { order: 0; }
+  .nav-btn.next { order: 2; }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 20px;
+  }
+
+  .page.cover h1 {
+    font-size: 1.5rem;
   }
 
   .book-container {
-    order: 1;
-    width: 100%;
-  }
-
-  .nav-btn.next {
-    order: 3;
+    height: 65vh;
   }
 }
-

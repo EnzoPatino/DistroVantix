@@ -32,7 +32,7 @@
       </div>
 
       <div class="user-area">
-        <span class="distro-badge">Cuaderno</span>
+        <span class="distro-badge">Manual Técnico</span>
       </div>
     </header>
 
@@ -48,199 +48,264 @@
       </nav>
     </aside>
 
-    <!-- Carpeta Cerrada (Pantalla Inicial) -->
+    <!-- Carpeta Cerrada -->
     <div id="closed-folder" class="folder-exterior">
       <div class="folder-front">
-        <h1>MANUAL DE COMANDOAS DE KALI LINUX</h1>
-        <p>Conoce tus herramientas</p>
-        <button class="open-btn" onclick="openBook()">ABRIR</button>
+        <h1>MANUAL DE COMANDOS</h1>
+        <p>Documentación técnica de Kali Linux</p>
+        <button class="open-btn" onclick="openBook()">ABRIR MANUAL</button>
       </div>
     </div>
 
-    <!-- Contenido del Libro Abierto (Oculto al inicio) -->
+    <!-- Contenido del Manual Abierto -->
     <div id="main-content" class="book-wrapper" style="display: none">
-      <!-- Botón de Cerrar -->
       <button class="close-book-btn" onclick="closeBook()">CERRAR ✖</button>
 
-      <!-- Flechas de navegación -->
-      <button class="nav-btn prev" onclick="movePage(-1)">
-        <svg viewBox="0 0 24 24">
-          <path
-            d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
-          ></path>
-        </svg>
-      </button>
+      <div class="nav-controls">
+        <button
+          class="nav-btn prev"
+          onclick="movePage(-1)"
+          aria-label="Anterior"
+        >
+          <svg viewBox="0 0 24 24">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+          </svg>
+        </button>
 
-      <div class="book-container" id="book">
-        <!-- PORTADA INTERNA -->
-        <div class="spread active">
-          <div class="page cover">
-            <h1>Las herramientas que Manejamos en kali linux</h1>
-            <p>
-              Conocer tus herramientas es casi tan Importante como que un
-              mecanico sepa Reparar un motor. Pero no es facil, Manejar tus
-              herramientas adecuadamente Para eso tenes este manual, a tus manos
-            </p>
+        <div class="book-container" id="book">
+          <!-- Portada -->
+          <div class="spread active">
+            <div class="page cover">
+              <h1>KALI LINUX Y HERRAMIENTAS DE SEGURIDAD</h1>
+              <p>
+                Saber manejar tus herramientas de entorno es casi tan
+                importante, como que un mecanico sepa reparar un motor, o un
+                chef sepa seguir una receta, pero no es facil memorisar tantos
+                comandos o buscar uno por uno. Por eso DistroVantix te trae esta
+                guia.
+              </p>
+              <small>DistroVantix - Guía de Referencia Rápida</small>
+            </div>
+          </div>
+
+          <!-- Página 1: Sistema y Redes -->
+          <div class="spread">
+            <div class="page left-page">
+              <h2>Gestión de Red</h2>
+              <p>
+                <strong>ip a</strong> Muestra todas las interfaces y direcciones
+                IP.
+              </p>
+              <p>
+                <strong>nmcli dev wifi</strong> Escanea redes WiFi cercanas
+                desde terminal.
+              </p>
+              <p>
+                <strong>ifconfig [int] up/down</strong> Activa o desactiva una
+                interfaz.
+              </p>
+              <p>
+                <strong>iwconfig</strong> Configuración específica de interfaces
+                inalámbricas.
+              </p>
+            </div>
+            <div class="page right-page">
+              <h2>Mantenimiento</h2>
+              <p>
+                <strong>sudo apt update</strong> Sincroniza los repositorios de
+                Kali.
+              </p>
+              <p>
+                <strong>sudo apt install [pkg]</strong> Instala nuevas
+                herramientas de seguridad.
+              </p>
+              <p>
+                <strong>sudo apt full-upgrade</strong> Actualiza Kali a la
+                última versión disponible.
+              </p>
+              <p>
+                <strong>systemctl start [serv]</strong> Inicia servicios (ej.
+                postgresql o apache2).
+              </p>
+            </div>
+          </div>
+
+          <!-- Página 2: Reconocimiento (Nmap) -->
+          <div class="spread">
+            <div class="page left-page">
+              <h2>Nmap - Escaneo</h2>
+              <p>
+                <strong>nmap -sS [objetivo]</strong> Escaneo TCP SYN (sigiloso).
+              </p>
+              <p>
+                <strong>nmap -sV [objetivo]</strong> Detecta versiones de
+                servicios abiertos.
+              </p>
+              <p>
+                <strong>nmap -O [objetivo]</strong> Intenta identificar el
+                Sistema Operativo.
+              </p>
+              <p>
+                <strong>nmap -p [puertos]</strong> Escanea puertos específicos
+                (ej. -p 80,443).
+              </p>
+            </div>
+            <div class="page right-page">
+              <h2>Enumeración</h2>
+              <p>
+                <strong>whois [dominio]</strong> Información de registro de un
+                dominio.
+              </p>
+              <p>
+                <strong>dig [dominio]</strong> Consultas detalladas a servidores
+                DNS.
+              </p>
+              <p>
+                <strong>nslookup [IP]</strong> Resolución inversa de direcciones
+                IP.
+              </p>
+              <p>
+                <strong>netdiscover -r [red]</strong> Descubrimiento pasivo de
+                hosts en LAN.
+              </p>
+            </div>
+          </div>
+
+          <!-- Página 3: Explotación (Metasploit) -->
+          <div class="spread">
+            <div class="page left-page">
+              <h2>Metasploit Framework</h2>
+              <p>
+                <strong>msfconsole</strong> Inicia el entorno de explotación.
+              </p>
+              <p>
+                <strong>search [exploit]</strong> Busca módulos por nombre o
+                vulnerabilidad.
+              </p>
+              <p>
+                <strong>use [ruta/modulo]</strong> Selecciona un módulo para
+                configurar.
+              </p>
+              <p>
+                <strong>set RHOSTS [IP]</strong> Define la dirección del
+                objetivo.
+              </p>
+            </div>
+            <div class="page right-page">
+              <h2>Payloads y Ejecución</h2>
+              <p>
+                <strong>show options</strong> Muestra los parámetros necesarios.
+              </p>
+              <p>
+                <strong>set PAYLOAD [ruta]</strong> Define la carga útil (ej.
+                reverse_tcp).
+              </p>
+              <p>
+                <strong>exploit / run</strong> Lanza el ataque contra el
+                objetivo.
+              </p>
+              <p>
+                <strong>sessions -l</strong> Lista las conexiones activas
+                (shells/meterpreter).
+              </p>
+            </div>
+          </div>
+
+          <!-- Página 4: Wireless y Web -->
+          <div class="spread">
+            <div class="page left-page">
+              <h2>Ataques WiFi</h2>
+              <p>
+                <strong>airmon-ng start [int]</strong> Pone la tarjeta en modo
+                monitor.
+              </p>
+              <p>
+                <strong>airodump-ng [int]</strong> Captura paquetes y visualiza
+                redes.
+              </p>
+              <p>
+                <strong>aireplay-ng --deauth</strong> Desautentica usuarios de
+                una red.
+              </p>
+              <p>
+                <strong>aircrack-ng [file.cap]</strong> Crackea la clave
+                WPA/WPA2 capturada.
+              </p>
+            </div>
+            <div class="page right-page">
+              <h2>Análisis Web</h2>
+              <p>
+                <strong>nikto -h [URL]</strong> Escáner de vulnerabilidades en
+                servidores web.
+              </p>
+              <p>
+                <strong>sqlmap -u [URL]</strong> Automatización de Inyección
+                SQL.
+              </p>
+              <p>
+                <strong>dirb [URL]</strong> Fuerza bruta para encontrar
+                directorios ocultos.
+              </p>
+              <p>
+                <strong>commix --url=[URL]</strong> Explotación de inyección de
+                comandos.
+              </p>
+            </div>
+          </div>
+
+          <!-- Página 5: Contraseñas y Forense -->
+          <div class="spread">
+            <div class="page left-page">
+              <h2>Cracking</h2>
+              <p>
+                <strong>john [archivo]</strong> Crackea hashes de contraseñas
+                locales.
+              </p>
+              <p>
+                <strong>hashcat -m [tipo] [hash]</strong> Cracking por GPU de
+                alta velocidad.
+              </p>
+              <p>
+                <strong>hydra -l [user] -P [pass]</strong> Ataque de fuerza
+                bruta a protocolos (SSH, FTP).
+              </p>
+              <p>
+                <strong>crunch [min] [max]</strong> Generador de diccionarios
+                personalizados.
+              </p>
+            </div>
+            <div class="page right-page">
+              <h2>Análisis y Sniffing</h2>
+              <p>
+                <strong>wireshark</strong> Analizador de protocolos de red
+                gráfico.
+              </p>
+              <p><strong>tshark</strong> Versión de terminal de Wireshark.</p>
+              <p>
+                <strong>tcpdump -i [int]</strong> Captura tráfico de red en
+                tiempo real.
+              </p>
+              <p>
+                <strong>binwalk -e [file]</strong> Extrae archivos ocultos
+                dentro de binarios.
+              </p>
+            </div>
           </div>
         </div>
 
-        <!-- BLOQUE 1: Actualización del Sistema -->
-        <div class="spread">
-          <div class="page left-page">
-            <h2>Comandos de Red</h2>
-            <p>
-              <strong>ifconfig:</strong> Para ver tu dirección IP y estado de
-              las interfaces.
-            </p>
-            <p>
-              <strong>nmcli device:</strong> Para ver las tarjetas de red
-              detectadas.
-            </p>
-            <p><strong>hostname -I:</strong> Tu IP local de forma rápida.</p>
-            <p>
-              <strong>ip route:</strong> Muestra la tabla de rutas del sistema.
-            </p>
-
-            <h2>Paquetes y Actualización</h2>
-            <p>
-              <strong>sudo apt update:</strong> Busca nuevas versiones de
-              herramientas.
-            </p>
-            <p>
-              <strong>sudo apt install (nombre):</strong> Para instalar
-              herramientas nuevas.
-            </p>
-            <p>
-              <strong>sudo apt full-upgrade:</strong> Actualiza todo el sistema
-              Kali.
-            </p>
-            <p>
-              <strong>systemctl start [servicio]:</strong> Inicia una
-              herramienta (ej: apache2).
-            </p>
-          </div>
-          <div class="page right-page">
-            <h2>Exploración de Archivos Críticos:</h2>
-            <p>
-              <strong>cat /etc/os-release:</strong> Muestra info detallada de la
-              versión de Kali que estás corriendo.
-            </p>
-            <p>
-              <strong>ls -la /home/:</strong> Lista todos los usuarios y
-              archivos ocultos del sistema.
-            </p>
-            <p>
-              <strong>cat /etc/apt/sources.list:</strong> Verifica los
-              repositorios de donde Kali baja sus herramientas.
-            </p>
-
-            <h2>Gestión de Herramientas:</h2>
-            <p>
-              <strong>apt remove [nombre]:</strong> Desinstala una herramienta
-              que ya no necesites.
-            </p>
-            <p>
-              <strong>apt search [término]:</strong> Busca herramientas nuevas
-              en los repositorios de Kali.
-            </p>
-            <p>
-              <strong>sudo apt autoremove:</strong> Borra paquetes viejos para
-              liberar espacio en el disco.
-            </p>
-          </div>
-        </div>
-
-        <!-- BLOQUE 2: Nmap -->
-        <div class="spread">
-          <div class="page left-page">
-            <h2>Nmap - Escaneo de Red</h2>
-            <p>nmap -sV [objetivo] - Escaneo de versiones</p>
-            <p>nmap -O [objetivo] - Detecta sistema operativo</p>
-            <p>nmap -p- [objetivo] - Escanea todos los puertos</p>
-          </div>
-          <div class="page right-page">
-            <h2>Nmap - Avanzado</h2>
-            <p>nmap -sS [objetivo] - Escaneo TCP SYN</p>
-            <p>nmap -sU [objetivo] - Escaneo UDP</p>
-            <p>nmap -A [objetivo] - Escaneo agresivo</p>
-          </div>
-        </div>
-
-        <!-- BLOQUE 3: Metasploit -->
-        <div class="spread">
-          <div class="page left-page">
-            <h2>Metasploit - Inicio</h2>
-            <p>msfconsole - Inicia la consola</p>
-            <p>msfdb init - Inicializa la base de datos</p>
-            <p>db_status - Verifica el estado</p>
-          </div>
-          <div class="page right-page">
-            <h2>Metasploit - Comandos</h2>
-            <p>search [tipo]:[nombre] - Busca módulos</p>
-            <p>use [módulo] - Selecciona un módulo</p>
-            <p>show options - Muestra las opciones</p>
-          </div>
-        </div>
-
-        <!-- BLOQUE 4: Wireshark y John -->
-        <div class="spread">
-          <div class="page left-page">
-            <h2>Wireshark</h2>
-            <p>wireshark - Inicia en modo gráfico</p>
-            <p>tshark - Modo línea de comandos</p>
-          </div>
-          <div class="page right-page">
-            <h2>John the Ripper</h2>
-            <p>john archivo.hash - Crackea contraseñas</p>
-            <p>john --show archivo.hash - Muestra crackeadas</p>
-            <p>unshadow passwd shadow > archivo - Combina archivos</p>
-          </div>
-        </div>
-
-        <!-- BLOQUE 5: Aircrack y SQLmap -->
-        <div class="spread">
-          <div class="page left-page">
-            <h2>Aircrack-ng</h2>
-            <p>airodump-ng [interfaz] - Escanea redes WiFi</p>
-            <p>
-              airodump-ng --channel [canal] --write [archivo] - Captura
-              handshakes
-            </p>
-            <p>aireplay-ng --deauth 0 -a [MAC] - Desautentica</p>
-          </div>
-          <div class="page right-page">
-            <h2>SQLmap</h2>
-            <p>sqlmap -u [URL] - Inicia análisis SQL</p>
-            <p>sqlmap -u [URL] --dbs - Lista bases de datos</p>
-            <p>sqlmap -u [URL] --dump - Extrae datos</p>
-          </div>
-        </div>
-
-        <!-- BLOQUE 6: Hashcat y Netcat -->
-        <div class="spread">
-          <div class="page left-page">
-            <h2>Hashcat</h2>
-            <p>hashcat -m [modo] -a [ataque] hash wordlist - Crackea</p>
-            <p>hashcat -m 0 hash wordlist - Crackea MD5</p>
-          </div>
-          <div class="page right-page">
-            <h2>Netcat y Otros</h2>
-            <p>nc -lvp [puerto] - Abre puerto en escucha</p>
-            <p>nc [objetivo] [puerto] - Conecta a objetivo</p>
-            <p>netstat -tulpn - Muestra puertos</p>
-          </div>
-        </div>
+        <button
+          class="nav-btn next"
+          onclick="movePage(1)"
+          aria-label="Siguiente"
+        >
+          <svg viewBox="0 0 24 24">
+            <path d="M8.59 16.59L10 18l6-6-6-6-8.59 1.41L13.17 12z" />
+          </svg>
+        </button>
       </div>
-
-      <button class="nav-btn next" onclick="movePage(1)">
-        <svg viewBox="0 0 24 24">
-          <path
-            d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"
-          ></path>
-        </svg>
-      </button>
     </div>
 
     <script src="../JS/Manual.js"></script>
+    <script src="../JS/script.js"></script>
   </body>
 </html>
