@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Desarrollo y Animación - DistroVantix</title>
+    <link rel="stylesheet" href="../CSS/Desarrollo-optimized.css" />
+    <link rel="stylesheet" href="../CSS/style.css" />
+  </head>
+  <body>
+    <!-- Barra de navegación -->
+    <header class="navbar-container">
+      <button id="btn-menu" aria-label="Abrir tablero de opciones">☰</button>
+
+      <div class="user-area">
+        <img src="../IMGS/user-icon.png" alt="Perfil de Usuario" />
+      </div>
+
+      <div class="navbar">
+        <a href="Index.html" class="navbar-logo">
+          <img
+            src="../IMGS/Logo futurista de DistroVantix(1).png"
+            alt="logo"
+            height="70"
+            width="70"
+            id="logo"
+          />
+        </a>
+        <nav aria-label="Navegación principal">
+          <ul class="navbar-links">
+            <li><a href="Trabajo.html">Trabajo</a></li>
+            <li><a href="#Informacion">Información</a></li>
+            <li><a href="#Carrusel">Distribuciones</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Sectores de distros -->
+    <aside id="sidebar" class="tablero">
+      <nav class="categorias">
+        <h3 class="sidebar-title">Navegación</h3>
+        <ul class="sidebar-links">
+          <li><a href="Index.html" class="cat-btn">Inicio</a></li>
+          <li>
+            <a href="Ciberseguridad.html" class="cat-btn">Ciberseguridad</a>
+          </li>
+          <li><a href="Animaciones.html" class="cat-btn">Animaciones</a></li>
+        </ul>
+        <h3>Categorías</h3>
+        <a href="Gaming.html" style="text-decoration: none">
+          <button class="cat-btn">Gaming</button>
+        </a>
+        <a href="Trabajo.html" style="text-decoration: none">
+          <button class="cat-btn">Trabajo</button>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Hero Section -->
+    <section class="desarrollo-hero">
+      <h1>Desarrollo en Linux</h1>
+      <p>
+        Crea el futuro de la web y domina herramientas de nivel profesional con
+        el sistema operativo que mueve al mundo.
+      </p>
+    </section>
+
+    <!-- Carrusel de información -->
+    <main class="main-content">
+      <div class="carousel-wrapper" id="Informacion">
+        <button class="prev" onclick="moveSlide(-1)" aria-label="Anterior">
+          &#10094;
+        </button>
+
+        <div class="carousel-container">
+          <!-- Desarrollo Web -->
+          <div class="slide active">
+            <div class="desarrollo-info-container image-right">
+              <div class="desarrollo-text">
+                <article>
+                  <h2>Desarrollo Web Nativo</h2>
+                  <p>
+                    <strong
+                      >Linux es el corazón de la web. Casi todos los servidores
+                      del mundo corren sobre él.</strong
+                    >
+                  </p>
+                  <p>
+                    Programar en Linux te da una ventaja injusta: tu entorno de
+                    desarrollo es idéntico a tu entorno de producción. Docker,
+                    Node.js, Python y PHP funcionan de forma nativa y con un
+                    rendimiento superior.
+                  </p>
+                </article>
+              </div>
+              <div class="desarrollo-image">
+                <img
+                  src="../IMGS/Estudiante desarrollo de software.png"
+                  alt="Desarrollador web trabajando en Linux"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Entorno de Trabajo -->
+          <div class="slide">
+            <div class="desarrollo-info-container image-right">
+              <div class="desarrollo-text">
+                <article>
+                  <h2>Entorno de Trabajo Eficiente</h2>
+                  <p>
+                    <strong
+                      >Maximiza tu productividad con herramientas
+                      potentes.</strong
+                    >
+                  </p>
+                  <p>
+                    La terminal de Linux no es solo una línea de comandos, es tu
+                    herramienta más poderosa. Automatiza tareas, gestiona
+                    paquetes y navega por tu código con una velocidad que
+                    ninguna interfaz gráfica puede igualar.
+                  </p>
+                </article>
+              </div>
+              <div class="desarrollo-image">
+                <img
+                  src="../IMGS/programacion-en-linux.png"
+                  alt="Entorno de desarrollo"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Desarrollo de Ciberseguridad -->
+          <div class="slide">
+            <div class="desarrollo-info-container image-right">
+              <div class="desarrollo-text">
+                <article>
+                  <h2>Seguridad en el Desarrollo (DevSecOps)</h2>
+                  <p>
+                    <strong
+                      >Integra la seguridad desde la primera línea de
+                      código.</strong
+                    >
+                  </p>
+                  <p>
+                    Linux ofrece las mejores herramientas para auditoría de
+                    código, escaneo de vulnerabilidades y automatización de
+                    pruebas de seguridad. Aprende a crear software robusto
+                    utilizando el poder de la terminal.
+                  </p>
+                </article>
+              </div>
+              <div class="desarrollo-image">
+                <img
+                  src="../IMGS/HakerLinux.png"
+                  alt="Desarrollo de seguridad en Linux"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="next" onclick="moveSlide(1)" aria-label="Siguiente">
+          &#10095;
+        </button>
+      </div>
+
+      <!-- Features Grid -->
+      <section class="desarrollo-features">
+        <div class="feature-card">
+          <h3>🚀 Rendimiento</h3>
+          <p>
+            Compila y ejecuta tus aplicaciones sin el overhead de sistemas
+            comerciales, aprovechando cada ciclo de tu CPU.
+          </p>
+        </div>
+        <div class="feature-card">
+          <h3>🔧 Herramientas</h3>
+          <p>
+            Acceso instantáneo a miles de librerías y herramientas de desarrollo
+            mediante gestores de paquetes nativos.
+          </p>
+        </div>
+        <div class="feature-card">
+          <h3>🐳 Contenerización</h3>
+          <p>
+            Docker y Kubernetes corren de forma nativa, permitiendo una
+            orquestación de servicios fluida y sin capas extras.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Carrusel de distros recomendadas -->
+    <section id="Carrusel" class="distros-section">
+      <h2 class="section-title">Distribuciones Recomendadas</h2>
+
+      <div class="distro-carousel-wrapper">
+        <button class="distro-prev" onclick="changeDistroSlide(-1)">❮</button>
+        <button class="distro-next" onclick="changeDistroSlide(1)">❯</button>
+
+        <div class="distro-carousel-container">
+          <!-- Pop!_OS -->
+          <div class="distro-slide active">
+            <div class="distro-card card-desarrollo">
+              <div class="distro-header">
+                <a href="./Pop!_OS.html">
+                  <img
+                    src="../IMGS/Pop!OS.webp"
+                    alt="Pop!_OS Logo"
+                    class="distro-logo"
+                  />
+                  <h3>Pop!_OS</h3>
+                </a>
+              </div>
+              <div class="distro-body">
+                <p><strong>Base:</strong> Ubuntu (Debian)</p>
+                <p>
+                  <strong>Especialidad:</strong> Desarrollo y Workflows
+                  eficientes.
+                </p>
+                <p>
+                  Creado por System76, ofrece un gestor de ventanas tiling
+                  automático perfecto para programadores que quieren maximizar
+                  su espacio de trabajo.
+                </p>
+                <ul class="distro-features">
+                  <li>Auto Tiling Manager</li>
+                  <li>Soporte NVIDIA excelente</li>
+                  <li>Optimizado para desarrollo</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fedora -->
+          <div class="distro-slide">
+            <div class="distro-card card-fedora">
+              <div class="distro-header">
+                <a href="https://fedoraproject.org/">
+                  <img
+                    src="../IMGS/Ubuntu-pinguino.webp"
+                    alt="Fedora Logo"
+                    class="distro-logo"
+                  />
+                  <h3>Fedora Workstation</h3>
+                </a>
+              </div>
+              <div class="distro-body">
+                <p><strong>Base:</strong> Independiente</p>
+                <p>
+                  <strong>Especialidad:</strong> Últimas tecnologías y
+                  animaciones puras.
+                </p>
+                <p>
+                  Líder en la adopción de nuevas tecnologías como Wayland y
+                  Pipewire, garantizando animaciones fluidas y el software más
+                  reciente.
+                </p>
+                <ul class="distro-features">
+                  <li>Kernel siempre actualizado</li>
+                  <li>GNOME puro y optimizado</li>
+                  <li>Estándar de desarrollo</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Arch Linux -->
+          <div class="distro-slide">
+            <div class="distro-card card-arch">
+              <div class="distro-header">
+                <a href="./Garuda.html">
+                  <img
+                    src="../IMGS/Garuda-Linux.webp"
+                    alt="Garuda Logo"
+                    class="distro-logo"
+                  />
+                  <h3>Garuda Linux</h3>
+                </a>
+              </div>
+              <div class="distro-body">
+                <p><strong>Base:</strong> Arch Linux</p>
+                <p>
+                  <strong>Especialidad:</strong> Estética extrema y rendimiento
+                  gaming/dev.
+                </p>
+                <p>
+                  Viene con efectos visuales neón preconfigurados y
+                  optimizaciones de kernel para un sistema que responde
+                  instantáneamente.
+                </p>
+                <ul class="distro-features">
+                  <li>Efectos visuales out-of-the-box</li>
+                  <li>AUR para cualquier herramienta</li>
+                  <li>Optimizado para fluidez</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="../JS/Desarrollo.js"></script>
+    <script src="../JS/script.js"></script>
+  </body>
+</html>

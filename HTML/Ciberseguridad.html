@@ -42,18 +42,24 @@
         <h3 class="sidebar-title">Navegación</h3>
         <ul class="sidebar-links">
           <li><a href="Index.html" class="cat-btn">Inicio</a></li>
-          <li><a href="#Informacion" class="cat-btn">Información</a></li>
-          <li><a href="#Carrusel" class="cat-btn">Carrusel</a></li>
+          <li><a href="Desarrollo.html" class="cat-btn">Desarrollo</a></li>
+          <li><a href="Animaciones.html" class="cat-btn">Animaciones</a></li>
         </ul>
         <h3>Categorías</h3>
         <a href="Gaming.html" style="text-decoration: none">
           <button class="cat-btn">Gaming</button>
         </a>
-        <a href="Ciberseguridad.html" style="text-decoration: none">
-          <button class="cat-btn">Ciberseguridad</button>
+        <a href="Trabajo.html" style="text-decoration: none">
+          <button class="cat-btn">Trabajo</button>
         </a>
       </nav>
     </aside>
+
+    <!-- Hero Section -->
+    <section class="ciberseguridad-hero">
+      <h1>Ciberseguridad en Linux</h1>
+      <p>Protege tu privacidad y audita sistemas con el entorno más robusto y las herramientas preferidas por los expertos.</p>
+    </section>
 
     <!-- Contenido principal con carrusel informativo -->
     <main class="main-content">
@@ -130,7 +136,7 @@
                   </p>
                 </article>
               </div>
-              <div class="cibersuridad-image">
+              <div class="ciberseguridad-image">
                 <img
                   src="../IMGS/OpenSourceSecurity.png"
                   alt="Código Abierto"
@@ -141,10 +147,26 @@
         </div>
         <button class="next" onclick="moveSlide(1)">&#10095;</button>
       </div>
+
+      <!-- Features Grid -->
+      <section class="ciberseguridad-features">
+        <div class="feature-card">
+          <h3>🛡️ Auditoría Nativa</h3>
+          <p>Herramientas de monitoreo y logs avanzados integrados directamente en el corazón del sistema.</p>
+        </div>
+        <div class="feature-card">
+          <h3>🔐 Cifrado Total</h3>
+          <p>Soporte nativo para cifrado de disco LUKS y gestión segura de claves y credenciales.</p>
+        </div>
+        <div class="feature-card">
+          <h3>🚫 Sin Puertas Traseras</h3>
+          <p>Código 100% auditable por cualquier persona, eliminando el riesgo de telemetría oculta.</p>
+        </div>
+      </section>
     </main>
 
     <!-- Carrusel de distros recomendadas -->
-    <section id="Carrusel" class="distros-section" id="distros-ciberseguridad">
+    <section id="Carrusel" class="distros-section">
       <h2 class="section-title">Distribuciones Recomendadas</h2>
 
       <div class="distro-carousel-wrapper">
@@ -241,6 +263,28 @@
         </div>
       </div>
     </section>
+
+    <footer id="contacto" class="footer-container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Contacto y Redes</h4>
+          <ul>
+            <li><a href="#">Correo</a></li>
+            <li><a href="#">Twitter / X</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Proyecto</h4>
+          <ul>
+            <li><a href="#">Créditos</a></li>
+            <li><a href="#">Repositorio</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 DistroVantix - Casi todos los derechos reservados.</p>
+      </div>
+    </footer>
 
     <script src="../JS/Ciberseguridad.js"></script>
     <script src="../JS/script.js"></script>

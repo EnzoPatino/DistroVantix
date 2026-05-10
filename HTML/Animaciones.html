@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animaciones y Estética - DistroVantix</title>
+    <link rel="stylesheet" href="../CSS/Animaciones-optimized.css" />
+    <link rel="stylesheet" href="../CSS/style.css" />
+  </head>
+  <body>
+    <!-- Barra de navegación -->
+    <header class="navbar-container">
+      <button id="btn-menu" aria-label="Abrir tablero de opciones">☰</button>
+
+      <div class="user-area">
+        <img src="../IMGS/user-icon.png" alt="Perfil de Usuario" />
+      </div>
+
+      <div class="navbar">
+        <a href="Index.html" class="navbar-logo">
+          <img
+            src="../IMGS/Logo futurista de DistroVantix(1).png"
+            alt="logo"
+            height="70"
+            width="70"
+            id="logo"
+          />
+        </a>
+        <nav aria-label="Navegación principal">
+          <ul class="navbar-links">
+            <li><a href="Trabajo.html">Trabajo</a></li>
+            <li><a href="#Informacion">Informacion</a></li>
+            <li><a href="#Carrusel">Distribuciones</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Sectores de distros -->
+    <aside id="sidebar" class="tablero">
+      <nav class="categorias">
+        <h3 class="sidebar-title">Navegación</h3>
+        <ul class="sidebar-links">
+          <li><a href="Index.html" class="cat-btn">Inicio</a></li>
+          <li><a href="Desarrollo.html" class="cat-btn">Desarrollo</a></li>
+          <li>
+            <a href="Ciberseguridad.html" class="cat-btn">Ciberseguridad</a>
+          </li>
+        </ul>
+        <h3>Categorías</h3>
+        <a href="Gaming.html" style="text-decoration: none">
+          <button class="cat-btn">Gaming</button>
+        </a>
+        <a href="Trabajo.html" style="text-decoration: none">
+          <button class="cat-btn">Trabajo</button>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Hero Section -->
+    <section class="animaciones-hero">
+      <h1>Estética y Fluidez</h1>
+      <p>
+        Lleva la apariencia de tu escritorio a otra dimensión con efectos
+        visuales y transiciones de última generación.
+      </p>
+    </section>
+
+    <!-- Contenido principal con carrusel informativo -->
+    <main class="main-content">
+      <div class="carousel-wrapper" id="Informacion">
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+
+        <div class="carousel-container">
+          <!-- Slide 1: Entornos de Escritorio -->
+          <div class="slide active">
+            <div class="animaciones-info-container image-right">
+              <div class="animaciones-text">
+                <article>
+                  <h2>Entornos de Escritorio Modernos</h2>
+                  <p>
+                    <strong
+                      >GNOME y KDE Plasma lideran la vanguardia estética en
+                      Linux.</strong
+                    >
+                  </p>
+                  <p>
+                    Desde el minimalismo elegante de GNOME con sus gestos
+                    fluidos, hasta la capacidad de personalización infinita de
+                    KDE Plasma. Estos entornos ofrecen efectos de desenfoque,
+                    sombras dinámicas y transiciones suaves que hacen que usar
+                    tu PC sea un placer.
+                  </p>
+                </article>
+              </div>
+              <div class="animaciones-image">
+                <img
+                  src="../IMGS/InterfazLinux.png"
+                  alt="Interfaz fluida en Linux"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2: Window Managers -->
+          <div class="slide">
+            <div class="animaciones-info-container image-right">
+              <div class="animaciones-text">
+                <article>
+                  <h2>Tiling Window Managers</h2>
+                  <p>
+                    <strong
+                      >Hyprland y Sway: El futuro de las animaciones en
+                      Wayland.</strong
+                    >
+                  </p>
+                  <p>
+                    Los gestores de ventanas tipo "tiling" como Hyprland
+                    permiten animaciones basadas en físicas, ventanas que
+                    rebotan, se desvanecen o se deslizan con una suavidad
+                    imposible en otros sistemas operativos.
+                  </p>
+                </article>
+              </div>
+              <div class="animaciones-image">
+                <img
+                  src="../IMGS/Rendimiento-Garuda.png"
+                  alt="Efectos en Hyprland"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3: Personalización -->
+          <div class="slide">
+            <div class="animaciones-info-container image-right">
+              <div class="animaciones-text">
+                <article>
+                  <h2>Personalización Extrema</h2>
+                  <p>
+                    <strong>Tu sistema, tus reglas, tus colores.</strong>
+                  </p>
+                  <p>
+                    Con herramientas como Pywal o temas de iconos
+                    personalizados, puedes sincronizar la estética de todo tu
+                    sistema con un solo comando. La coherencia visual en Linux
+                    no tiene límites.
+                  </p>
+                </article>
+              </div>
+              <div class="animaciones-image">
+                <img
+                  src="../IMGS/Logo futurista de DistroVantix(1).png"
+                  alt="Personalización visual"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+      </div>
+
+      <!-- Features Grid -->
+      <section class="animaciones-features">
+        <div class="feature-card">
+          <h3>✨ Efectos Visuales</h3>
+          <p>
+            Transiciones fluidas, transparencias con blur y sombras realistas
+            que no afectan el rendimiento.
+          </p>
+        </div>
+        <div class="feature-card">
+          <h3>🎨 Temas Dinámicos</h3>
+          <p>
+            Cambia la apariencia de todo tu sistema instantáneamente con motores
+            de temas avanzados.
+          </p>
+        </div>
+        <div class="feature-card">
+          <h3>🚀 Wayland Nativo</h3>
+          <p>
+            Aprovecha el protocolo Wayland para animaciones libres de "tearing"
+            y con máxima respuesta.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Carrusel de distros recomendadas -->
+    <section id="Carrusel" class="distros-section">
+      <h2 class="section-title">Distribuciones Recomendadas</h2>
+
+      <div class="distro-carousel-wrapper">
+        <button class="distro-prev" onclick="changeDistroSlide(-1)">❮</button>
+        <button class="distro-next" onclick="changeDistroSlide(1)">❯</button>
+
+        <div class="distro-carousel-container">
+          <!-- Garuda -->
+          <div class="distro-slide active">
+            <div class="distro-card">
+              <div class="distro-header">
+                <a href="./Garuda.html">
+                  <img
+                    src="../IMGS/Garuda-Linux.webp"
+                    alt="Garuda Linux Logo"
+                    class="distro-logo"
+                  />
+                  <h3>Garuda Linux</h3>
+                </a>
+              </div>
+              <div class="distro-body">
+                <p><strong>Base:</strong> Arch Linux</p>
+                <p>
+                  <strong>Especialidad:</strong> Estética Neon y efectos
+                  Out-of-the-box.
+                </p>
+                <p>
+                  Famosa por su edición "Dragonized" que utiliza KDE Plasma con
+                  efectos de transparencia y colores vibrantes.
+                </p>
+
+                <ul class="distro-features">
+                  <li>Efectos Sweet-Neon</li>
+                  <li>Kernel Zen para respuesta rápida</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fedora -->
+          <div class="distro-slide">
+            <div class="distro-card">
+              <div class="distro-header">
+                <a href="#">
+                  <img
+                    src="../IMGS/Ubuntu-pinguino.webp"
+                    alt="Fedora Logo"
+                    class="distro-logo"
+                  />
+                  <h3>Fedora Workstation</h3>
+                </a>
+              </div>
+              <div class="distro-body">
+                <p><strong>Base:</strong> Independiente</p>
+                <p>
+                  <strong>Especialidad:</strong> Experiencia GNOME pura y
+                  moderna.
+                </p>
+                <p>
+                  Ofrece la implementación más limpia de GNOME, con gestos de
+                  touchpad fluidos y una estética minimalista profesional.
+                </p>
+                <ul class="distro-features">
+                  <li>Software siempre a la última</li>
+                  <li>Gestos Wayland perfectos</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- openSUSE -->
+          <div class="distro-slide">
+            <div class="distro-card">
+              <div class="distro-header">
+                <a href="#">
+                  <img
+                    src="../IMGS/Cachyos-Logo.webp"
+                    alt="openSUSE Logo"
+                    class="distro-logo"
+                  />
+                  <h3>openSUSE Tumbleweed</h3>
+                </a>
+              </div>
+              <div class="distro-body">
+                <p><strong>Base:</strong> Independiente</p>
+                <p>
+                  <strong>Especialidad:</strong> Estabilidad con los últimos
+                  entornos.
+                </p>
+                <p>
+                  Excelente para probar las últimas versiones de KDE Plasma con
+                  una estabilidad legendaria gracias a sus pruebas
+                  automatizadas.
+                </p>
+                <ul class="distro-features">
+                  <li>Snapshots de sistema (Btrfs)</li>
+                  <li>Instalador YaST potente</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="../JS/Animaciones.js"></script>
+    <script src="../JS/script.js"></script>
+  </body>
+</html>
