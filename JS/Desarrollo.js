@@ -1,3 +1,7 @@
+/* ============================================ */
+/* DESARROLLO - LÓGICA DEL CARRUSEL           */
+/* ============================================ */
+
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 
@@ -52,5 +56,5 @@ function changeDistroSlide(direction) {
 /* INICIALIZACIÓN                               */
 /* ============================================ */
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("Sector Desarrollo y Animación cargado.");
+    console.log("Sector Desarrollo cargado.");
 });

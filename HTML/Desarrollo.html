@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Desarrollo y Animación - DistroVantix</title>
+    <title>Desarrollo - DistroVantix</title>
     <link rel="stylesheet" href="../CSS/Desarrollo-optimized.css" />
     <link rel="stylesheet" href="../CSS/style.css" />
   </head>
@@ -29,8 +29,8 @@
         <nav aria-label="Navegación principal">
           <ul class="navbar-links">
             <li><a href="Trabajo.html">Trabajo</a></li>
-            <li><a href="#Informacion">Información</a></li>
-            <li><a href="#Carrusel">Distribuciones</a></li>
+            <li><a href="#Informacion">Informacion</a></li>
+            <li><a href="#Carrusel">Carrusel</a></li>
           </ul>
         </nav>
       </div>
@@ -57,24 +57,13 @@
       </nav>
     </aside>
 
-    <!-- Hero Section -->
-    <section class="desarrollo-hero">
-      <h1>Desarrollo en Linux</h1>
-      <p>
-        Crea el futuro de la web y domina herramientas de nivel profesional con
-        el sistema operativo que mueve al mundo.
-      </p>
-    </section>
-
-    <!-- Carrusel de información -->
+    <!-- Contenido principal con carrusel informativo -->
     <main class="main-content">
       <div class="carousel-wrapper" id="Informacion">
-        <button class="prev" onclick="moveSlide(-1)" aria-label="Anterior">
-          &#10094;
-        </button>
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
 
         <div class="carousel-container">
-          <!-- Desarrollo Web -->
+          <!-- Slide 1 -->
           <div class="slide active">
             <div class="desarrollo-info-container image-right">
               <div class="desarrollo-text">
@@ -89,21 +78,20 @@
                   <p>
                     Programar en Linux te da una ventaja injusta: tu entorno de
                     desarrollo es idéntico a tu entorno de producción. Docker,
-                    Node.js, Python y PHP funcionan de forma nativa y con un
-                    rendimiento superior.
+                    Node.js, Python y PHP funcionan de forma nativa.
                   </p>
                 </article>
               </div>
               <div class="desarrollo-image">
                 <img
                   src="../IMGS/Estudiante desarrollo de software.png"
-                  alt="Desarrollador web trabajando en Linux"
+                  alt="Desarrollo Web"
                 />
               </div>
             </div>
           </div>
 
-          <!-- Entorno de Trabajo -->
+          <!-- Slide 2 -->
           <div class="slide">
             <div class="desarrollo-info-container image-right">
               <div class="desarrollo-text">
@@ -117,27 +105,26 @@
                   </p>
                   <p>
                     La terminal de Linux no es solo una línea de comandos, es tu
-                    herramienta más poderosa. Automatiza tareas, gestiona
-                    paquetes y navega por tu código con una velocidad que
-                    ninguna interfaz gráfica puede igualar.
+                    herramienta más poderosa. Automatiza tareas y gestiona
+                    paquetes con una velocidad inigualable.
                   </p>
                 </article>
               </div>
               <div class="desarrollo-image">
                 <img
                   src="../IMGS/programacion-en-linux.png"
-                  alt="Entorno de desarrollo"
+                  alt="Entorno de Trabajo"
                 />
               </div>
             </div>
           </div>
 
-          <!-- Desarrollo de Ciberseguridad -->
+          <!-- Slide 3 -->
           <div class="slide">
             <div class="desarrollo-info-container image-right">
               <div class="desarrollo-text">
                 <article>
-                  <h2>Seguridad en el Desarrollo (DevSecOps)</h2>
+                  <h2>Seguridad en el Desarrollo</h2>
                   <p>
                     <strong
                       >Integra la seguridad desde la primera línea de
@@ -147,23 +134,20 @@
                   <p>
                     Linux ofrece las mejores herramientas para auditoría de
                     código, escaneo de vulnerabilidades y automatización de
-                    pruebas de seguridad. Aprende a crear software robusto
-                    utilizando el poder de la terminal.
+                    pruebas de seguridad (DevSecOps).
                   </p>
                 </article>
               </div>
               <div class="desarrollo-image">
                 <img
                   src="../IMGS/HakerLinux.png"
-                  alt="Desarrollo de seguridad en Linux"
+                  alt="Seguridad en Desarrollo"
                 />
               </div>
             </div>
           </div>
         </div>
-        <button class="next" onclick="moveSlide(1)" aria-label="Siguiente">
-          &#10095;
-        </button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
       </div>
 
       <!-- Features Grid -->
@@ -178,15 +162,15 @@
         <div class="feature-card">
           <h3>Herramientas</h3>
           <p>
-            Acceso instantáneo a miles de librerías y herramientas de desarrollo
-            mediante gestores de paquetes nativos.
+            Acceso instantáneo a miles de librerías mediante gestores de
+            paquetes nativos.
           </p>
         </div>
         <div class="feature-card">
           <h3>Contenerización</h3>
           <p>
             Docker y Kubernetes corren de forma nativa, permitiendo una
-            orquestación de servicios fluida y sin capas extras.
+            orquestación fluida.
           </p>
         </div>
       </section>
@@ -203,7 +187,7 @@
         <div class="distro-carousel-container">
           <!-- Pop!_OS -->
           <div class="distro-slide active">
-            <div class="distro-card card-desarrollo">
+            <div class="distro-card card-popos">
               <div class="distro-header">
                 <a href="./Pop!_OS.html">
                   <img
@@ -215,20 +199,15 @@
                 </a>
               </div>
               <div class="distro-body">
-                <p><strong>Base:</strong> Ubuntu (Debian)</p>
+                <p><strong>Base:</strong> Ubuntu</p>
+                <p><strong>Especialidad:</strong> Desarrollo y Workflows.</p>
                 <p>
-                  <strong>Especialidad:</strong> Desarrollo y Workflows
-                  eficientes.
-                </p>
-                <p>
-                  Creado por System76, ofrece un gestor de ventanas tiling
-                  automático perfecto para programadores que quieren maximizar
-                  su espacio de trabajo.
+                  Gestor de ventanas tiling automático perfecto para
+                  programadores.
                 </p>
                 <ul class="distro-features">
                   <li>Auto Tiling Manager</li>
-                  <li>Soporte NVIDIA excelente</li>
-                  <li>Optimizado para desarrollo</li>
+                  <li>Soporte NVIDIA</li>
                 </ul>
               </div>
             </div>
@@ -238,9 +217,9 @@
           <div class="distro-slide">
             <div class="distro-card card-fedora">
               <div class="distro-header">
-                <a href="https://fedoraproject.org/">
+                <a href="#">
                   <img
-                    src="../IMGS/Ubuntu-pinguino.webp"
+                    src="../IMGS/Fedora.png"
                     alt="Fedora Logo"
                     class="distro-logo"
                   />
@@ -249,27 +228,22 @@
               </div>
               <div class="distro-body">
                 <p><strong>Base:</strong> Independiente</p>
-                <p>
-                  <strong>Especialidad:</strong> Últimas tecnologías y
-                  animaciones puras.
-                </p>
+                <p><strong>Especialidad:</strong> Últimas tecnologías.</p>
                 <p>
                   Líder en la adopción de nuevas tecnologías como Wayland y
-                  Pipewire, garantizando animaciones fluidas y el software más
-                  reciente.
+                  Pipewire.
                 </p>
                 <ul class="distro-features">
-                  <li>Kernel siempre actualizado</li>
-                  <li>GNOME puro y optimizado</li>
-                  <li>Estándar de desarrollo</li>
+                  <li>Kernel actualizado</li>
+                  <li>GNOME puro</li>
                 </ul>
               </div>
             </div>
           </div>
 
-          <!-- Arch Linux -->
+          <!-- Garuda -->
           <div class="distro-slide">
-            <div class="distro-card card-arch">
+            <div class="distro-card card-garuda">
               <div class="distro-header">
                 <a href="./Garuda.html">
                   <img
@@ -282,19 +256,11 @@
               </div>
               <div class="distro-body">
                 <p><strong>Base:</strong> Arch Linux</p>
-                <p>
-                  <strong>Especialidad:</strong> Estética extrema y rendimiento
-                  gaming/dev.
-                </p>
-                <p>
-                  Viene con efectos visuales neón preconfigurados y
-                  optimizaciones de kernel para un sistema que responde
-                  instantáneamente.
-                </p>
+                <p><strong>Especialidad:</strong> Rendimiento extremo.</p>
+                <p>Optimizado para un sistema que responde instantáneamente.</p>
                 <ul class="distro-features">
-                  <li>Efectos visuales out-of-the-box</li>
-                  <li>AUR para cualquier herramienta</li>
-                  <li>Optimizado para fluidez</li>
+                  <li>AUR disponible</li>
+                  <li>Btrfs por defecto</li>
                 </ul>
               </div>
             </div>
@@ -302,7 +268,6 @@
         </div>
       </div>
     </section>
-
     <script src="../JS/Desarrollo.js"></script>
     <script src="../JS/script.js"></script>
   </body>
