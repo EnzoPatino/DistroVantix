@@ -2,7 +2,7 @@
 
 En este proyecto buscamos remplazar la pared de la confucion y del desconocimiento hacia linux.
 
-Por muchos años se ah tomado la idea de que linux es un sistema operativo que usan solo hackers o gente que tiene que tiene mucho conocimientos en programacion.
+Por muchos años se ah tomado la idea de que linux es un sistema operativo que usan solo hackers o gente que tiene mucho conocimientos en programacion.
 
 DistroVantix nace y fue creado no solo para animarte ah pasarte a linux o como un lugar de informacion si no para ayudar a la comunidad con documentacion y gente que tuvo tu mismo problema y no una respuesta como "Es tu maquina la que anda mal".
 
