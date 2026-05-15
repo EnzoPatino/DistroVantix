@@ -3,13 +3,13 @@
 /* ============================================ */
 :root {
   /* COLORES */
-  --bg-main: #f1f5f9;
+  --bg-main: #0f1f3d;
   --nav-dark: #1a1a1a;
   --text-light: #f8fafc;
-  --text-dark: #0f172a;
+  --text-dark: #4b62e1;
   --accent: #22c55e;
-  --card-bg: #ffffff;
-  --card-bg-alt: #f5f3e7;
+  --card-bg: rgba(230, 230, 250, 0.8);
+  --card-bg-alt: rgba(230, 230, 250, 0.8);
   --footer-dark: #0f172a;
   --sidebar-dark: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 100%);
   --shadow-dark: rgba(0, 0, 0, 0.2);
@@ -379,7 +379,9 @@ footer {
   border-radius: var(--radius-normal);
   box-shadow: var(--shadow-sm);
   overflow: hidden;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .card-extra-large:hover,
@@ -525,4 +527,18 @@ footer {
     grid-template-columns: 1fr;
     text-align: center;
   }
+}
+
+/* Estilo para el Easter Egg */
+.easter-egg {
+  color: #00aaff; /* Un azul brillante que quede bien con el modo oscuro */
+  text-decoration: none; /* Quita la línea de abajo */
+  font-weight: bold;
+  transition: 0.3s; /* Para que el cambio de color sea suave */
+}
+
+.easter-egg:hover {
+  color: #4782f8; /* Un azul más oscuro cuando pasas el mouse */
+  text-shadow: 0 0 8px rgba(0, 170, 255, 0.6); /* Un pequeño brillo */
+  cursor: pointer;
 }
