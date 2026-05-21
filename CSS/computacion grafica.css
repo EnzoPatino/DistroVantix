@@ -1,22 +1,23 @@
 /* ============================================ */
-/* CIBERSEGURIDAD PAGE - OPTIMIZADO CON VARIABLES*/
+/* COMPUTACIÓN GRÁFICA PAGE - OPTIMIZADO */
 /* ============================================ */
 
 :root {
   /* Base colors */
-  --bg-main: #f1f5f9;
-  --nav-dark: #1e293b;
-  --text-light: #1332ab98;
-  --text-dark: #0e27b4aa;
-  --accent: #000000;
+  --bg-main: #f8fafc;
+  --nav-dark: #0f172a;
+  --text-light: #f1f5f9;
+  --text-dark: #1e293b;
+  --accent: #f59e0b; /* Amber/Orange for creative touch */
   --card-bg: #ffffff;
-  --ciberseguridad-primary: #181ecd;
-  --ciberseguridad-secondary: #1825d589;
+  --graphics-primary: #8b5cf6; /* Violet */
+  --graphics-secondary: #ec4899; /* Pink */
 
   /* Transitions */
   --transition-fast: 0.3s ease;
   --transition-smooth: 0.4s ease;
   --transition-slow: 0.5s ease;
+  
   /* Spacing */
   --gap-sm: clamp(10px, 2vw, 15px);
   --gap-md: clamp(15px, 4vw, 25px);
@@ -183,19 +184,19 @@ img {
 /* HERO SECTION                                 */
 /* ============================================ */
 
-.ciberseguridad-hero {
+.graphics-hero {
   text-align: center;
   margin-bottom: clamp(30px, 8vw, 60px);
 }
 
-.ciberseguridad-hero h1 {
+.graphics-hero h1 {
   font-size: clamp(1.8rem, 5vw, 3rem);
-  color: var(--ciberseguridad-primary);
+  color: var(--graphics-primary);
   margin-bottom: 15px;
-  text-shadow: 0 0 20px rgba(13, 11, 149, 0.546);
+  text-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
 }
 
-.ciberseguridad-hero p {
+.graphics-hero p {
   font-size: clamp(1rem, 2.5vw, 1.2rem);
   color: #64748b;
   max-width: 800px;
@@ -235,9 +236,9 @@ img {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(80, 123, 241, 0.2);
-  border: 2px solid var(--ciberseguridad-primary);
-  color: var(--ciberseguridad-primary);
+  background: rgba(139, 92, 246, 0.1);
+  border: 2px solid var(--graphics-primary);
+  color: var(--graphics-primary);
   padding: 12px 18px;
   cursor: pointer;
   border-radius: var(--radius-sm);
@@ -257,9 +258,9 @@ img {
 
 .prev:hover,
 .next:hover {
-  background: var(--ciberseguridad-primary);
+  background: var(--graphics-primary);
   color: var(--card-bg);
-  box-shadow: 0 0 15px rgba(0, 47, 255, 0.463);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
   transform: translateY(-50%) scale(1.1);
 }
 
@@ -267,7 +268,7 @@ img {
 /* INFO CONTAINER                               */
 /* ============================================ */
 
-.ciberseguridad-info-container {
+.graphics-info-container {
   display: flex;
   align-items: center;
   gap: var(--gap-lg);
@@ -279,46 +280,46 @@ img {
   padding: var(--padding-lg);
 }
 
-.ciberseguridad-info-container.image-right {
+.graphics-info-container.image-right {
   flex-direction: row;
 }
 
-.ciberseguridad-info-container.image-left {
+.graphics-info-container.image-left {
   flex-direction: row-reverse;
 }
 
-.ciberseguridad-text {
+.graphics-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
   flex: 1;
 }
 
-.ciberseguridad-text h2 {
+.graphics-text h2 {
   font-size: clamp(1.4rem, 4vw, 2rem);
-  color: var(--ciberseguridad-primary);
+  color: var(--graphics-primary);
   margin-bottom: 20px;
 }
 
-.ciberseguridad-text p {
+.graphics-text p {
   font-size: clamp(0.9rem, 2vw, 1rem);
   color: #475569;
   line-height: 1.8;
   margin-bottom: 15px;
 }
 
-.ciberseguridad-text strong {
-  color: var(--ciberseguridad-secondary);
+.graphics-text strong {
+  color: var(--graphics-secondary);
 }
 
-.ciberseguridad-image {
+.graphics-image {
   flex: 1;
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow-sm) rgba(0, 0, 0, 0.15);
 }
 
-.ciberseguridad-image img {
+.graphics-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -329,12 +330,9 @@ img {
 /* FEATURES GRID                                */
 /* ============================================ */
 
-.ciberseguridad-features {
+.graphics-features {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(clamp(250px, 30vw, 300px), 1fr)
-  );
+  grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 30vw, 300px), 1fr));
   gap: var(--gap-md);
   margin: clamp(30px, 8vw, 60px) 0;
 }
@@ -342,20 +340,20 @@ img {
 .feature-card {
   background: linear-gradient(
     135deg,
-    var(--ciberseguridad-primary) 0%,
-    var(--ciberseguridad-secondary) 100%
+    var(--graphics-primary) 0%,
+    var(--graphics-secondary) 100%
   );
   border-radius: var(--radius-md);
   padding: var(--padding-md);
   color: white;
   text-align: center;
-  box-shadow: var(--shadow-sm) rgba(0, 255, 65, 0.3);
+  box-shadow: var(--shadow-sm) rgba(139, 92, 246, 0.3);
   transition: all var(--transition-fast);
 }
 
 .feature-card:hover {
   transform: translateY(-5px);
-  box-shadow: var(--shadow-md) rgba(0, 255, 65, 0.5);
+  box-shadow: var(--shadow-md) rgba(236, 72, 153, 0.4);
 }
 
 .feature-card h3 {
@@ -369,63 +367,6 @@ img {
 }
 
 /* ============================================ */
-/* FOOTER                                       */
-/* ============================================ */
-
-.footer-container {
-  background-color: var(--nav-dark);
-  color: var(--text-light);
-  padding: var(--padding-lg) 5%;
-  margin-top: auto;
-}
-
-.footer-content {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  gap: var(--gap-lg);
-  margin-bottom: 30px;
-  max-width: 1400px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.footer-section h4 {
-  color: var(--accent);
-  margin-bottom: 15px;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.footer-section ul {
-  list-style: none;
-}
-
-.footer-section ul li {
-  margin-bottom: 10px;
-}
-
-.footer-section a {
-  color: #94a3b8;
-  text-decoration: none;
-  transition: color var(--transition-fast);
-  font-size: 0.9rem;
-}
-
-.footer-section a:hover {
-  color: #ffffff;
-}
-
-.footer-bottom {
-  text-align: center;
-  border-top: 1px solid #1e293b;
-  padding-top: 20px;
-  font-size: 0.8rem;
-  color: #64748b;
-}
-
-/* ============================================ */
 /* DISTRO CAROUSEL                              */
 /* ============================================ */
 
@@ -436,7 +377,7 @@ img {
 }
 
 .section-title {
-  color: #2b6acfba;
+  color: #a78bfa;
   text-transform: uppercase;
   text-align: center;
   margin-top: clamp(30px, 8vw, 50px);
@@ -480,21 +421,21 @@ img {
   text-align: left;
 }
 
-.card-kali:hover {
-  border-color: #2969f6ed;
-  box-shadow: 0 10px 30px rgba(37, 160, 209, 0.3);
+.card-fedora:hover {
+  border-color: #51a2da;
+  box-shadow: 0 10px 30px rgba(81, 162, 218, 0.3);
   transform: translateY(-10px);
 }
 
-.card-parrot:hover {
-  border-color: #4487f3;
-  box-shadow: 0 10px 30px rgba(4, 91, 184, 0.3);
+.card-ubuntu:hover {
+  border-color: #E95420;
+  box-shadow: 0 10px 30px rgba(233, 84, 32, 0.3);
   transform: translateY(-10px);
 }
 
-.card-blackarch:hover {
-  border-color: #880e0e;
-  box-shadow: 0 10px 30px rgba(155, 4, 4, 0.3);
+.card-arch:hover {
+  border-color: #1793d1;
+  box-shadow: 0 10px 30px rgba(23, 147, 209, 0.3);
   transform: translateY(-10px);
 }
 
@@ -530,7 +471,7 @@ img {
 }
 
 .distro-features li {
-  color: #007bff;
+  color: var(--graphics-primary);
   font-size: 0.85rem;
   margin-bottom: 5px;
 }
@@ -540,9 +481,9 @@ img {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(61, 146, 243, 0.1);
+  background: rgba(139, 92, 246, 0.1);
   border: 1px solid #34466b;
-  color: #4e74b0;
+  color: #a78bfa;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -565,9 +506,9 @@ img {
 
 .distro-prev:hover,
 .distro-next:hover {
-  background: #7587ec;
+  background: var(--graphics-primary);
   color: #0b0f1a;
-  box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
 }
 
 @keyframes fadeIn {
@@ -590,9 +531,9 @@ img {
     display: none;
   }
 
-  .ciberseguridad-info-container,
-  .ciberseguridad-info-container.image-right,
-  .ciberseguridad-info-container.image-left {
+  .graphics-info-container,
+  .graphics-info-container.image-right,
+  .graphics-info-container.image-left {
     flex-direction: column;
     text-align: center;
   }
@@ -613,22 +554,5 @@ img {
 
   .next {
     right: 10px;
-  }
-}
-
-@media (max-width: 600px) {
-  .footer-content {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .distro-carousel-wrapper {
-    padding: 0 40px;
-  }
-
-  .distro-prev,
-  .distro-next {
-    width: 40px;
-    height: 40px;
   }
 }

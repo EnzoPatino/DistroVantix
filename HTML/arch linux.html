@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../CSS/arch linux.css" />
+    <link rel="stylesheet" href="../CSS/style.css" />
+    <title>Arch Linux - DistroVantix</title>
+  </head>
+  <body>
+    <!-- Barra de navegación -->
+    <header class="navbar-container">
+      <div class="navbar">
+        <a href="../index.html" class="navbar-logo">
+          <img
+            src="../IMGS/Logo futurista de DistroVantix(1).png"
+            alt="logo DistroVantix"
+            height="60"
+            width="60"
+          />
+        </a>
+        <nav>
+          <ul class="navbar-links">
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="computacion grafica.html">Computación Gráfica</a></li>
+            <li><a href="#caracteristicas">Características</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="user-area">
+        <span class="distro-badge">Arch Linux</span>
+      </div>
+    </header>
+
+    <!-- Contenedor principal -->
+    <main class="distro-detail">
+      <div class="detail-container">
+        <!-- Sección intro -->
+        <section id="informacion" class="intro-showcase">
+          <div class="showcase-image">
+            <img
+              src="../IMGS/Arch.png"
+              alt="Arch Linux Logo"
+              class="showcase-img"
+            />
+          </div>
+          <div class="showcase-content">
+            <h1 class="detail-title">
+              Arch <span class="highlight">Linux</span>
+            </h1>
+            <p class="detail-text">
+              Arch Linux es una distribución minimalista, ligera y altamente personalizable. Sigue el principio <strong>KISS</strong> (Keep It Simple, Stupid), permitiéndote construir un sistema exactamente a la medida de tus necesidades creativas.
+            </p>
+            <h2 class="detail-subtitle">Control Total sobre tus Herramientas</h2>
+            <p class="detail-text">
+              Al ser una distribución <strong>Rolling Release</strong>, Arch Linux te ofrece siempre las versiones más recientes de software de diseño como Blender y Krita apenas son publicadas por sus desarrolladores.
+            </p>
+            <div class="button-group">
+              <a href="#caracteristicas" class="cta-button">Ver Características</a>
+              <a
+                href="https://archlinux.org/download/"
+                target="_blank"
+                class="cta-button cta-button-secondary"
+              >
+                Descargar Arch Linux
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sección de características -->
+        <section id="caracteristicas" class="features-section">
+          <h2 class="section-title">¿Por qué Arch para Computación Gráfica?</h2>
+          <div class="detail-grid">
+            <div class="info-box">
+              <h3>Acceso al AUR</h3>
+              <p>
+                El Arch User Repository (AUR) contiene prácticamente cualquier software de gráficos imaginable, desde plugins especializados para Blender hasta versiones beta de nuevos motores de renderizado.
+              </p>
+            </div>
+
+            <div class="info-box">
+              <h3>Rolling Release</h3>
+              <p>
+                No más reinstalaciones cada 6 meses. Actualiza tu sistema y tus herramientas de diseño de forma continua para estar siempre a la vanguardia tecnológica.
+              </p>
+            </div>
+
+            <div class="info-box">
+              <h3>Optimización Extrema</h3>
+              <p>
+                Instala solo lo que necesitas. Un sistema sin procesos innecesarios significa que toda la potencia de tu CPU y GPU se dedicará exclusivamente a tus renders y proyectos.
+              </p>
+            </div>
+
+            <div class="info-box">
+              <h3>Wiki Insuperable</h3>
+              <p>
+                La Arch Wiki es la mejor documentación en el mundo Linux. Encontrarás guías detalladas para configurar tabletas Wacom, calibración de color y optimización de drivers.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sección de comparación -->
+        <section id="comparacion" class="comparison-section" style="background: var(--bg-arch-card); padding: 40px; border-radius: 20px; border: 2px solid var(--color-transparent); margin-top: 40px;">
+          <h2 class="section-title">Rendimiento en Software de Diseño</h2>
+          <div class="comparison-card" style="display: flex; justify-content: space-around; align-items: center; gap: 20px; text-align: center;">
+            <div class="comparison-item">
+              <h3>Windows 11</h3>
+              <p style="font-size: 1.5rem; color: #8b949e;">Blender Render: 5m 20s</p>
+              <p>Overhead del Sistema</p>
+            </div>
+            <div class="comparison-divider" style="font-size: 1.5rem; color: var(--color-primary);">VS</div>
+            <div class="comparison-item highlight-winner">
+              <h3 style="color: var(--color-primary);">Arch Linux</h3>
+              <p style="font-size: 1.8rem; font-weight: bold; color: var(--color-primary);">Blender Render: 4m 45s</p>
+              <p>Optimización del Kernel</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="../JS/Distros.js"></script>
+    <script src="../JS/script.js"></script>
+  </body>
+</html>

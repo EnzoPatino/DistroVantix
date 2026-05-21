@@ -2,6 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const boton = document.getElementById('btn-menu');
     const sidebar = document.getElementById('sidebar');
 
+    if (!boton || !sidebar) {
+        return;
+    }
+
     // Abre y cierra el sidebar al hacer click en el botón
     boton.addEventListener('click', () => {
         sidebar.classList.toggle('active');

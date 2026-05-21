@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubuntu - DistroVantix</title>
+    <link rel="stylesheet" href="../CSS/Ubuntu-optimized.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+    <header class="navbar-container">
+        <div class="navbar">
+            <a href="../index.html" class="navbar-logo">
+                <img src="../IMGS/Logo futurista de DistroVantix(1).png" alt="logo" height="60" width="60">
+            </a>
+            <nav>
+                <ul class="navbar-links">
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="computacion grafica.html">Computación Gráfica</a></li>
+                    <li><a href="#caracteristicas">Características</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="user-area">
+            <span class="distro-badge">Ubuntu Desktop</span>
+        </div>
+    </header>
+
+    <main class="distro-detail">
+        <div class="detail-container">
+            <section id="informacion" class="intro-showcase">
+                <div class="showcase-image">
+                    <img src="../IMGS/Ubuntu.png" alt="Ubuntu Desktop" class="showcase-img">
+                </div>
+                <div class="showcase-content">
+                    <h1 class="detail-title">Ubuntu <span class="highlight">Desktop</span></h1>
+                    <p class="detail-text">
+                        Ubuntu es la distribución de Linux más popular del mundo, conocida por su facilidad de uso y su enorme ecosistema de soporte. Es el punto de partida ideal para cualquier artista que quiera dar el salto a Linux.
+                    </p>
+                    <h2 class="detail-subtitle">Estándar de la Industria</h2>
+                    <p class="detail-text">
+                        Muchas aplicaciones profesionales como <strong>DaVinci Resolve</strong> tienen soporte oficial principalmente para sistemas basados en Debian/Ubuntu, lo que garantiza una compatibilidad superior y menos problemas técnicos.
+                    </p>
+                    <div class="button-group">
+                        <a href="#caracteristicas" class="cta-button">Ver Beneficios</a>
+                        <a href="https://ubuntu.com/download/desktop" target="_blank" class="cta-button cta-button-secondary">Descargar Ubuntu</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="caracteristicas" class="features-section">
+                <h2 class="section-title">¿Por qué usar Ubuntu para Diseño?</h2>
+                <div class="detail-grid">
+                    <div class="info-box">
+                        <h3>Soporte LTS</h3>
+                        <p>Las versiones Long Term Support (LTS) te ofrecen 5 años de estabilidad garantizada, permitiéndote trabajar en proyectos largos sin preocuparte por actualizaciones disruptivas.</p>
+                    </div>
+                    <div class="info-box">
+                        <h3>Facilidad para Drivers</h3>
+                        <p>Ubuntu facilita enormemente la instalación de drivers propietarios de NVIDIA a través de su herramienta "Software y Actualizaciones", optimizando tu GPU para renders pesados.</p>
+                    </div>
+                    <div class="info-box">
+                        <h3>Comunidad Gigante</h3>
+                        <p>Si tienes un problema con Blender o Krita, lo más probable es que alguien ya lo haya solucionado en Ubuntu. La documentación disponible es inigualable.</p>
+                    </div>
+                    <div class="info-box">
+                        <h3>PPA y Repositorios</h3>
+                        <p>Accede a las últimas versiones de tus herramientas favoritas mediante PPAs (Personal Package Archives) de forma sencilla y directa.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="comparacion" class="comparison-section" style="background: var(--bg-ubuntu-card); padding: 40px; border-radius: 20px; border: 2px solid var(--color-transparent); margin-top: 40px;">
+                <h2 class="section-title">Compatibilidad de Drivers</h2>
+                <div class="comparison-card" style="display: flex; justify-content: space-around; align-items: center; gap: 20px; text-align: center;">
+                    <div class="comparison-item">
+                        <h3>Distro Genérica</h3>
+                        <p style="font-size: 1.2rem; color: #8b949e;">Configuración Manual</p>
+                        <p>Posibles errores de X11</p>
+                    </div>
+                    <div class="comparison-divider" style="font-size: 1.5rem; color: var(--color-primary);">VS</div>
+                    <div class="comparison-item highlight-winner">
+                        <h3 style="color: var(--color-primary);">Ubuntu LTS</h3>
+                        <p style="font-size: 1.5rem; font-weight: bold; color: var(--color-primary);">Click & Play</p>
+                        <p>Drivers NVIDIA Propietarios</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../JS/Distros.js"></script>
+    <script src="../JS/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+/* Fedora Workstation theme */
+@import url("./distros-base.css");
+
+:root {
+  --color-primary: #294172;
+  --color-primary-dark: #1d2b4f;
+  --color-primary-light: #3c5a99;
+  --color-accent: #51a2da;
+  --color-transparent: rgba(41, 65, 114, 0.3);
+  --color-shadow: rgba(41, 65, 114, 0.4);
+  --color-shadow-hover: rgba(81, 162, 218, 0.5);
+  --color-glow: rgba(81, 162, 218, 0.3);
+  --theme-bg: #0b1a30;
+  --theme-card: #16253b;
+  --theme-card-hover: #1c2e4a;
+  --theme-highlight: var(--color-accent);
+  --theme-nav: rgba(11, 26, 48, 0.8);
+}
+
+body .navbar-container {
+  border-bottom-width: 1px;
+}
+
+body .distro-badge {
+  background: var(--color-primary);
+  font-size: 0.8rem;
+}

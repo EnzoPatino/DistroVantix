@@ -1,0 +1,45 @@
+/* Hyprland/KDE Plasma cyan theme */
+@import url("./distros-base.css");
+
+:root {
+  --color-primary: #00f2ff;
+  --color-primary-dark: #00a8b3;
+  --color-primary-light: #80f9ff;
+  --color-transparent: rgba(0, 242, 255, 0.2);
+  --color-shadow: rgba(0, 242, 255, 0.2);
+  --color-shadow-hover: rgba(0, 242, 255, 0.4);
+  --color-glow: rgba(0, 242, 255, 0.3);
+  --theme-button-text: #0f172a;
+}
+
+body .showcase-img {
+  box-shadow: 0 0 30px var(--color-shadow);
+}
+
+body .showcase-img:hover {
+  box-shadow: 0 0 50px var(--color-shadow-hover);
+  border-color: var(--color-primary);
+}
+
+body .info-box {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--color-transparent);
+  border-bottom: 4px solid var(--color-primary);
+  backdrop-filter: blur(10px);
+}
+
+body .info-box:hover {
+  background: rgba(15, 23, 42, 0.8);
+  border-color: var(--color-primary);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--color-shadow);
+}
+
+body .comparison-section {
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid var(--color-transparent);
+}
+
+body .comparison-item {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}

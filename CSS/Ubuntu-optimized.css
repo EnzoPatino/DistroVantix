@@ -1,0 +1,26 @@
+/* Ubuntu Desktop theme */
+@import url("./distros-base.css");
+
+:root {
+  --color-primary: #e95420;
+  --color-primary-dark: #772953;
+  --color-primary-light: #f4744b;
+  --color-accent: #fdfdfd;
+  --color-transparent: rgba(233, 84, 32, 0.2);
+  --color-shadow: rgba(233, 84, 32, 0.4);
+  --color-shadow-hover: rgba(119, 41, 83, 0.5);
+  --color-glow: rgba(233, 84, 32, 0.3);
+  --theme-bg: #300a24;
+  --theme-card: #420b2f;
+  --theme-card-hover: #50113b;
+  --theme-nav: rgba(48, 10, 36, 0.8);
+}
+
+body .navbar-container {
+  border-bottom-width: 1px;
+}
+
+body .distro-badge {
+  background: var(--color-primary);
+  font-size: 0.8rem;
+}

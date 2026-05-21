@@ -1,9 +1,95 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body></body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fedora Workstation - DistroVantix</title>
+    <link rel="stylesheet" href="../CSS/Fedora-optimized.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+    <header class="navbar-container">
+        <div class="navbar">
+            <a href="../index.html" class="navbar-logo">
+                <img src="../IMGS/Logo futurista de DistroVantix(1).png" alt="logo" height="60" width="60">
+            </a>
+            <nav>
+                <ul class="navbar-links">
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="computacion grafica.html">Computación Gráfica</a></li>
+                    <li><a href="#caracteristicas">Características</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="user-area">
+            <span class="distro-badge">Fedora Workstation</span>
+        </div>
+    </header>
+
+    <main class="distro-detail">
+        <div class="detail-container">
+            <section id="informacion" class="intro-showcase">
+                <div class="showcase-image">
+                    <img src="../IMGS/Fedora.png" alt="Fedora Workstation" class="showcase-img">
+                </div>
+                <div class="showcase-content">
+                    <h1 class="detail-title">Fedora <span class="highlight">Workstation</span></h1>
+                    <p class="detail-text">
+                        Fedora Workstation es la plataforma ideal para creadores de contenido y profesionales de la computación gráfica. Al ser la base del desarrollo de Red Hat, ofrece las tecnologías más recientes antes que cualquier otra distribución estable.
+                    </p>
+                    <h2 class="detail-subtitle">Vanguardia en Gráficos</h2>
+                    <p class="detail-text">
+                        Con un soporte excepcional para <strong>Wayland</strong> y los últimos drivers de NVIDIA y AMD, Fedora garantiza un entorno de trabajo fluido para Blender, DaVinci Resolve y herramientas de renderizado 3D.
+                    </p>
+                    <div class="button-group">
+                        <a href="#caracteristicas" class="cta-button">Explorar Funciones</a>
+                        <a href="https://fedoraproject.org/workstation/download/" target="_blank" class="cta-button cta-button-secondary">Descargar Fedora</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="caracteristicas" class="features-section">
+                <h2 class="section-title">¿Por qué elegir Fedora para Gráficos?</h2>
+                <div class="detail-grid">
+                    <div class="info-box">
+                        <h3>Último Kernel y Drivers</h3>
+                        <p>Accede siempre a las versiones más recientes del Kernel Linux, lo que significa mejor soporte para nuevas GPUs y tabletas digitalizadoras Wacom.</p>
+                    </div>
+                    <div class="info-box">
+                        <h3>Gestión de Color ICC</h3>
+                        <p>Fedora tiene uno de los mejores soportes para perfiles de color ICC, crucial para artistas que necesitan precisión cromática en sus trabajos.</p>
+                    </div>
+                    <div class="info-box">
+                        <h3>Ecosistema Flatpak</h3>
+                        <p>Instala versiones actualizadas de Blender, Krita e Inkscape de forma aislada y segura, asegurando que siempre tengas las últimas herramientas.</p>
+                    </div>
+                    <div class="info-box">
+                        <h3>Estabilidad Profesional</h3>
+                        <p>A pesar de ser vanguardista, Fedora mantiene una estabilidad sorprendente, ideal para flujos de trabajo que no pueden permitirse interrupciones.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="comparacion" class="comparison-section">
+                <h2 class="section-title">Rendimiento en Renderizado</h2>
+                <div class="comparison-card" style="display: flex; justify-content: space-around; align-items: center; gap: 20px; text-align: center;">
+                    <div class="comparison-item">
+                        <h3>Sistema Estándar</h3>
+                        <p style="font-size: 2rem; font-weight: bold; color: #8b949e;">4m 12s</p>
+                        <p>Escena Blender (CPU)</p>
+                    </div>
+                    <div class="comparison-divider" style="font-size: 1.5rem; color: var(--color-accent);">VS</div>
+                    <div class="comparison-item highlight-winner">
+                        <h3 style="color: var(--color-accent);">Fedora + Kernel Pro</h3>
+                        <p style="font-size: 2.5rem; font-weight: bold; color: var(--color-accent);">3m 45s</p>
+                        <p>Optimización Wayland</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../JS/Distros.js"></script>
+    <script src="../JS/script.js"></script>
+</body>
 </html>

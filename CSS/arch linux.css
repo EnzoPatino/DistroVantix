@@ -1,0 +1,22 @@
+/* Arch Linux theme */
+@import url("./distros-base.css");
+
+:root {
+  --color-primary: #1793d1;
+  --color-primary-dark: #0f618a;
+  --color-primary-light: #4db2e3;
+  --color-accent: #00e5ff;
+  --color-transparent: rgba(23, 147, 209, 0.2);
+  --color-shadow: rgba(23, 147, 209, 0.4);
+  --color-shadow-hover: rgba(0, 229, 255, 0.5);
+  --color-glow: rgba(23, 147, 209, 0.3);
+  --theme-bg: #0a0e14;
+  --theme-card: #151a24;
+  --theme-card-hover: #1c2331;
+  --theme-nav: rgba(10, 14, 20, 0.8);
+}
+
+body .distro-badge {
+  background: var(--color-primary);
+  font-weight: 600;
+}

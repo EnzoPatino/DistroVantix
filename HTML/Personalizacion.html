@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Animaciones - DistroVantix</title>
-    <link rel="stylesheet" href="../CSS/Animaciones-optimized.css" />
+    <link rel="stylesheet" href="../CSS/Personalizacion-optimized.css" />
     <link rel="stylesheet" href="../CSS/style.css" />
   </head>
   <body>
@@ -28,7 +28,7 @@
         </a>
         <nav aria-label="Navegación principal">
           <ul class="navbar-links">
-            <li><a href="Trabajo.html">Trabajo</a></li>
+            <li><a href="../index.html">Inicio</a></li>
             <li><a href="#Informacion">Informacion</a></li>
             <li><a href="#Carrusel">Carrusel</a></li>
           </ul>
@@ -47,24 +47,30 @@
             <a href="Ciberseguridad.html" class="cat-btn">Ciberseguridad</a>
           </li>
         </ul>
-        <h3>Categorías</h3>
-        <a href="Gaming.html" style="text-decoration: none">
+        <h3 class="sidebar-title">Categorías</h3>
+        <a
+          href="../HTML/Gaming.html"
+          target="_self"
+          style="text-decoration: none"
+        >
           <button class="cat-btn">Gaming</button>
         </a>
-        <a href="Trabajo.html" style="text-decoration: none">
+        <a
+          href="../HTML/Personalizacion.html"
+          target="_self"
+          style="text-decoration: none"
+        >
+          <button class="cat-btn">Personalización</button>
+        </a>
+        <a
+          href="../HTML/Trabajo.html"
+          target="_self"
+          style="text-decoration: none"
+        >
           <button class="cat-btn">Trabajo</button>
         </a>
       </nav>
     </aside>
-
-    <!-- Hero Section -->
-    <section class="animaciones-hero">
-      <h1>Estética y Fluidez</h1>
-      <p>
-        Lleva la apariencia de tu escritorio a otra dimensión con efectos
-        visuales y transiciones de última generación.
-      </p>
-    </section>
 
     <!-- Contenido principal con carrusel informativo -->
     <main class="main-content">
@@ -105,15 +111,26 @@
                   <h2>Tiling Window Managers</h2>
                   <p>
                     <strong
-                      >Hyprland y Sway: El futuro de las animaciones en
-                      Wayland.</strong
+                      >Hyprland: El rey de las animaciones en Wayland.</strong
                     >
                   </p>
                   <p>
-                    Los gestores de ventanas tipo "tiling" como Hyprland
-                    permiten animaciones basadas en físicas y transiciones
-                    suaves.
+                    Hyprland permite una fluidez extrema con animaciones basadas
+                    en físicas, bordes degradados y efectos de desenfoque en
+                    tiempo real.
                   </p>
+                  <a
+                    href="Hyperland.html"
+                    class="cat-btn"
+                    style="
+                      display: inline-block;
+                      width: auto;
+                      margin-top: 15px;
+                      text-decoration: none;
+                      text-align: center;
+                    "
+                    >Ver más sobre Hyprland</a
+                  >
                 </article>
               </div>
               <div class="animaciones-image">
@@ -174,7 +191,7 @@
 
     <!-- Carrusel de distros recomendadas -->
     <section id="Carrusel" class="distros-section">
-      <h2 class="section-title">Distribuciones Recomendadas</h2>
+      <h2 class="section-title">Escritorios para tu linux</h2>
 
       <div class="distro-carousel-wrapper">
         <button class="distro-prev" onclick="changeDistroSlide(-1)">❮</button>
@@ -185,9 +202,9 @@
           <div class="distro-slide active">
             <div class="distro-card card-garuda">
               <div class="distro-header">
-                <a href="./Garuda.html">
+                <a href="../HTML/Hyperland.html">
                   <img
-                    src="../IMGS/Garuda-Linux.webp"
+                    src="../IMGS/hyprland_logo.png"
                     alt="Garuda Logo"
                     class="distro-logo"
                   />
@@ -213,13 +230,13 @@
           <div class="distro-slide">
             <div class="distro-card card-fedora">
               <div class="distro-header">
-                <a href="#">
+                <a href="../HTML/KDE.html">
                   <img
-                    src="../IMGS/Ubuntu-pinguino.webp"
-                    alt="Fedora Logo"
+                    src="../IMGS/KDE.png"
+                    alt="KDE Logo"
                     class="distro-logo"
                   />
-                  <h3>Fedora Workstation</h3>
+                  <h3>KDE</h3>
                 </a>
               </div>
               <div class="distro-body">
@@ -238,13 +255,13 @@
           <div class="distro-slide">
             <div class="distro-card card-popos">
               <div class="distro-header">
-                <a href="./Pop!_OS.html">
+                <a href="../HTML/Gnome.html">
                   <img
-                    src="../IMGS/Pop!OS.webp"
-                    alt="PopOS Logo"
+                    src="../IMGS/Gnome_logo.png"
+                    alt="Gnome Logo"
                     class="distro-logo"
                   />
-                  <h3>Pop!_OS</h3>
+                  <h3>Gnome</h3>
                 </a>
               </div>
               <div class="distro-body">
@@ -262,29 +279,7 @@
       </div>
     </section>
 
-    <footer id="contacto" class="footer-container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h4>Contacto y Redes</h4>
-          <ul>
-            <li><a href="#">Correo</a></li>
-            <li><a href="#">Twitter / X</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h4>Proyecto</h4>
-          <ul>
-            <li><a href="#">Créditos</a></li>
-            <li><a href="#">Repositorio</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 DistroVantix - Casi todos los derechos reservados.</p>
-      </div>
-    </footer>
-
-    <script src="../JS/Animaciones.js"></script>
+    <script src="../JS/Personalizacion.js"></script>
     <script src="../JS/script.js"></script>
   </body>
 </html>
