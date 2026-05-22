@@ -211,6 +211,7 @@ body .navbar-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
   padding: 0.8rem 5%;
   position: sticky;
   top: 0;
@@ -255,14 +256,18 @@ body .navbar {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: var(--gap-md);
+  gap: clamp(12px, 3vw, 32px);
   flex: 1;
+  min-width: 0;
 }
 
 body .navbar-links {
   list-style: none;
   display: flex;
-  gap: var(--gap-md);
+  gap: clamp(12px, 3vw, 32px);
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 body .navbar-links a {
@@ -273,6 +278,7 @@ body .navbar-links a {
   transition: all var(--transition-fast);
   position: relative;
   padding-bottom: 5px;
+  white-space: nowrap;
 }
 
 body .navbar-links a::after {
@@ -313,6 +319,10 @@ body .distro-badge {
   box-shadow: var(--shadow-sm) var(--color-shadow);
   transition: all var(--transition-fast);
   cursor: default;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
 }
 
 body .distro-badge:hover {
@@ -647,6 +657,39 @@ body .tool-card:hover p {
 /* ============================================ */
 
 @media (max-width: 992px) {
+  body .navbar-container {
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    padding: 0.65rem 4%;
+  }
+
+  body .navbar {
+    justify-content: flex-start;
+    flex: 1 1 auto;
+    gap: 12px;
+  }
+
+  body .navbar-logo img {
+    width: 48px;
+    height: 48px;
+  }
+
+  body .navbar-links {
+    gap: 8px 14px;
+    justify-content: flex-start;
+  }
+
+  body .navbar-links a {
+    font-size: 0.88rem;
+    line-height: 1.2;
+  }
+
+  body .distro-badge {
+    font-size: 0.78rem;
+    padding: 5px 12px;
+  }
+
   body .intro-showcase {
     flex-direction: column;
     text-align: center;
@@ -664,6 +707,80 @@ body .tool-card:hover p {
 }
 
 @media (max-width: 600px) {
+  body .navbar-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 8px 10px;
+    padding: 0.55rem 12px;
+  }
+
+  body .navbar {
+    display: contents;
+  }
+
+  body .navbar-logo {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  body .navbar-logo img {
+    width: 42px;
+    height: 42px;
+  }
+
+  body .user-area {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  body .distro-badge {
+    max-width: 100%;
+    font-size: 0.72rem;
+    padding: 4px 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  body .navbar nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    min-width: 0;
+  }
+
+  body .navbar-links {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+  }
+
+  body .navbar-links li {
+    min-width: 0;
+  }
+
+  body .navbar-links a {
+    display: block;
+    padding: 6px 8px;
+    border: 1px solid var(--color-transparent);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.03);
+    font-size: 0.76rem;
+    line-height: 1.1;
+    text-align: center;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  body .navbar-links a::after {
+    display: none;
+  }
+
   body .button-group {
     flex-direction: column;
     gap: 10px;
