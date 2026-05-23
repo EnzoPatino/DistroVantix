@@ -1,0 +1,27 @@
+/* Debian theme */
+@import url("./distros-base.css");
+
+:root {
+  --color-primary: #a80030;
+  --color-primary-dark: #6f001f;
+  --color-primary-light: #d70a53;
+  --color-accent: #ffffff;
+  --color-transparent: rgba(168, 0, 48, 0.25);
+  --color-shadow: rgba(168, 0, 48, 0.35);
+  --color-shadow-hover: rgba(215, 10, 83, 0.45);
+  --color-glow: rgba(215, 10, 83, 0.3);
+  --theme-bg: #16070d;
+  --theme-card: #241019;
+  --theme-card-hover: #321523;
+  --theme-nav: rgba(22, 7, 13, 0.85);
+  --theme-highlight: var(--color-primary-light);
+}
+
+body .navbar-container {
+  border-bottom-width: 1px;
+}
+
+body .distro-badge {
+  background: var(--color-primary);
+  font-size: 0.8rem;
+}

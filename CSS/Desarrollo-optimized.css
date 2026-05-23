@@ -489,6 +489,12 @@ img {
   transform: translateY(-10px);
 }
 
+.card-debian:hover {
+  border-color: #a80030;
+  box-shadow: 0 10px 30px rgba(168, 0, 48, 0.3);
+  transform: translateY(-10px);
+}
+
 .card-garuda:hover {
   border-color: #e9567a;
   box-shadow: 0 10px 30px rgba(233, 86, 122, 0.3);

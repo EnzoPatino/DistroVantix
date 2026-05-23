@@ -204,29 +204,29 @@
         <button class="distro-next" onclick="changeDistroSlide(1)">❯</button>
 
         <div class="distro-carousel-container">
-          <!-- Pop!_OS -->
+          <!-- Ubuntu -->
           <div class="distro-slide active">
             <div class="distro-card card-popos">
               <div class="distro-header">
-                <a href="./Pop!_OS.html">
+                <a href="./Ubuntu.html">
                   <img
-                    src="../IMGS/Pop!OS.webp"
-                    alt="Pop!_OS Logo"
+                    src="../IMGS/Ubuntu.png"
+                    alt="Ubuntu Logo"
                     class="distro-logo"
                   />
-                  <h3>Pop!_OS</h3>
+                  <h3>Ubuntu</h3>
                 </a>
               </div>
               <div class="distro-body">
-                <p><strong>Base:</strong> Ubuntu</p>
-                <p><strong>Especialidad:</strong> Desarrollo y Workflows.</p>
+                <p><strong>Base:</strong> Debian</p>
+                <p><strong>Especialidad:</strong> Compatibilidad y soporte.</p>
                 <p>
-                  Gestor de ventanas tiling automático perfecto para
-                  programadores.
+                  Entorno estable, fácil de documentar y cómodo para aprender,
+                  programar o trabajar.
                 </p>
                 <ul class="distro-features">
-                  <li>Auto Tiling Manager</li>
-                  <li>Soporte NVIDIA</li>
+                  <li>Soporte LTS</li>
+                  <li>Gran comunidad</li>
                 </ul>
               </div>
             </div>
@@ -247,10 +247,10 @@
               </div>
               <div class="distro-body">
                 <p><strong>Base:</strong> Independiente</p>
-                <p><strong>Especialidad:</strong> Últimas tecnologías.</p>
+                <p><strong>Especialidad:</strong> Tecnologías recientes.</p>
                 <p>
-                  Líder en la adopción de nuevas tecnologías como Wayland y
-                  Pipewire.
+                  Buena opción para probar kernels, escritorios y toolchains
+                  modernos sin usar una rolling release pura.
                 </p>
                 <ul class="distro-features">
                   <li>Kernel actualizado</li>
@@ -260,23 +260,54 @@
             </div>
           </div>
 
-          <!-- Garuda -->
+          <!-- Debian -->
+          <div class="distro-slide">
+            <div class="distro-card card-debian">
+              <div class="distro-header">
+                <a href="./Debian.html">
+                  <img
+                    src="../IMGS/Debian.png"
+                    alt="Debian Logo"
+                    class="distro-logo"
+                  />
+                  <h3>Debian</h3>
+                </a>
+              </div>
+              <div class="distro-body">
+                <p><strong>Base:</strong> Independiente</p>
+                <p><strong>Especialidad:</strong> Estabilidad y servidores.</p>
+                <p>
+                  Base sólida para entornos de desarrollo confiables y de largo
+                  plazo.
+                </p>
+                <ul class="distro-features">
+                  <li>APT estable</li>
+                  <li>Soporte amplio</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Arch Linux -->
           <div class="distro-slide">
             <div class="distro-card card-garuda">
               <div class="distro-header">
-                <a href="./Garuda.html">
+                <a href="./arch linux.html">
                   <img
-                    src="../IMGS/Garuda-Linux.webp"
-                    alt="Garuda Logo"
+                    src="../IMGS/Arch.png"
+                    alt="Arch Linux Logo"
                     class="distro-logo"
                   />
-                  <h3>Garuda Linux</h3>
+                  <h3>Arch Linux</h3>
                 </a>
               </div>
               <div class="distro-body">
                 <p><strong>Base:</strong> Arch Linux</p>
-                <p><strong>Especialidad:</strong> Rendimiento extremo.</p>
-                <p>Optimizado para un sistema que responde instantáneamente.</p>
+                <p><strong>Especialidad:</strong> Control y paquetes recientes.</p>
+                <p>
+                  Ideal si quieres construir un entorno a medida y acceder al
+                  AUR para herramientas muy específicas.
+                </p>
                 <ul class="distro-features">
                   <li>AUR disponible</li>
                   <li>Btrfs por defecto</li>

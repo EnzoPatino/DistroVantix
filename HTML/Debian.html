@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debian - DistroVantix</title>
+    <link rel="stylesheet" href="../CSS/Debian-optimized.css" />
+    <link rel="stylesheet" href="../CSS/style.css" />
+  </head>
+  <body>
+    <header class="navbar-container">
+      <div class="navbar">
+        <a href="../index.html" class="navbar-logo">
+          <img
+            src="../IMGS/Logo futurista de DistroVantix(1).png"
+            alt="logo"
+            height="60"
+            width="60"
+          />
+        </a>
+        <nav>
+          <ul class="navbar-links">
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="Desarrollo.html">Desarrollo</a></li>
+            <li><a href="computacion grafica.html">Computación Gráfica</a></li>
+            <li><a href="#caracteristicas">Características</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="user-area">
+        <span class="distro-badge">Debian</span>
+      </div>
+    </header>
+
+    <main class="distro-detail">
+      <div class="detail-container">
+        <section id="informacion" class="intro-showcase">
+          <div class="showcase-image">
+            <img src="../IMGS/Debian.png" alt="Debian" class="showcase-img" />
+          </div>
+          <div class="showcase-content">
+            <h1 class="detail-title">Debian <span class="highlight"></span></h1>
+            <p class="detail-text">
+              Debian es una de las distribuciones de Linux más sólidas y
+              respetadas del mundo, famosa por su estabilidad inquebrantable y
+              su compromiso con el software libre. Es la roca fundamental sobre
+              la que se construyen sistemas masivos como Ubuntu, lo que la
+              convierte en un punto de partida ideal para profesionales que
+              buscan un entorno predecible para desarrollo, servidores,
+              productividad, estudio o estaciones de trabajo estables.
+            </p>
+            <h2 class="detail-subtitle">La Roca de la Industria</h2>
+            <p class="detail-text">
+              Al ser el sistema operativo universal, las aplicaciones
+              profesionales más exigentes y los entornos de servidor priorizan
+              su compatibilidad con Debian. Elegir Debian garantiza una base de
+              trabajo con cambios controlados, paquetes consistentes y menos
+              sorpresas en proyectos de largo plazo.
+            </p>
+            <div class="button-group">
+              <a href="#caracteristicas" class="cta-button">Ver Beneficios</a>
+              <a
+                href="https://debian.org/download"
+                target="_blank"
+                class="cta-button cta-button-secondary"
+                >Descargar Debian</a
+              >
+            </div>
+          </div>
+        </section>
+
+        <section id="caracteristicas" class="features-section">
+          <h2 class="section-title">¿Por qué usar Debian?</h2>
+          <div class="detail-grid">
+            <div class="info-box">
+              <h3>Estabilidad Legendaria</h3>
+              <p>
+                Debian es sinónimo de confiabilidad. Sus paquetes pasan por
+                filtros de prueba extremadamente rigurosos antes de ser
+                incluidos en la versión estable. Esto significa que tu sistema
+                reduce el riesgo de fallos tras una actualización intermedia.
+              </p>
+            </div>
+            <div class="info-box">
+              <h3>El Sistema Operativo Universal</h3>
+              <p>
+                Con acceso a uno de los repositorios de software más gigantescos
+                del planeta (más de 59,000 paquetes), Debian soporta casi
+                muchas arquitecturas de hardware y herramientas populares,
+                adaptándose tanto a tu estación de trabajo como a servidores de
+                producción.
+              </p>
+            </div>
+            <div class="info-box">
+              <h3>Control y Eficiencia</h3>
+              <p>
+                A diferencia de otras distribuciones modernas, Debian no añade
+                capas innecesarias de telemetría ni servicios pesados en segundo
+                plano de manera predeterminada. El resultado es un consumo de
+                recursos bajo y una base limpia para compilaciones, servicios,
+                edición, navegación o tareas exigentes.
+              </p>
+            </div>
+            <div class="info-box">
+              <h3>Ecosistema No-Free Estándar</h3>
+              <p>
+                En sus versiones más recientes, Debian incluye por defecto el
+                repositorio de firmware propietario (non-free). Esto facilita
+                enormemente la detección y configuración automática de tarjetas
+                de red Wi-Fi y componentes de hardware específicos desde el
+                primer segundo.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="comparacion"
+          class="comparison-section"
+          style="
+            background: var(--bg-ubuntu-card);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid var(--color-transparent);
+            margin-top: 40px;
+          "
+        >
+          <h2 class="section-title">Estabilidad para Proyectos</h2>
+          <div
+            class="comparison-card"
+            style="
+              display: flex;
+              justify-content: space-around;
+              align-items: center;
+              gap: 20px;
+              text-align: center;
+            "
+          >
+            <div class="comparison-item">
+              <h3>Rolling Release</h3>
+              <p style="font-size: 1.2rem; color: #8b949e">
+                Cambios frecuentes
+              </p>
+              <p>
+                Más novedades, pero también más cambios en librerías,
+                dependencias y comportamiento del sistema.
+              </p>
+            </div>
+            <div
+              class="comparison-divider"
+              style="font-size: 1.5rem; color: var(--color-primary)"
+            >
+              VS
+            </div>
+            <div class="comparison-item highlight-winner">
+              <h3 style="color: var(--color-primary)">Debian Estable</h3>
+              <p
+                style="
+                  font-size: 1.5rem;
+                  font-weight: bold;
+                  color: var(--color-primary);
+                "
+              >
+                Debian Stable
+              </p>
+              <p>
+                Entorno predecible y seguro / Librerías consistentes a largo
+                plazo / Menos sorpresas en tus dependencias.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="../JS/Distros.js"></script>
+    <script src="../JS/script.js"></script>
+  </body>
+</html>
