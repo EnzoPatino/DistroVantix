@@ -289,6 +289,173 @@
                 <strong>binwalk -e [file]</strong> Extrae archivos ocultos
                 dentro de binarios.
               </p>
+              </div>
+              </div>
+
+              <!-- Página 6: Transferencia y Post-Explotación -->          <div class="spread">
+            <div class="page left-page">
+              <h2>Transferencia de Archivos</h2>
+              <p>
+                <strong>python3 -m http.server [puerto]</strong> Levanta un
+                servidor web rápido para compartir herramientas o archivos.
+              </p>
+              <p>
+                <strong>curl -O [URL]</strong> Descarga un archivo directamente
+                desde una URL a la terminal.
+              </p>
+              <p>
+                <strong>wget [URL]</strong> Descarga contenido o scripts de forma
+                directa de internet.
+              </p>
+              <p>
+                <strong>scp [archivo] user@[IP]:[ruta]</strong> Copia archivos de
+                forma segura entre máquinas mediante SSH.
+              </p>
+            </div>
+            <div class="page right-page">
+              <h2>Post-Explotación Básica</h2>
+              <p>
+                <strong>whoami && id</strong> Muestra el usuario actual y sus
+                privilegios reales en el sistema.
+              </p>
+              <p>
+                <strong>uname -a</strong> Obtiene detalles del kernel y del
+                sistema operativo víctima.
+              </p>
+              <p>
+                <strong>find / -perm -4000 2>/dev/null</strong> Busca archivos con
+                permisos SUID (útil para escalada de privilegios).
+              </p>
+              <p>
+                <strong>history -c</strong> Limpia el historial de comandos de la
+                sesión actual en la terminal.
+              </p>
+            </div>
+          </div>
+
+          <!-- Página 7: Hacking Web Avanzado y OSINT -->
+          <div class="spread">
+            <div class="page left-page">
+              <h2>Web: Mapeo y Fuzzing</h2>
+              <p>
+                <strong>gobuster dir -u [URL] -w [wordlist]</strong> Descubre
+                directorios ocultos mediante fuerza bruta rápida.
+              </p>
+              <p>
+                <strong>wfuzz -c -z file,[wordlist] [URL]/FUZZ</strong> Fuzzing
+                avanzado de parámetros, rutas y subdominios.
+              </p>
+              <p>
+                <strong>whatweb [URL]</strong> Identifica tecnologías, CMS,
+                servidores y versiones de un sitio.
+              </p>
+              <p>
+                <strong>wpscan --url [URL]</strong> Escáner de seguridad
+                especializado en buscar fallos en WordPress.
+              </p>
+            </div>
+            <div class="page right-page">
+              <h2>OSINT y Recon</h2>
+              <p>
+                <strong>theHarvester -d [dominio] -b all</strong> Recolecta
+                correos, subdominios y nombres desde fuentes públicas.
+              </p>
+              <p>
+                <strong>sherlock [usuario]</strong> Busca perfiles activos de un
+                mismo nombre en cientos de redes sociales.
+              </p>
+              <p>
+                <strong>dnsrecon -d [dominio]</strong> Automatiza la enumeración
+                completa de registros DNS de un objetivo.
+              </p>
+              <p>
+                <strong>subfinder -d [dominio]</strong> Herramienta rápida para
+                descubrir subdominios válidos de forma pasiva.
+              </p>
+            </div>
+          </div>
+
+          <!-- Página 8: Pivoting, Túneles y Conexiones -->
+          <div class="spread">
+            <div class="page left-page">
+              <h2>Pivoting y Túneles</h2>
+              <p>
+                <strong>ssh -L [puerto_l]:[target]:[puerto_r] user@[IP]</strong>
+                Redirección local de puertos (Local Port Forwarding).
+              </p>
+              <p>
+                <strong>chisel server -p [puerto] --reverse</strong> Inicia el
+                servidor de Chisel para túneles inversos.
+              </p>
+              <p>
+                <strong>socat TCP-LISTEN:[p1] TCP:[IP]:[p2]</strong> Redirige de
+                forma bidireccional tráfico entre redes.
+              </p>
+              <p>
+                <strong>proxychains [comando]</strong> Enruta cualquier
+                herramienta (ej. nmap) a través de proxies SOCKS.
+              </p>
+            </div>
+            <div class="page right-page">
+              <h2>Evasión y Utilidades</h2>
+              <p>
+                <strong>msfvenom -p [payload] -e [encoder] -f exe</strong> Genera
+                cargas útiles aplicando codificación (encoders).
+              </p>
+              <p>
+                <strong>strings [archivo]</strong> Extrae e imprime el texto
+                legible que está oculto dentro de un binario.
+              </p>
+              <p>
+                <strong>impacket-smbserver [nombre] [ruta]</strong> Monta un
+                servidor SMB compartido para interactuar con sistemas Windows.
+              </p>
+              <p>
+                <strong>nc -lvnp [puerto]</strong> Escucha conexiones entrantes
+                (esencial para recibir reverse shells).
+              </p>
+            </div>
+          </div>
+
+          <!-- Página 9: Kali Linux Core y Servicios -->
+          <div class="spread">
+            <div class="page left-page">
+              <h2>Servicios del Entorno</h2>
+              <p>
+                <strong>msfdb init</strong> Inicializa la base de datos local para
+                acelerar búsquedas en Metasploit.
+              </p>
+              <p>
+                <strong>systemctl start postgresql</strong> Levanta el gestor de
+                base de datos requerido por las herramientas.
+              </p>
+              <p>
+                <strong>kali-tweaks</strong> Menú interactivo en terminal para
+                configurar repositorios y el sistema.
+              </p>
+              <p>
+                <strong>systemctl start gvm</strong> Inicializa el entorno gráfico
+                de Greenbone Vulnerability Manager (OpenVAS).
+              </p>
+            </div>
+            <div class="page right-page">
+              <h2>Metapaquetes de Kali</h2>
+              <p>
+                <strong>sudo apt install kali-linux-everything</strong> Descarga e
+                instala el repertorio completo de herramientas de Kali.
+              </p>
+              <p>
+                <strong>sudo apt install kali-tools-headless</strong> Instala
+                todas las utilidades de consola que no requieren GUI.
+              </p>
+              <p>
+                <strong>sudo apt install kali-tools-wireless</strong> Actualiza el
+                set completo para auditorías inalámbricas.
+              </p>
+              <p>
+                <strong>kali-undercover</strong> Modifica la interfaz para simular
+                un entorno Windows en un segundo.
+              </p>
             </div>
           </div>
         </div>
