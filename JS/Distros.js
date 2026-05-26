@@ -28,27 +28,29 @@ document.addEventListener("DOMContentLoaded", () => {
  */
 function getDistroInfo() {
   const title = document.title.toLowerCase();
+  const path = window.location.pathname.toLowerCase();
+  const pageText = `${title} ${path}`;
 
-  if (title.includes("cachyos")) {
+  if (pageText.includes("cachyos")) {
     return { name: "CachyOS", color: "rgba(0, 255, 204, 0.4)" };
   }
-  if (title.includes("pop!_os")) {
+  if (pageText.includes("pop!_os") || pageText.includes("popos")) {
     return { name: "Pop!_OS", color: "rgba(76, 175, 80, 0.4)" };
   }
-  if (title.includes("bazzite")) {
+  if (pageText.includes("bazzite")) {
     return { name: "Bazzite", color: "rgba(0, 191, 255, 0.4)" };
   }
-  if (title.includes("garuda")) {
+  if (pageText.includes("garuda")) {
     return { name: "Garuda Linux", color: "rgba(233, 30, 99, 0.4)" };
   }
-  if (title.includes("parrot os")) {
+  if (pageText.includes("parrot os") || pageText.includes("parrotos")) {
     return {
       name: "Parrot OS",
       color: "rgba(0, 229, 255, 0.4)",
       hasToolCards: true,
     };
   }
-  if (title.includes("blackarch")) {
+  if (pageText.includes("blackarch")) {
     return {
       name: "BlackArch Linux",
       color: "rgba(255, 0, 85, 0.4)",
@@ -56,7 +58,7 @@ function getDistroInfo() {
       hasToolCards: true,
     };
   }
-  if (title.includes("kali")) {
+  if (pageText.includes("kali")) {
     return {
       name: "Kali Linux",
       color: "rgba(85, 112, 255, 0.4)",
@@ -64,19 +66,25 @@ function getDistroInfo() {
       hasToolCards: true,
     };
   }
-  if (title.includes("fedora")) {
+  if (pageText.includes("fedora")) {
     return { name: "Fedora Workstation", color: "rgba(41, 92, 178, 0.4)" };
   }
-  if (title.includes("ubuntu")) {
+  if (pageText.includes("ubuntu")) {
     return { name: "Ubuntu Desktop", color: "rgba(233, 84, 32, 0.4)" };
   }
-  if (title.includes("arch linux")) {
+  if (pageText.includes("arch linux") || pageText.includes("arch%20linux")) {
     return { name: "Arch Linux", color: "rgba(23, 147, 209, 0.4)" };
   }
-  if (title.includes("kde")) {
+  if (pageText.includes("debian")) {
+    return { name: "Debian", color: "rgba(168, 0, 48, 0.4)" };
+  }
+  if (pageText.includes("gnome")) {
+    return { name: "Gnome", color: "rgba(74, 144, 226, 0.4)" };
+  }
+  if (pageText.includes("kde")) {
     return { name: "KDE Plasma", color: "rgba(0, 120, 212, 0.4)" };
   }
-  if (title.includes("hyprland")) {
+  if (pageText.includes("hyprland") || pageText.includes("hyperland")) {
     return { name: "Hyprland", color: "rgba(0, 242, 255, 0.4)" };
   }
 
