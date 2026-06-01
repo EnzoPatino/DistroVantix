@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foro de la comunidad - DistroVantix</title>
+    <link rel="stylesheet" href="../CSS/style.css" />
+    <link rel="stylesheet" href="../CSS/Foro.css" />
+  </head>
+  <body>
+    <header class="navbar-container">
+      <button id="btn-menu" aria-label="Abrir tablero de opciones">☰</button>
+
+      <div class="navbar">
+        <a href="../index.html" target="_self" class="navbar-logo">
+          <img
+            src="../IMGS/Logo futurista de DistroVantix(1).png"
+            alt="logo DistroVantix"
+            height="70"
+            width="70"
+            id="logo"
+          />
+        </a>
+        <nav aria-label="Navegación principal">
+          <ul class="navbar-links">
+            <li><a href="../index.html" target="_self">Inicio</a></li>
+            <li><a href="#publicar">Publicar</a></li>
+            <li><a href="#comentarios">Comentarios</a></li>
+            <li><a href="#reglas">Reglas</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="user-area foro-user-area">
+        <button class="session-toggle" id="session-toggle" type="button">
+          Iniciar sesion
+        </button>
+      </div>
+    </header>
+
+    <aside id="sidebar" class="tablero">
+      <nav class="categorias">
+        <h3 class="sidebar-title">Navegación</h3>
+        <ul class="sidebar-links">
+          <li><a href="../index.html" class="cat-btn">Inicio</a></li>
+          <li><a href="#publicar" class="cat-btn">Publicar</a></li>
+          <li><a href="#comentarios" class="cat-btn">Comentarios</a></li>
+          <li><a href="#reglas" class="cat-btn">Reglas</a></li>
+        </ul>
+        <h3 class="sidebar-title">Categorías</h3>
+        <a href="Gaming.html" target="_self" style="text-decoration: none">
+          <button class="cat-btn">Gaming</button>
+        </a>
+        <a
+          href="Personalizacion.html"
+          target="_self"
+          style="text-decoration: none"
+        >
+          <button class="cat-btn">Personalización</button>
+        </a>
+        <a href="Trabajo.html" target="_self" style="text-decoration: none">
+          <button class="cat-btn">Trabajo</button>
+        </a>
+      </nav>
+    </aside>
+
+    <main class="forum-page">
+      <section class="forum-hero" aria-labelledby="forum-title">
+        <div class="hero-copy">
+          <span class="section-kicker">Comunidad Linux</span>
+          <h1 id="forum-title">Foro de la comunidad</h1>
+          <p>
+            Un espacio para consultar dudas, compartir experiencias y recibir
+            recomendaciones sobre distros, escritorio, gaming, trabajo,
+            seguridad y primeros pasos en Linux.
+          </p>
+          <div class="hero-actions">
+            <a href="#publicar" class="primary-link">Crear comentario</a>
+            <a href="#comentarios" class="secondary-link">Ver actividad</a>
+          </div>
+        </div>
+
+        <div class="forum-status-panel" aria-label="Resumen del foro">
+          <div>
+            <strong id="stat-comments">0</strong>
+            <span>comentarios</span>
+          </div>
+          <div>
+            <strong>3</strong>
+            <span>roles</span>
+          </div>
+          <div>
+            <strong>500</strong>
+            <span>caracteres</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="forum-layout">
+        <div class="forum-main-column">
+          <section
+            class="composer-panel"
+            id="publicar"
+            aria-labelledby="post-title"
+          >
+            <div class="panel-heading">
+              <div>
+                <span class="section-kicker">Participar</span>
+                <h2 id="post-title">Publicar comentario</h2>
+              </div>
+              <span class="auth-pill" id="auth-state">Sin sesion</span>
+            </div>
+
+            <div class="guest-message" id="guest-message">
+              Inicia sesion con Supabase para participar. Las politicas de
+              seguridad solo permiten publicar si tu cuenta coincide con el
+              autor del comentario.
+            </div>
+
+            <form class="auth-form" id="auth-form">
+              <label for="auth-email">Email</label>
+              <input
+                id="auth-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="tu-email@ejemplo.com"
+                required
+              />
+
+              <label for="auth-password">Contrasena</label>
+              <input
+                id="auth-password"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                minlength="6"
+                placeholder="Minimo 6 caracteres"
+                required
+              />
+
+              <div class="auth-actions">
+                <button type="submit" class="auth-button" value="login">
+                  Iniciar sesion
+                </button>
+                <button type="submit" class="auth-button secondary" value="signup">
+                  Crear cuenta
+                </button>
+              </div>
+              <p class="form-feedback" id="auth-feedback" aria-live="polite"></p>
+            </form>
+
+            <form class="comment-form" id="comment-form" hidden>
+              <label for="comment-content">Comentario</label>
+              <textarea
+                id="comment-content"
+                name="contenido"
+                maxlength="500"
+                rows="6"
+                placeholder="Ej: Estoy probando KDE y necesito una distro estable para estudiar y jugar..."
+              ></textarea>
+
+              <div class="form-footer">
+                <span id="char-count">0/500</span>
+                <button type="submit" class="publish-button">Publicar</button>
+              </div>
+              <p
+                class="form-feedback"
+                id="form-feedback"
+                aria-live="polite"
+              ></p>
+            </form>
+          </section>
+
+          <section
+            class="comments-panel"
+            id="comentarios"
+            aria-labelledby="comments-title"
+          >
+            <div class="panel-heading">
+              <div>
+                <span class="section-kicker">Actividad reciente</span>
+                <h2 id="comments-title">Comentarios publicados</h2>
+              </div>
+              <select id="comment-filter" aria-label="Filtrar comentarios">
+                <option value="todos">Todos</option>
+                <option value="usuario">Usuarios</option>
+                <option value="moderador">Moderadores</option>
+                <option value="administrador">Administradores</option>
+              </select>
+            </div>
+
+            <div class="loading-state" id="loading-state">
+              Cargando comentarios...
+            </div>
+            <div class="empty-state" id="empty-state" hidden>
+              Todavia no hay comentarios para mostrar.
+            </div>
+            <div class="comment-list" id="comment-list"></div>
+          </section>
+        </div>
+
+        <aside class="forum-side-column" aria-label="Informacion del foro">
+          <section class="profile-card" id="profile-card">
+            <span class="section-kicker">Perfil activo</span>
+            <div class="profile-row">
+              <div class="avatar avatar-current" id="profile-avatar">EL</div>
+              <div>
+                <h2 id="profile-username">EnzoLinux</h2>
+                <p id="profile-distro">Fedora como distro favorita</p>
+              </div>
+            </div>
+            <ul class="profile-details">
+              <li><strong>Estado:</strong> <span id="profile-status">activo</span></li>
+              <li><strong>Rol:</strong> <span id="profile-role">usuario</span></li>
+              <li><strong>Auth:</strong> Supabase Auth preparada</li>
+            </ul>
+          </section>
+
+          <section class="rules-card" id="reglas">
+            <span class="section-kicker">Moderacion</span>
+            <h2>Reglas basicas</h2>
+            <ul>
+              <li>Publica dudas claras y con contexto.</li>
+              <li>No compartas contrasenas ni datos privados.</li>
+              <li>Evita insultos, spam y contenido fuera de tema.</li>
+              <li>
+                Moderadores y administradores pueden intervenir comentarios.
+              </li>
+            </ul>
+          </section>
+
+          <section class="database-card">
+            <span class="section-kicker">Base de datos</span>
+            <h2>Modelo usado</h2>
+            <p>
+              La vista esta pensada para las tablas
+              <strong>usuario</strong>, <strong>comentario</strong>,
+              <strong>moderador</strong> y <strong>admin</strong>.
+            </p>
+            <p>
+              Cuando conectes Supabase, el perfil local debe usar el mismo UUID
+              de <strong>auth.users.id</strong>.
+            </p>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <footer id="contacto" class="footer-container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Foro DistroVantix</h4>
+          <ul>
+            <li><a href="#publicar">Publicar comentario</a></li>
+            <li><a href="#comentarios">Comentarios recientes</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Proyecto</h4>
+          <ul>
+            <li><a href="../index.html">Volver al inicio</a></li>
+            <li><a href="#">Creditos: Enzo Lautaro Patiño</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 DistroVantix - Comunidad Linux hispanohablante.</p>
+      </div>
+    </footer>
+
+    <script src="../JS/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../JS/Foro.js"></script>
+  </body>
+</html>

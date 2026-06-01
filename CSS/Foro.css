@@ -1,0 +1,528 @@
+/* ==========================================
+   FORO DISTROVANTIX
+   ========================================== */
+:root {
+  --foro-bg: #0b1020;
+  --foro-surface: #121a2e;
+  --foro-surface-2: #17213a;
+  --foro-card: #101827;
+  --foro-border: rgba(148, 163, 184, 0.2);
+  --foro-border-strong: rgba(125, 211, 252, 0.36);
+  --foro-text: #e5edf8;
+  --foro-muted: #9aa8bd;
+  --foro-soft: #c7d2fe;
+  --foro-primary: #38bdf8;
+  --foro-primary-strong: #0ea5e9;
+  --foro-accent: #a7f3d0;
+  --foro-warning: #fde68a;
+  --foro-danger: #fb7185;
+  --foro-success: #22c55e;
+  --foro-shadow: 0 22px 60px rgba(0, 0, 0, 0.32);
+  --foro-radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--foro-text);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background:
+    radial-gradient(circle at 16% 8%, rgba(56, 189, 248, 0.16), transparent 30%),
+    radial-gradient(circle at 86% 2%, rgba(167, 243, 208, 0.13), transparent 28%),
+    linear-gradient(135deg, #080d19 0%, var(--foro-bg) 48%, #0d1426 100%);
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(56, 189, 248, 0.28);
+  outline-offset: 2px;
+}
+
+.foro-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 18px clamp(18px, 4vw, 44px);
+  border-bottom: 1px solid var(--foro-border);
+  background: rgba(8, 13, 25, 0.78);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
+}
+
+.foro-logo {
+  margin: 0;
+  color: var(--foro-text);
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.foro-logo::after {
+  content: " Foro";
+  color: var(--foro-primary);
+  font-weight: 700;
+}
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-login-nav,
+.btn-logout-nav,
+.btn-publicar,
+.btn-entrar,
+.btn-registrar {
+  min-height: 42px;
+  border: 1px solid transparent;
+  border-radius: var(--foro-radius);
+  padding: 10px 16px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.btn-login-nav,
+.btn-publicar,
+.btn-entrar {
+  color: #06121f;
+  background: linear-gradient(135deg, var(--foro-accent), var(--foro-primary));
+  box-shadow: 0 14px 30px rgba(14, 165, 233, 0.2);
+}
+
+.btn-login-nav:hover,
+.btn-publicar:hover,
+.btn-entrar:hover {
+  box-shadow: 0 16px 34px rgba(14, 165, 233, 0.32);
+}
+
+.btn-logout-nav {
+  display: none;
+  color: #fff1f2;
+  background: rgba(251, 113, 133, 0.16);
+  border-color: rgba(251, 113, 133, 0.36);
+}
+
+.foro-container {
+  width: min(1180px, calc(100% - 32px));
+  margin: 34px auto 54px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 28px;
+}
+
+.muro-section,
+.sidebar-section {
+  min-width: 0;
+}
+
+.muro-info-box,
+.form-nuevo-aporte,
+.estado-vacio,
+.comment-card,
+.tarjeta-usuario,
+.modal-content {
+  border: 1px solid var(--foro-border);
+  background: linear-gradient(180deg, rgba(18, 26, 46, 0.96), rgba(13, 20, 36, 0.96));
+  box-shadow: var(--foro-shadow);
+}
+
+.muro-info-box {
+  position: relative;
+  overflow: hidden;
+  padding: 28px;
+  border-radius: var(--foro-radius);
+  margin-bottom: 22px;
+}
+
+.muro-info-box::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--foro-primary), var(--foro-accent));
+}
+
+.muro-info-box h3 {
+  margin: 0 0 10px;
+  color: var(--foro-text);
+  font-size: clamp(24px, 4vw, 36px);
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.muro-info-box p {
+  max-width: 64ch;
+  margin: 0;
+  color: var(--foro-muted);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.total-aportes {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  color: var(--foro-soft);
+  font-weight: 700;
+}
+
+.total-aportes::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--foro-success);
+  box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.12);
+}
+
+.alerta-invitado {
+  margin-bottom: 22px;
+  padding: 18px 20px;
+  border: 1px dashed rgba(253, 230, 138, 0.46);
+  border-radius: var(--foro-radius);
+  color: #fff7d6;
+  background: rgba(253, 230, 138, 0.09);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.form-nuevo-aporte {
+  display: none;
+  margin-bottom: 22px;
+  padding: 22px;
+  border-radius: var(--foro-radius);
+}
+
+.form-nuevo-aporte h4 {
+  margin: 0 0 14px;
+  color: var(--foro-text);
+  font-size: 18px;
+}
+
+.contador-caracteres {
+  float: right;
+  color: var(--foro-muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.input-aporte,
+.input-modal {
+  width: 100%;
+  border: 1px solid var(--foro-border);
+  border-radius: var(--foro-radius);
+  color: var(--foro-text);
+  background: rgba(5, 10, 22, 0.78);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.input-aporte {
+  min-height: 132px;
+  padding: 15px;
+  resize: vertical;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.input-aporte::placeholder,
+.input-modal::placeholder {
+  color: #6f7f95;
+}
+
+.input-aporte:focus,
+.input-modal:focus {
+  border-color: var(--foro-border-strong);
+  background: rgba(7, 14, 28, 0.94);
+}
+
+.form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 15px;
+}
+
+.feedback-mensaje,
+.feedback-auth {
+  min-height: 20px;
+  color: var(--foro-muted);
+  font-size: 14px;
+}
+
+.estado-carga {
+  display: none;
+  padding: 22px;
+  color: var(--foro-muted);
+  text-align: center;
+}
+
+.estado-vacio {
+  padding: 30px 22px;
+  border-radius: var(--foro-radius);
+  color: var(--foro-muted);
+  text-align: center;
+}
+
+.lista-comentarios {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.comment-card {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.comment-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--foro-primary), var(--foro-accent));
+}
+
+.comment-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--foro-border-strong) !important;
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.36);
+}
+
+.comment-header {
+  gap: 14px;
+}
+
+.avatar,
+.avatar-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--foro-text);
+  background:
+    linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(167, 243, 208, 0.16)),
+    #07111f;
+  border: 1px solid rgba(125, 211, 252, 0.34);
+  font-weight: 900;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  font-size: 20px;
+}
+
+.tarjeta-usuario {
+  position: sticky;
+  top: 98px;
+  overflow: hidden;
+  padding-bottom: 24px;
+  border-radius: var(--foro-radius);
+  text-align: center;
+}
+
+.gradient-banner {
+  height: 84px;
+  background:
+    linear-gradient(135deg, rgba(56, 189, 248, 0.95), rgba(167, 243, 208, 0.88)),
+    linear-gradient(45deg, #38bdf8, #a7f3d0);
+}
+
+.avatar-box {
+  width: 82px;
+  height: 82px;
+  margin: -41px auto 14px;
+  border: 4px solid var(--foro-card);
+  font-size: 32px;
+  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.28);
+}
+
+.nombre-usuario {
+  margin: 0 18px 10px;
+  color: var(--foro-text);
+  font-size: 21px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.rol-usuario {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 4px 10px;
+  border: 1px solid rgba(199, 210, 254, 0.22);
+  border-radius: 999px;
+  color: var(--foro-soft);
+  background: rgba(199, 210, 254, 0.1);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+/* MODAL FLOTANTE */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(3, 7, 18, 0.78);
+  backdrop-filter: blur(10px);
+}
+
+.modal-content {
+  position: relative;
+  width: min(100%, 430px);
+  padding: 34px;
+  border-radius: var(--foro-radius);
+}
+
+.btn-cerrar-modal {
+  position: absolute;
+  top: 13px;
+  right: 13px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--foro-border);
+  border-radius: 50%;
+  color: var(--foro-muted);
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+}
+
+.btn-cerrar-modal:hover {
+  color: var(--foro-text);
+  border-color: var(--foro-border-strong);
+}
+
+.modal-titulo {
+  margin: 0 28px 22px;
+  color: var(--foro-text);
+  text-align: center;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.form-autenticacion {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.campo-grupo label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--foro-soft);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.input-modal {
+  min-height: 42px;
+  padding: 10px 12px;
+}
+
+.modal-acciones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn-registrar {
+  color: var(--foro-text);
+  background: rgba(148, 163, 184, 0.1);
+  border-color: var(--foro-border);
+}
+
+.btn-registrar:hover {
+  border-color: var(--foro-border-strong);
+  background: rgba(56, 189, 248, 0.12);
+}
+
+@media (max-width: 860px) {
+  .foro-container {
+    grid-template-columns: 1fr;
+  }
+
+  .tarjeta-usuario {
+    position: static;
+  }
+}
+
+@media (max-width: 560px) {
+  .foro-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .auth-buttons,
+  .btn-login-nav,
+  .btn-logout-nav {
+    width: 100%;
+  }
+
+  .foro-container {
+    width: min(100% - 22px, 1180px);
+    margin-top: 22px;
+  }
+
+  .muro-info-box,
+  .form-nuevo-aporte,
+  .modal-content {
+    padding: 20px;
+  }
+
+  .form-footer,
+  .modal-acciones {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-publicar {
+    width: 100%;
+  }
+}

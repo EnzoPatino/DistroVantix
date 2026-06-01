@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DistroVantix - Foro</title>
+    <!-- Tu archivo CSS específico -->
+    <link rel="stylesheet" href="../CSS/Foro.css" />
+    <!-- Componente de Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  </head>
+  <body>
+    <!-- BARRA SUPERIOR -->
+    <header class="foro-header">
+      <h2 class="foro-logo">DistroVantix</h2>
+      <div class="auth-buttons">
+        <button id="login-nav-btn" class="btn-login-nav">Iniciar sesión</button>
+        <button id="logout-btn" class="btn-logout-nav">Cerrar sesión</button>
+      </div>
+    </header>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main id="forum-section" class="foro-container">
+      <!-- COLUMNA IZQUIERDA: MURO Y APORTES -->
+      <section class="muro-section">
+        <div class="muro-info-box">
+          <h3>Muro de la Comunidad</h3>
+          <p>Compartí tus experiencias y dudas sobre Linux.</p>
+          <small class="total-aportes"
+            >Total de aportes: <span id="stat-comments">0</span></small
+          >
+        </div>
+
+        <!-- Alerta para usuarios no logueados -->
+        <div id="guest-alert" class="alerta-invitado">
+          👋 ¡Hola! Para publicar, necesitas iniciar sesión o registrarte.
+        </div>
+
+        <!-- Formulario de nuevo aporte -->
+        <form id="comment-form" class="form-nuevo-aporte">
+          <h4>
+            Escribir un nuevo aporte
+            <span id="char-count" class="contador-caracteres">0/500</span>
+          </h4>
+          <textarea
+            id="comment-content"
+            maxlength="500"
+            placeholder="¿Qué estás configurando hoy?"
+            class="input-aporte"
+          ></textarea>
+
+          <div class="form-footer">
+            <span id="form-feedback" class="feedback-mensaje"></span>
+            <button type="submit" class="btn-publicar">Publicar aporte</button>
+          </div>
+        </form>
+
+        <!-- Lista de comentarios -->
+        <div id="loading-state" class="estado-carga">
+          Cargando aportes de la comunidad...
+        </div>
+        <div id="empty-state" class="estado-vacio">
+          Todavía no hay comentarios.
+        </div>
+        <div id="comment-list" class="lista-comentarios"></div>
+      </section>
+
+      <!-- COLUMNA DERECHA: PERFIL -->
+      <aside class="sidebar-section">
+        <div class="tarjeta-usuario">
+          <div id="user-gradient" class="gradient-banner"></div>
+          <div id="user-avatar" class="avatar-box"></div>
+          <h3 id="user-name" class="nombre-usuario">Invitado</h3>
+          <small id="user-role" class="rol-usuario">SIN SESIÓN</small>
+        </div>
+      </aside>
+    </main>
+
+    <!-- POPUP MODAL PARA INICIAR SESIÓN / REGISTRO -->
+    <div id="login-modal" class="modal-overlay">
+      <div class="modal-content">
+        <button id="close-modal-btn" class="btn-cerrar-modal">✕</button>
+        <h3 class="modal-titulo">Ingresar a DistroVantix</h3>
+
+        <form id="auth-form" class="form-autenticacion">
+          <div class="campo-grupo">
+            <label>Correo Electrónico</label>
+            <input type="email" id="email" required class="input-modal" />
+          </div>
+          <div class="campo-grupo">
+            <label>Contraseña</label>
+            <input type="password" id="password" required class="input-modal" />
+          </div>
+          <div class="campo-grupo">
+            <label>Nombre de usuario (Solo registro)</label>
+            <input
+              type="text"
+              id="nick"
+              class="input-modal"
+              placeholder="Ej: TobiaLinux"
+            />
+          </div>
+
+          <span id="auth-feedback" class="feedback-auth"></span>
+
+          <div class="modal-acciones">
+            <button type="submit" data-action="login" class="btn-entrar">
+              Entrar
+            </button>
+            <button type="submit" data-action="register" class="btn-registrar">
+              Registrarse
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="../JS/Foro.js"></script>
+  </body>
+</html>
