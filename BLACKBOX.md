@@ -2,11 +2,11 @@
 
 ## Project Overview
 
-**DistroVantix** is a static informational website that helps users discover and choose Linux distributions (distros) tailored to their needs. The site is Spanish-language and offers guidance for users transitioning from Windows to Linux.
+**DistroVantix** is a modern web platform that helps users discover and choose Linux distributions (distros) tailored to their needs. It includes a community forum for discussion and support. The site is Spanish-language and offers guidance for users transitioning from Windows to Linux.
 
-**Website Type:** Static HTML/CSS/JS multi-page website  
+**Website Type:** Dynamic community-driven website  
 **Language:** Spanish  
-**Primary Purpose:** Linux distribution education and recommendation platform  
+**Primary Purpose:** Linux distribution education, recommendation platform, and community forum  
 **Target Audience:** Spanish-speaking users exploring Linux alternatives to Windows
 
 ---
@@ -16,31 +16,29 @@
 ```
 /home/pachorra/proyecto_DistroVantix/
 ├── Index.html              # Main landing page
-├── Gaming.html           # Gaming category page
-├── Trabajo.html          # Work/Productivity category page
-├── Bazzite.htm           # Bazzite distro details
-├── CachyOS.html         # CachyOS distro details
-├── Garuda.html          # Garuda Linux distro details
-├── Pop!_OS.html        # Pop!_OS distro details
-├── LICENSE             # Project license
-├── README.md           # Project readme
+├── Gaming.html             # Gaming category page
+├── Trabajo.html            # Work/Productivity category page
+├── Bazzite.htm             # Bazzite distro details
+├── CachyOS.html            # CachyOS distro details
+├── Garuda.html             # Garuda Linux distro details
+├── Pop!_OS.html            # Pop!_OS distro details
+├── HTML/
+│   └── Foro.html           # Community Forum page
+├── LICENSE                 # Project license
+├── README.md               # Project readme
+├── Planificacion_Foro_DistroVantix.md # Detailed forum planning and technical docs
 ├── CSS/
 │   ├── style.css              # Main global styles
+│   ├── Foro.css               # Forum-specific styles
 │   ├── distros-base.css       # Base styles for distro pages
-│   ├── Gaming-optimized.css   # Gaming page styles
-│   ├── Bazzite-optimized.css # Bazzite page styles
-│   ├── CachyOS-optimized.css # CachyOS page styles
-│   ├── Garuda-optimized.css# Garuda page styles
-│   ├── PopOS-optimized.css  # Pop!_OS page styles
-│   └── Trabajo.css         # Trabajo page styles
+│   └── ...                    # Other page-specific styles
 ├── JS/
-│   ├── script.js       # Main JavaScript (sidebar toggle)
-│   ├── Gaming.js     # Gaming page interactivity
-│   ├── Bazzite.js  # Bazzite page interactivity
-│   ├── CachyOS.js  # CachyOS page interactivity
-│   ├── Garuda.js   # Garuda page interactivity
-│   └── Pop!_OS.js # Pop!_OS page interactivity
-└── IMGS/            # Image assets
+│   ├── script.js              # Main JavaScript (sidebar toggle)
+│   ├── Foro.js                # Forum logic and Supabase integration
+│   └── ...                    # Other page-specific JS
+├── IMGS/                      # Image assets
+└── sql/
+    └── foro_policies_supabase.sql # Database security policies (RLS)
 ```
 
 ---
@@ -49,29 +47,29 @@
 
 ### Viewing the Website
 
-Open `Index.html` in any modern web browser. The site is fully client-side and requires no build process or server.
+Open `Index.html` in any modern web browser. The static content is fully client-side. The Forum requires an internet connection to connect to the Supabase backend.
 
 **Navigation:**
 - Main landing page: `Index.html`
+- Community Forum: `HTML/Foro.html`
 - Gaming category: `Gaming.html`
 - Work category: `Trabajo.html`
-- Distro-specific pages: `Bazzite.htm`, `CachyOS.html`, `Garuda.html`, `Pop!_OS.html`
+- Distro-specific pages: `Bazzite.htm`, `CachyOS.html`, etc.
 
 ### Development
 
-No build tools required. Edit files directly:
-
-- **HTML:** Page content and structure in `.html`/`.htm` files
-- **CSS:** Styles in `CSS/*.css` files
-- **JavaScript:** Interactivity in `JS/*.js` files
+- **Frontend:** HTML5, CSS3, and Vanilla JavaScript (ES6+).
+- **Backend:** Supabase (PostgreSQL + Auth).
+- **Styling:** Custom CSS with a focus on dark mode and modern aesthetics.
 
 ---
 
 ## Key Technologies
 
 - **HTML5** - Semantic markup
-- **CSS3** - Custom properties (variables), animations, flexbox, responsive design
-- **Vanilla JavaScript** - DOM manipulation, event handling
+- **CSS3** - Custom properties, animations, flexbox, responsive design
+- **Vanilla JavaScript** - DOM manipulation, event handling, async/await
+- **Supabase** - Backend-as-a-Service (Database, Authentication, RLS)
 
 ---
 
@@ -80,46 +78,30 @@ No build tools required. Edit files directly:
 ### Styling Pattern
 
 The project uses a centralized CSS approach:
-- `style.css` contains shared variables, mixins, animations, and base component styles
-- Page-specific CSS files (e.g., `Gaming-optimized.css`) add/modify page-specific styles
-- `distros-base.css` provides base styles for distro detail pages
-
-**CSS Variables (from style.css):**
-```css
-/* Colors */
---bg-main, --nav-dark, --text-light, --text-dark, --accent, --card-bg
-/* Transitions */
---transition-fast, --transition-smooth, --transition-cubic
-/* Spacing */
---gap-small, --gap-normal, --gap-large, --gap-xl
-/* Border Radius */
---radius-small, --radius-normal, --radius-large
-/* Shadows */
---shadow-sm, --shadow-md, --shadow-lg, --shadow-hover
-```
+- `style.css` contains shared variables, animations, and base component styles.
+- `Foro.css` handles the modern dark theme for the community section.
+- Page-specific CSS files add/modify styles as needed.
 
 ### JavaScript Pattern
 
-- `script.js` handles global functionality (sidebar toggle, click-outside-to-close)
-- Individual JS files may handle page-specific interactivity
+- `script.js` handles global functionality (sidebar toggle).
+- `Foro.js` manages the complete CRUD lifecycle of comments, user authentication, and profile customization using Supabase client.
+
+### Database & Security (RLS)
+
+The project implements **Row Level Security (RLS)** in Supabase to ensure:
+- **Comments:** Publicly readable; insertion allowed for authenticated users; updates/deletions restricted to the author (`auth.uid()`).
+- **Profiles:** Publicly readable; users can only update their own profile data.
 
 ---
 
 ## Common Patterns
 
-### Adding a New Category Page
+### Working with the Forum
 
-1. Create `NewCategory.html` in root
-2. Create `CSS/NewCategory-optimized.css` for custom styles
-3. Create `JS/NewCategory.js` if needed
-4. Add navigation link to sidebar in existing pages
-
-### Adding a New Distro Page
-
-1. Create `DistroName.html` in root
-2. Create `CSS/DistroName-optimized.css`
-3. Create `JS/DistroName.js` if needed
-4. Link from appropriate category page
+1. **Authentication:** Uses Supabase Auth for registration and login.
+2. **CRUD Operations:** Comments are handled via the `comentario` table with a `JOIN` to the `usuario` table for profile data.
+3. **Security:** Always execute `sql/foro_policies_supabase.sql` when setting up a new Supabase instance.
 
 ### Modifying Global Styles
 
@@ -133,7 +115,6 @@ Edit `CSS/style.css` to change:
 
 ## Important Notes
 
-- All paths are relative; no build tools needed
-- Images stored in `IMGS/` directory
-- The site uses Spanish interface text throughout
-- Responsive design breakpoint at 768px (mobile)
+- All paths are relative.
+- The forum requires a valid Supabase configuration (URL and API Key).
+- Responsive design breakpoint at 768px (mobile).

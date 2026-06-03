@@ -908,3 +908,122 @@ Se mejoro la presentacion de la seccion de foro sin modificar la estructura HTML
 ### Alcance
 
 Esta actualizacion es solo visual y documental. No cambia consultas a Supabase, autenticacion, publicacion de comentarios, policies ni estructura de base de datos.
+
+## DOCUMENTACIÓN TÉCNICA DE DESARROLLO - DISTROVANTIX (FORO)
+Estado del proyecto: Acto III (Implementación de lógica y seguridad avanzada)
+
+Base de Datos / Backend: Supabase (PostgreSQL + Auth)
+
+Frontend: HTML5, CSS3 (Estilo moderno oscuro) y JavaScript Vanila (ES6+)
+
+📅 1. LO QUE YA HICIMOS (Logros Actuales)
+Hoy resolvimos los dos problemas más críticos del foro: el efecto cascada/duplicado en la interfaz y la falta de interactividad del perfil del usuario, aplicando seguridad a nivel de base de datos.
+
+A. Corrección del Error de Renderizado ("Efecto Eco")
+Problema: Al refrescar la página (F5), los comentarios se duplicaban en pantalla de manera visual, aunque en Supabase existía un solo registro real. Esto pasaba porque el evento DOMContentLoaded y el listener onAuthStateChange de Supabase se ejecutaban en paralelo, lanzando dos peticiones síncronas que se pisaban.
+
+Solución: Centralizamos el flujo en el inicio controlado de la aplicación abajo de todo del script, quitando la llamada repetida del bloque finally de la verificación de sesión. Además, añadimos un vaciado forzado obligatorio (commentList.innerHTML = "";) al inicio de la función cargarComentarios().
+
+B. Implementación de Políticas de Seguridad RLS (Row Level Security)
+Configuramos la base de datos en la nube de Supabase para blindar las tablas y definir qué acciones puede hacer cada rol:
+
+Tabla comentario:
+
+SELECT: Habilitado público para que cualquier visitante lea los aportes.
+
+INSERT: Permitido únicamente a usuarios autenticados (authenticated).
+
+UPDATE y DELETE: Protegidos mediante la expresión SQL id_usuario = auth.uid(). Solo el creador del comentario puede editarlo o borrarlo.
+
+Tabla usuario:
+
+SELECT: Lectura global para renderizar nicks y avatares.
+
+INSERT: Permitido (true) para no bloquear el guardado de perfiles en el registro.
+
+UPDATE: Condicionado a id_usuario = auth.uid() mediante bloques USING y WITH CHECK para que cada usuario edite únicamente su propia información.
+
+C. Evolución del Sistema de Comentarios (CRUD Completo)
+Modificamos la consulta de JavaScript mediante un JOIN simple que cruza los datos de comentario con la tabla usuario. Esto permite pintar el nick y avatar en tiempo real.
+
+Añadimos una validación lógica (esMio) que inyecta dinámicamente los botones "Editar" y "Eliminar" solo en las tarjetas que pertenezcan al usuario que inició sesión.
+
+Diseñamos la edición interactiva "In-line" (en caliente): al darle a editar, el texto plano se transforma en un textarea editable dentro del muro con botones de Guardar y Cancelar.
+
+D. Sistema de Personalización de Perfil
+Diseñamos e inyectamos un segundo modal interactivo (#profile-modal) en el HTML para la configuración de la cuenta.
+
+Programamos la lógica en JavaScript que toma el nuevo Nick y el emoji de avatar seleccionado por el usuario, actualiza la fila correspondiente en la base de datos y refresca la interfaz sin perder la sesión.
+
+🚀 2. PASOS A SEGUIR PARA CONTINUAR (Hoja de Ruta)
+Como el tiempo apremia, esta es la lista de prioridades técnicas ordenadas de mayor a menor importancia para dejar el foro impecable:
+
+🟩 Paso A: Estilar los nuevos elementos en CSS (CSS/Foro.css)
+El HTML ahora tiene componentes nuevos que necesitan heredar la estética oscura del sitio:
+
+Los botones Editar y Eliminar: Darles un diseño más prolijo con transiciones suaves (transition: 0.2s;), quitando los estilos en línea (style="") que usamos para la prueba rápida.
+
+El Textarea de edición dentro del muro: Asegurarse de que use las variables de color del tema (los fondos oscuros #11111b y los bordes lavanda/morados).
+
+El Modal de Perfil: Verificar que se vea idéntico al modal de Login para mantener la consistencia visual.
+
+🟨 Paso B: Validaciones de Seguridad en el Frontend
+Para evitar que los usuarios rompan la interfaz o envíen datos inválidos:
+
+Control de espacios vacíos: Bloquear el botón de "Guardar" si el usuario intenta dejar su Nick en blanco o si borra todo el texto al editar un comentario.
+
+Sanitización básica: Asegurarse de que si un usuario escribe código HTML en su comentario (ej: <script>...</script>), el sistema lo muestre como texto plano y no ejecute scripts maliciosos (XSS), usando .textContent en lugar de .innerHTML para el cuerpo del mensaje.
+
+🟧 Paso C: Mejoras de UX (Experiencia de Usuario)
+Mensajes de confirmación limpios: Reemplazar el confirm() nativo del navegador (el cartel gris feo que salta al borrar) por una transición o un aviso integrado más elegante.
+
+Fechas relativas: En lugar de mostrar la fecha estática "03/06/2026 17:40", implementar una función simple que diga "Hace 5 minutos", "Hace 2 horas" o "Ayer", lo que le da mucha más vida de foro real a la comunidad.
+
+## Avance aplicado el 03/06/2026
+
+Se continuo la ruta indicada en la documentacion tecnica del foro, priorizando los pasos A, B y C.
+
+### Cambios realizados
+
+- Se reemplazo el renderizado de comentarios basado en `innerHTML` por creacion de nodos DOM y asignacion con `textContent` para el contenido escrito por usuarios.
+- La consulta de comentarios ahora trae datos del autor desde `usuario`: `nombre_usuario`, `foto_usuario`, `distro_favorita` y `rol`.
+- Se agregaron botones `Editar` y `Eliminar` solo para comentarios propios.
+- Se implemento edicion inline con textarea, validacion para evitar comentarios vacios y botones `Guardar` y `Cancelar`.
+- Se reemplazo la confirmacion nativa de eliminacion por un aviso integrado dentro de la tarjeta del comentario.
+- Se agregaron fechas relativas: `Ahora`, `Hace X min`, `Hace X h`, `Ayer` o fecha corta para comentarios antiguos.
+- Se agrego un modal de perfil para editar `nombre_usuario` y `foto_usuario`.
+- Se agregaron estilos para acciones de comentario, textarea de edicion, confirmacion de borrado y boton/modal de perfil.
+- Se agrego policy `DELETE` para que cada usuario autenticado pueda eliminar solo sus propios comentarios.
+
+### Archivos modificados
+
+- `JS/Foro.js`
+- `HTML/Foro.html`
+- `CSS/Foro.css`
+- `sql/foro_policies_supabase.sql`
+- `Planificacion_Foro_DistroVantix.md`
+
+### Verificacion local
+
+Se ejecuto:
+
+```bash
+node --check JS/Foro.js
+```
+
+El archivo JavaScript no presento errores de sintaxis.
+
+### Accion necesaria en Supabase
+
+Ejecutar nuevamente:
+
+`sql/foro_policies_supabase.sql`
+
+Esto es necesario para aplicar la nueva policy de eliminacion de comentarios propios.
+
+### Proxima ruta recomendada
+
+1. Probar en navegador con una cuenta real: crear comentario, editarlo, cancelarlo, guardarlo y eliminarlo.
+2. Confirmar que Supabase tiene la relacion entre `comentario.id_usuario` y `usuario.id_usuario`; la consulta usa embedding de Supabase para traer el perfil del autor.
+3. Agregar moderacion minima: ocultar comentarios con `estado = oculto` en lugar de eliminarlos definitivamente.
+4. Agregar controles visibles solo para `moderador` y `administrador`.

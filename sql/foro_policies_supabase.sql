@@ -88,3 +88,10 @@ for update
 to authenticated
 using (id_usuario = auth.uid())
 with check (id_usuario = auth.uid());
+
+drop policy if exists "Usuarios pueden eliminar sus comentarios" on public.comentario;
+create policy "Usuarios pueden eliminar sus comentarios"
+on public.comentario
+for delete
+to authenticated
+using (id_usuario = auth.uid());

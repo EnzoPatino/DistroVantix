@@ -106,7 +106,9 @@ textarea:focus-visible {
 .btn-logout-nav,
 .btn-publicar,
 .btn-entrar,
-.btn-registrar {
+.btn-registrar,
+.btn-profile-edit,
+.btn-comment-action {
   min-height: 42px;
   border: 1px solid transparent;
   border-radius: var(--foro-radius);
@@ -308,6 +310,8 @@ textarea:focus-visible {
 .comment-card {
   position: relative;
   overflow: hidden;
+  padding: 18px 18px 18px 21px;
+  border-radius: var(--foro-radius);
   transition:
     transform 180ms ease,
     border-color 180ms ease,
@@ -329,7 +333,142 @@ textarea:focus-visible {
 }
 
 .comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   gap: 14px;
+  margin-bottom: 12px;
+}
+
+.comment-author {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 11px;
+}
+
+.comment-author-meta {
+  min-width: 0;
+}
+
+.comment-author-meta h4 {
+  margin: 0 0 5px;
+  color: var(--foro-text);
+  font-size: 16px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.role-badge,
+.comment-distro {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 3px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.role-badge {
+  margin-right: 6px;
+  color: var(--foro-soft);
+  background: rgba(199, 210, 254, 0.1);
+  border: 1px solid rgba(199, 210, 254, 0.2);
+}
+
+.comment-distro {
+  color: var(--foro-accent);
+  background: rgba(167, 243, 208, 0.08);
+  border: 1px solid rgba(167, 243, 208, 0.16);
+}
+
+.comment-date {
+  flex: 0 0 auto;
+  color: var(--foro-muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.comment-body {
+  margin: 0;
+  color: var(--foro-muted);
+  font-size: 15px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.comment-actions,
+.comment-edit-actions,
+.delete-confirm-box {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.btn-comment-action {
+  min-height: 34px;
+  padding: 7px 11px;
+  color: var(--foro-soft);
+  background: rgba(148, 163, 184, 0.09);
+  border-color: var(--foro-border);
+  font-size: 13px;
+}
+
+.btn-comment-action:hover {
+  color: var(--foro-text);
+  border-color: var(--foro-border-strong);
+  background: rgba(56, 189, 248, 0.12);
+}
+
+.btn-comment-danger {
+  color: #fecdd3;
+  background: rgba(251, 113, 133, 0.12);
+  border-color: rgba(251, 113, 133, 0.3);
+}
+
+.btn-comment-danger:hover {
+  background: rgba(251, 113, 133, 0.2);
+  border-color: rgba(251, 113, 133, 0.48);
+}
+
+.btn-comment-save {
+  color: #06121f;
+  background: linear-gradient(135deg, var(--foro-accent), var(--foro-primary));
+}
+
+.comment-edit-textarea {
+  width: 100%;
+  min-height: 110px;
+  padding: 13px;
+  border: 1px solid var(--foro-border-strong);
+  border-radius: var(--foro-radius);
+  color: var(--foro-text);
+  background: rgba(5, 10, 22, 0.84);
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.comment-inline-feedback {
+  min-height: 20px;
+  color: var(--foro-warning);
+  font-size: 13px;
+}
+
+.delete-confirm-box {
+  padding: 12px;
+  border: 1px solid rgba(253, 230, 138, 0.28);
+  border-radius: var(--foro-radius);
+  color: #fff7d6;
+  background: rgba(253, 230, 138, 0.08);
+}
+
+.delete-confirm-box span {
+  margin-right: auto;
+  font-size: 14px;
 }
 
 .avatar,
@@ -397,6 +536,22 @@ textarea:focus-visible {
   background: rgba(199, 210, 254, 0.1);
   font-size: 11px;
   font-weight: 900;
+}
+
+.btn-profile-edit {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 36px);
+  margin: 18px auto 0;
+  color: var(--foro-text);
+  background: rgba(148, 163, 184, 0.1);
+  border-color: var(--foro-border);
+}
+
+.btn-profile-edit:hover {
+  border-color: var(--foro-border-strong);
+  background: rgba(56, 189, 248, 0.12);
 }
 
 /* MODAL FLOTANTE */
@@ -471,6 +626,10 @@ textarea:focus-visible {
   margin-top: 10px;
 }
 
+.modal-acciones-simple {
+  grid-template-columns: 1fr;
+}
+
 .btn-registrar {
   color: var(--foro-text);
   background: rgba(148, 163, 184, 0.1);
@@ -516,10 +675,15 @@ textarea:focus-visible {
   }
 
   .form-footer,
-  .modal-acciones {
+  .modal-acciones,
+  .comment-header {
     grid-template-columns: 1fr;
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .comment-date {
+    align-self: flex-start;
   }
 
   .btn-publicar {
