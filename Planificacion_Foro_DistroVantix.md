@@ -1013,17 +1013,37 @@ node --check JS/Foro.js
 
 El archivo JavaScript no presento errores de sintaxis.
 
-### Accion necesaria en Supabase
+### Estado funcional confirmado
 
-Ejecutar nuevamente:
+El flujo ya se encuentra en funcionamiento:
 
-`sql/foro_policies_supabase.sql`
+- Los usuarios pueden editar su nombre de perfil desde el foro.
+- Los usuarios autenticados pueden publicar comentarios.
+- Los comentarios publicados quedan visibles para otros usuarios.
+- Cada usuario puede editar sus propios comentarios.
+- Cada usuario puede eliminar sus propios comentarios.
+- Los botones de edicion y eliminacion solo aparecen en comentarios propios.
 
-Esto es necesario para aplicar la nueva policy de eliminacion de comentarios propios.
+Esto confirma que Supabase Auth, la tabla `usuario`, la tabla `comentario` y las policies RLS necesarias para el CRUD propio estan trabajando de forma coordinada.
+
+### Estado de Supabase
+
+Las policies de lectura, insercion, actualizacion y eliminacion de comentarios propios ya quedaron validadas en uso real.
+
+La policy importante para eliminacion es:
+
+```sql
+create policy "Usuarios pueden eliminar sus comentarios"
+on public.comentario
+for delete
+to authenticated
+using (id_usuario = auth.uid());
+```
 
 ### Proxima ruta recomendada
 
-1. Probar en navegador con una cuenta real: crear comentario, editarlo, cancelarlo, guardarlo y eliminarlo.
-2. Confirmar que Supabase tiene la relacion entre `comentario.id_usuario` y `usuario.id_usuario`; la consulta usa embedding de Supabase para traer el perfil del autor.
-3. Agregar moderacion minima: ocultar comentarios con `estado = oculto` en lugar de eliminarlos definitivamente.
-4. Agregar controles visibles solo para `moderador` y `administrador`.
+1. Agregar moderacion minima: ocultar comentarios con `estado = oculto` en lugar de eliminarlos definitivamente.
+2. Agregar controles visibles solo para `moderador` y `administrador`.
+3. Registrar quien intervino cada comentario usando `id_moderador` o `id_admin`.
+4. Preparar una vista simple para revisar comentarios ocultos o intervenidos.
+5. Evaluar una tabla `historial_moderacion` si se necesita guardar cada accion administrativa.
