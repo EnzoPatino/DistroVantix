@@ -70,14 +70,29 @@ h1, h2, h3, h4 {
   position: sticky;
   top: 0;
   z-index: 100;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 2rem;
-  padding: 1rem 5%;
+  padding: 0.5rem 5%;
   background: rgba(7, 11, 20, 0.8);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--glass-border);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.foro-logo img {
+  height: 50px;
+  width: auto;
+  transition: var(--foro-transition);
+}
+
+.foro-logo img:hover {
+  transform: scale(1.05);
 }
 
 .foro-nav {
@@ -113,6 +128,74 @@ h1, h2, h3, h4 {
 
 .foro-nav a:hover::after {
   width: 100%;
+}
+
+/* Sidebar / Tablero */
+.tablero {
+  position: fixed;
+  left: -300px;
+  top: 0;
+  width: 280px;
+  max-width: 80%;
+  height: 100%;
+  background: linear-gradient(180deg, #070b14 0%, #0f172a 100%);
+  padding: 30px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2000;
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+  border-right: 2px solid var(--foro-accent);
+  overflow-y: auto;
+}
+
+.tablero.active {
+  left: 0;
+}
+
+.sidebar-title {
+  color: var(--foro-accent);
+  font-size: 1.2rem;
+  margin: 20px 0 15px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+  padding-bottom: 5px;
+}
+
+.sidebar-links {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.sidebar-links li {
+  margin-bottom: 5px;
+}
+
+.sidebar-links a {
+  text-decoration: none;
+  display: block;
+}
+
+.cat-btn {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 12px;
+  border: 2px solid var(--foro-accent);
+  border-radius: 12px;
+  background: none;
+  text-align: left;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  color: var(--foro-text);
+}
+
+.cat-btn:hover {
+  background-color: var(--foro-accent);
+  color: #064e3b;
+  transform: translateX(10px);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
 }
 
 /* Buttons */
@@ -615,16 +698,21 @@ h1, h2, h3, h4 {
 
 @media (max-width: 768px) {
   .foro-header {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1.5rem;
+    padding: 0.5rem 3%;
   }
   
   .foro-nav {
-    gap: 1.5rem;
-    flex-wrap: wrap;
+    display: none;
   }
   
+  .header-left {
+    gap: 0.5rem;
+  }
+
+  .foro-logo img {
+    height: 40px;
+  }
+
   .auth-buttons {
     justify-content: center;
   }
