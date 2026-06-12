@@ -11,7 +11,10 @@ const loginNavBtn = document.getElementById("login-nav-btn");
 const logoutBtn = document.getElementById("logout-btn");
 const loginModal = document.getElementById("login-modal");
 const closeModalBtn = document.getElementById("close-modal-btn");
-const authForm = document.getElementById("auth-form");
+const loginForm = document.getElementById("login-form");
+const registerForm = document.getElementById("register-form");
+const tabLogin = document.getElementById("tab-login");
+const tabRegister = document.getElementById("tab-register");
 const commentForm = document.getElementById("comment-form");
 const guestAlert = document.getElementById("guest-alert");
 const commentContent = document.getElementById("comment-content");
@@ -130,6 +133,10 @@ async function chequearSesion() {
       if (guestAlert) guestAlert.style.display = "block";
       if (commentForm) commentForm.style.display = "none";
       if (profileEditBtn) profileEditBtn.style.display = "none";
+      if (loginModal) {
+        loginModal.style.display = "flex";
+        if (closeModalBtn) closeModalBtn.style.display = "none";
+      }
     }
   } catch (error) {
     console.error("Error al verificar la sesión:", error.message);
@@ -159,68 +166,125 @@ async function crearPerfilBasicoDesdeSesion(user) {
 // ========================================
 // 2. LOGUEARSE Y REGISTRARSE
 // ========================================
-if (authForm) {
-  authForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const action = e.submitter.getAttribute("data-action");
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-    const nickInput = document.getElementById("nick");
-    const nick = nickInput ? nickInput.value.trim() : "";
-    const authFeedback = document.getElementById("auth-feedback");
 
-    if (!authFeedback) return;
-    authFeedback.textContent = "Procesando...";
-    authFeedback.style.color = "#eab308";
+// Alternar pestañas del modal (Iniciar Sesión / Registro)
+if (tabLogin && tabRegister && loginForm && registerForm) {
+  tabLogin.addEventListener("click", () => {
+    tabLogin.classList.add("active");
+    tabRegister.classList.remove("active");
+    loginForm.style.display = "block";
+    registerForm.style.display = "none";
+    
+    // Limpiar feedback de ambos
+    const loginFeedback = document.getElementById("login-feedback");
+    const registerFeedback = document.getElementById("register-feedback");
+    if (loginFeedback) loginFeedback.textContent = "";
+    if (registerFeedback) registerFeedback.textContent = "";
+  });
+
+  tabRegister.addEventListener("click", () => {
+    tabRegister.classList.add("active");
+    tabLogin.classList.remove("active");
+    registerForm.style.display = "block";
+    loginForm.style.display = "none";
+
+    // Limpiar feedback de ambos
+    const loginFeedback = document.getElementById("login-feedback");
+    const registerFeedback = document.getElementById("register-feedback");
+    if (loginFeedback) loginFeedback.textContent = "";
+    if (registerFeedback) registerFeedback.textContent = "";
+  });
+}
+
+if (loginForm) {
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("login-email").value.trim();
+    const password = document.getElementById("login-password").value;
+    const feedback = document.getElementById("login-feedback");
+
+    if (!feedback) return;
+    feedback.textContent = "Procesando...";
+    feedback.style.color = "#eab308";
 
     try {
-      if (action === "register") {
-        const { data: authData, error: signupError } =
-          await supabaseClient.auth.signUp({
-            email,
-            password,
-            options: {
-              data: {
-                nombre_usuario: nick || "Nuevo miembro",
-                foto_usuario: "🐧",
-              },
-            },
-          });
+      const { error: loginError } = await supabaseClient.auth.signInWithPassword({ email, password });
+      if (loginError) throw loginError;
 
-        if (signupError) throw signupError;
+      feedback.textContent = "¡Ingreso correcto!";
+      feedback.style.color = "#22c55e";
+      loginForm.reset();
+      if (loginModal) loginModal.style.display = "none";
+      await chequearSesion();
+      await cargarComentarios();
+    } catch (error) {
+      console.error("Error de login:", error.message);
+      feedback.textContent = "Error: " + error.message;
+      feedback.style.color = "#ff5555";
+    }
+  });
+}
 
-        if (authData?.user) {
-          await supabaseClient.from("usuario").insert([
-            {
-              id_usuario: authData.user.id,
-              email: email,
-              nick: nick || "Nuevo miembro",
-              avatar_url: "🐧",
-              descripcion: "",
-              distro_favorita: "Distro favorita no indicada",
-              estado: "activo",
-              rol: "usuario",
-            },
-          ]);
-          authFeedback.textContent = "¡Registro exitoso! Ya podés ingresar.";
-          authFeedback.style.color = "#22c55e";
-        }
-      } else {
-        const { error: loginError } =
-          await supabaseClient.auth.signInWithPassword({ email, password });
-        if (loginError) throw loginError;
+if (registerForm) {
+  registerForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const nick = document.getElementById("register-nick").value.trim();
+    const email = document.getElementById("register-email").value.trim();
+    const password = document.getElementById("register-password").value;
+    const feedback = document.getElementById("register-feedback");
 
-        authFeedback.textContent = "¡Ingreso correcto!";
-        authFeedback.style.color = "#22c55e";
-        authForm.reset();
-        if (loginModal) loginModal.style.display = "none";
-        await chequearSesion();
-        await cargarComentarios();
+    if (!feedback) return;
+    feedback.textContent = "Procesando...";
+    feedback.style.color = "#eab308";
+
+    try {
+      const { data: authData, error: signupError } = await supabaseClient.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            nombre_usuario: nick || "Nuevo miembro",
+            foto_usuario: "🐧",
+          },
+        },
+      });
+
+      if (signupError) throw signupError;
+
+      if (authData?.user) {
+        await supabaseClient.from("usuario").insert([
+          {
+            id_usuario: authData.user.id,
+            email: email,
+            nick: nick || "Nuevo miembro",
+            avatar_url: "🐧",
+            descripcion: "",
+            distro_favorita: "Distro favorita no indicada",
+            estado: "activo",
+            rol: "usuario",
+          },
+        ]);
+        feedback.textContent = "¡Registro exitoso! Redirigiendo a inicio de sesión...";
+        feedback.style.color = "#22c55e";
+        
+        setTimeout(() => {
+          registerForm.reset();
+          if (tabLogin) tabLogin.click();
+          const loginEmailInput = document.getElementById("login-email");
+          if (loginEmailInput) {
+            loginEmailInput.value = email;
+          }
+          const loginPassInput = document.getElementById("login-password");
+          if (loginPassInput) {
+            loginPassInput.focus();
+          }
+          feedback.textContent = "";
+        }, 2000);
       }
     } catch (error) {
-      console.error("Error de auth:", error.message);
-      authFeedback.textContent = "Error: " + error.message;
-      authFeedback.style.color = "#ff5555";
+      console.error("Error de registro:", error.message);
+      feedback.textContent = "Error: " + error.message;
+      feedback.style.color = "#ff5555";
     }
   });
 }
