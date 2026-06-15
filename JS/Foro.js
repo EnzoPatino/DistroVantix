@@ -344,6 +344,8 @@ function crearTarjetaComentario(comentario) {
   const autor = comentario.usuario || {};
   const esMio =
     usuarioLogueado && comentario.id_usuario === usuarioLogueado.id_usuario;
+  const esAdmin = usuarioLogueado && usuarioLogueado.rol === "ADMIN";
+  const puedeModificar = esMio || esAdmin;
 
   const card = document.createElement("article");
   card.className = "comment-card";
@@ -367,7 +369,7 @@ function crearTarjetaComentario(comentario) {
 
   const role = document.createElement("small");
   role.className = "role-badge";
-  role.textContent = (autor.role || autor.rol || "usuario").toUpperCase();
+  role.textContent = (autor.rol || "usuario").toUpperCase();
 
   const distro = document.createElement("span");
   distro.className = "comment-distro";
@@ -389,14 +391,14 @@ function crearTarjetaComentario(comentario) {
 
   card.append(header, body);
 
-  if (esMio) {
+  if (puedeModificar) {
     const actions = document.createElement("div");
     actions.className = "comment-actions";
 
     const editBtn = document.createElement("button");
     editBtn.type = "button";
     editBtn.className = "btn-comment-action";
-    editBtn.textContent = "Editar";
+    editBtn.textContent = esAdmin && !esMio ? "Moderar" : "Editar";
     editBtn.addEventListener("click", () =>
       activarEdicionComentario(card, comentario),
     );
