@@ -423,10 +423,11 @@ function activarEdicionComentario(card, comentario) {
   const actions = card.querySelector(".comment-actions");
   if (!body || !actions) return;
 
+  // Crear el área de texto para editar
   const editor = document.createElement("textarea");
   editor.className = "comment-edit-textarea";
   editor.maxLength = 500;
-  editor.value = comentario.contenido;
+  editor.value = comentario.contenido; // Ponemos el texto actual
 
   const editActions = document.createElement("div");
   editActions.className = "comment-edit-actions";
@@ -438,13 +439,30 @@ function activarEdicionComentario(card, comentario) {
   saveBtn.type = "button";
   saveBtn.className = "btn-comment-action btn-comment-save";
   saveBtn.textContent = "Guardar";
+
+  // Al hacer clic en Guardar
   saveBtn.addEventListener("click", async () => {
-    const nuevoContenido = editor.value.trim();
-    if (!nuevoContenido) {
+    const textoModificado = editor.value.trim();
+    if (!textoModificado) {
       feedback.textContent = "El comentario no puede quedar vacío.";
+      feedback.style.color = "#ff5555";
       return;
     }
-    await guardarEdicionComentario(comentario.id_comentario, nuevoContenido);
+
+    saveBtn.disabled = true;
+    feedback.textContent = "Guardando...";
+    feedback.style.color = "#eab308";
+
+    // Llamamos a la función encargada de hablar con Supabase
+    const exito = await guardarEdicionComentario(comentario.id_comentario, textoModificado);
+
+    if (exito) {
+      await cargarComentarios(); // Forzamos a la pantalla a traer los comentarios actualizados
+    } else {
+      feedback.textContent = "Error al guardar.";
+      feedback.style.color = "#ff5555";
+      saveBtn.disabled = false;
+    }
   });
 
   const cancelBtn = document.createElement("button");
@@ -459,16 +477,19 @@ function activarEdicionComentario(card, comentario) {
   editor.focus();
 }
 
-async function guardarEdicionComentario(idComentario, contenido) {
+async function guardarEdicionComentario(idComentario, nuevoTexto) {
   try {
+    // Le pasamos explícitamente a la columna 'contenido' el valor de 'nuevoTexto'
     const { error } = await supabaseClient
       .from("comentario")
-      .update({ contenido })
+      .update({ contenido: nuevoTexto })
       .eq("id_comentario", idComentario);
+
     if (error) throw error;
-    await cargarComentarios();
+    return true; // Retorna verdadero si no hubo errores
   } catch (error) {
-    console.error("Error al editar comentario:", error.message);
+    console.error("Error al editar comentario en Supabase:", error.message);
+    return false;
   }
 }
 
