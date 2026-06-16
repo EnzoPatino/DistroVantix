@@ -454,12 +454,12 @@ function activarEdicionComentario(card, comentario) {
     feedback.style.color = "#eab308";
 
     // Llamamos a la función encargada de hablar con Supabase
-    const exito = await guardarEdicionComentario(comentario.id_comentario, textoModificado);
+    const resultado = await guardarEdicionComentario(comentario.id_comentario, textoModificado);
 
-    if (exito) {
+    if (resultado.ok) {
       await cargarComentarios(); // Forzamos a la pantalla a traer los comentarios actualizados
     } else {
-      feedback.textContent = "Error al guardar.";
+      feedback.textContent = "Error: " + resultado.msg;
       feedback.style.color = "#ff5555";
       saveBtn.disabled = false;
     }
@@ -486,10 +486,10 @@ async function guardarEdicionComentario(idComentario, nuevoTexto) {
       .eq("id_comentario", idComentario);
 
     if (error) throw error;
-    return true; // Retorna verdadero si no hubo errores
+    return { ok: true }; // Retorna éxito si no hubo errores
   } catch (error) {
     console.error("Error al editar comentario en Supabase:", error.message);
-    return false;
+    return { ok: false, msg: error.message };
   }
 }
 
