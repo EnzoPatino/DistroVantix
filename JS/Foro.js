@@ -219,7 +219,7 @@ if (loginForm) {
       await cargarComentarios();
     } catch (error) {
       console.error("Error de login:", error.message);
-      feedback.textContent = "Error: " + error.message;
+      feedback.textContent = "Credenciales inválidas. Verificá tu email y contraseña.";
       feedback.style.color = "#ff5555";
     }
   });
@@ -283,7 +283,7 @@ if (registerForm) {
       }
     } catch (error) {
       console.error("Error de registro:", error.message);
-      feedback.textContent = "Error: " + error.message;
+      feedback.textContent = "No se pudo completar el registro. Intentá de nuevo más tarde.";
       feedback.style.color = "#ff5555";
     }
   });

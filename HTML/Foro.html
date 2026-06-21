@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../CSS/Foro.css" />
     <!-- Componente de Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Cloudflare Turnstile (CAPTCHA) -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   </head>
   <body>
     <!-- BARRA SUPERIOR -->
@@ -156,6 +158,7 @@
             <input type="password" id="login-password" required class="input-modal" placeholder="••••••••" />
           </div>
           <span id="login-feedback" class="feedback-auth"></span>
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAA0-V7k6yBdBcFMG" style="margin: 12px 0; display: flex; justify-content: center;"></div>
           <div class="modal-acciones-single">
             <button type="submit" class="btn-entrar full-width">Entrar</button>
           </div>
@@ -176,6 +179,7 @@
             <input type="password" id="register-password" required class="input-modal" placeholder="Mínimo 6 caracteres" minlength="6" />
           </div>
           <span id="register-feedback" class="feedback-auth"></span>
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAA0-V7k6yBdBcFMG" style="margin: 12px 0; display: flex; justify-content: center;"></div>
           <div class="modal-acciones-single">
             <button type="submit" class="btn-registrar-submit full-width">Registrarse</button>
           </div>
