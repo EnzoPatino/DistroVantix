@@ -1,684 +1,616 @@
-// ========================================
-// CONFIGURACIÓN DE SUPABASE
-// ========================================
-const SUPABASE_URL = "https://hagcsftbwbglyjdtvrnz.supabase.co";
-// Asegurate de que esta sea tu clave anónima real completa
-const SUPABASE_ANON_KEY = "sb_publishable_pX1pErOuGyzRWj9PTnqQtQ_Yno8idk5";
-const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+/**
+ * DistroVantix - Foro
+ * UI del muro y perfil del foro. Auth/Supabase se centraliza en JS/authGlobal.js.
+ */
+(function () {
+  const state = {
+    auth: null,
+    supabase: null,
+    usuarioLogueado: null,
+  };
 
-// Elementos de la interfaz (DOM)
-const loginNavBtn = document.getElementById("login-nav-btn");
-const logoutBtn = document.getElementById("logout-btn");
-const loginModal = document.getElementById("login-modal");
-const closeModalBtn = document.getElementById("close-modal-btn");
-const loginForm = document.getElementById("login-form");
-const registerForm = document.getElementById("register-form");
-const tabLogin = document.getElementById("tab-login");
-const tabRegister = document.getElementById("tab-register");
-const commentForm = document.getElementById("comment-form");
-const guestAlert = document.getElementById("guest-alert");
-const commentContent = document.getElementById("comment-content");
-const charCount = document.getElementById("char-count");
-const commentList = document.getElementById("comment-list");
-const loadingState = document.getElementById("loading-state");
-const emptyState = document.getElementById("empty-state");
-const profileEditBtn = document.getElementById("profile-edit-btn");
-const profileModal = document.getElementById("profile-modal");
-const closeProfileModalBtn = document.getElementById("close-profile-modal-btn");
-const profileForm = document.getElementById("profile-form");
-const profileNameInput = document.getElementById("profile-name-input");
-const profileAvatarInput = document.getElementById("profile-avatar-input");
-const profileFeedback = document.getElementById("profile-feedback");
+  const els = {};
 
-let usuarioLogueado = null;
-
-// Control del modal flotante de Login
-if (loginNavBtn) {
-  loginNavBtn.addEventListener("click", () => {
-    if (loginModal) loginModal.style.display = "flex";
-  });
-}
-if (closeModalBtn) {
-  closeModalBtn.addEventListener("click", () => {
-    if (loginModal) loginModal.style.display = "none";
-  });
-}
-
-// Control del modal flotante de Perfil
-if (profileEditBtn) {
-  profileEditBtn.addEventListener("click", () => {
-    if (!usuarioLogueado || !profileModal) return;
-    if (profileNameInput) profileNameInput.value = usuarioLogueado.nick;
-    if (profileAvatarInput)
-      profileAvatarInput.value = usuarioLogueado.avatar_url;
-    profileModal.style.display = "flex";
-  });
-}
-if (closeProfileModalBtn) {
-  closeProfileModalBtn.addEventListener("click", () => {
-    if (profileModal) profileModal.style.display = "none";
-  });
-}
-
-// Escuchar cambios de estado de autenticación en Supabase
-supabaseClient.auth.onAuthStateChange((event, session) => {
-  chequearSesion();
-});
-
-// ========================================
-// 1. CHEQUEO DE SESIÓN ACTIVA
-// ========================================
-async function chequearSesion() {
-  try {
-    const {
-      data: { session },
-      error: authError,
-    } = await supabaseClient.auth.getSession();
-    if (authError) throw authError;
-
-    if (session && session.user) {
-      const { data: perfil } = await supabaseClient
-        .from("usuario")
-        .select("*")
-        .eq("id_usuario", session.user.id)
-        .single();
-
-      if (!perfil) {
-        await crearPerfilBasicoDesdeSesion(session.user);
-      }
-
-      usuarioLogueado = {
-        id_usuario: session.user.id,
-        email: session.user.email,
-        nick:
-          perfil?.nick ||
-          session.user.user_metadata?.nombre_usuario ||
-          "Usuario de la comunidad",
-        avatar_url:
-          perfil?.avatar_url ||
-          session.user.user_metadata?.foto_usuario ||
-          "🐧",
-        distro_favorita: perfil?.distro_favorita || "No indicada",
-        estado: perfil?.estado || "activo",
-        rol: perfil?.rol || "usuario",
-      };
-
-      // Dibujar datos en el HTML aside
-      if (document.getElementById("user-name"))
-        document.getElementById("user-name").textContent = usuarioLogueado.nick;
-      if (document.getElementById("user-role"))
-        document.getElementById("user-role").textContent =
-          usuarioLogueado.rol.toUpperCase();
-      if (document.getElementById("user-avatar"))
-        document.getElementById("user-avatar").textContent =
-          usuarioLogueado.avatar_url;
-
-      // Ajustar botones de la interfaz
-      if (profileEditBtn) profileEditBtn.style.display = "inline-flex";
-      if (loginNavBtn) loginNavBtn.style.display = "none";
-      if (logoutBtn) logoutBtn.style.display = "block";
-      if (guestAlert) guestAlert.style.display = "none";
-      if (commentForm) commentForm.style.display = "block";
-      if (loginModal) loginModal.style.display = "none";
-    } else {
-      usuarioLogueado = null;
-      if (document.getElementById("user-name"))
-        document.getElementById("user-name").textContent = "Invitado";
-      if (document.getElementById("user-role"))
-        document.getElementById("user-role").textContent = "SIN SESIÓN";
-      if (document.getElementById("user-avatar"))
-        document.getElementById("user-avatar").textContent = "";
-      if (loginNavBtn) loginNavBtn.style.display = "block";
-      if (logoutBtn) logoutBtn.style.display = "none";
-      if (guestAlert) guestAlert.style.display = "block";
-      if (commentForm) commentForm.style.display = "none";
-      if (profileEditBtn) profileEditBtn.style.display = "none";
-      if (loginModal) {
-        loginModal.style.display = "flex";
-        if (closeModalBtn) closeModalBtn.style.display = "none";
-      }
-    }
-  } catch (error) {
-    console.error("Error al verificar la sesión:", error.message);
+  function getPathPrefix() {
+    return window.location.pathname.includes("/HTML/") ? "../" : "";
   }
-}
 
-async function crearPerfilBasicoDesdeSesion(user) {
-  const nombreUsuario =
-    user.user_metadata?.nombre_usuario ||
-    user.email?.split("@")[0] ||
-    "Usuario de la comunidad";
-  await supabaseClient.from("usuario").upsert(
-    {
-      id_usuario: user.id,
-      email: user.email,
-      nick: nombreUsuario,
-      avatar_url: user.user_metadata?.foto_usuario || "🐧",
-      descripcion: "",
-      distro_favorita: "Distro favorita no indicada",
-      estado: "activo",
-      rol: "usuario",
-    },
-    { onConflict: "id_usuario" },
-  );
-}
+  function loadScriptOnce(src) {
+    return new Promise((resolve, reject) => {
+      const existing = document.querySelector(`script[src="${src}"]`);
+      if (existing) {
+        existing.addEventListener("load", resolve, { once: true });
+        existing.addEventListener("error", reject, { once: true });
+        resolve();
+        return;
+      }
 
-// ========================================
-// 2. LOGUEARSE Y REGISTRARSE
-// ========================================
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+  }
 
-// Alternar pestañas del modal (Iniciar Sesión / Registro)
-if (tabLogin && tabRegister && loginForm && registerForm) {
-  tabLogin.addEventListener("click", () => {
-    tabLogin.classList.add("active");
-    tabRegister.classList.remove("active");
-    loginForm.style.display = "block";
-    registerForm.style.display = "none";
-    
-    // Limpiar feedback de ambos
-    const loginFeedback = document.getElementById("login-feedback");
-    const registerFeedback = document.getElementById("register-feedback");
-    if (loginFeedback) loginFeedback.textContent = "";
-    if (registerFeedback) registerFeedback.textContent = "";
-  });
+  async function ensureAuthModule() {
+    if (window.DistroVantixAuth) return window.DistroVantixAuth;
+    await loadScriptOnce(`${getPathPrefix()}JS/authGlobal.js`);
+    return window.DistroVantixAuth;
+  }
 
-  tabRegister.addEventListener("click", () => {
-    tabRegister.classList.add("active");
-    tabLogin.classList.remove("active");
-    registerForm.style.display = "block";
-    loginForm.style.display = "none";
+  function cacheDOM() {
+    els.loginNavBtn = document.getElementById("login-nav-btn");
+    els.logoutBtn = document.getElementById("logout-btn");
+    els.loginModal = document.getElementById("login-modal");
+    els.closeModalBtn = document.getElementById("close-modal-btn");
+    els.loginForm = document.getElementById("login-form");
+    els.registerForm = document.getElementById("register-form");
+    els.tabLogin = document.getElementById("tab-login");
+    els.tabRegister = document.getElementById("tab-register");
+    els.commentForm = document.getElementById("comment-form");
+    els.guestAlert = document.getElementById("guest-alert");
+    els.commentContent = document.getElementById("comment-content");
+    els.charCount = document.getElementById("char-count");
+    els.commentList = document.getElementById("comment-list");
+    els.loadingState = document.getElementById("loading-state");
+    els.emptyState = document.getElementById("empty-state");
+    els.profileEditBtn = document.getElementById("profile-edit-btn");
+    els.profileModal = document.getElementById("profile-modal");
+    els.closeProfileModalBtn = document.getElementById("close-profile-modal-btn");
+    els.profileForm = document.getElementById("profile-form");
+    els.profileNameInput = document.getElementById("profile-name-input");
+    els.profileAvatarInput = document.getElementById("profile-avatar-input");
+    els.profileFeedback = document.getElementById("profile-feedback");
+    els.userName = document.getElementById("user-name");
+    els.userRole = document.getElementById("user-role");
+    els.userAvatar = document.getElementById("user-avatar");
+    els.statComments = document.getElementById("stat-comments");
+    els.formFeedback = document.getElementById("form-feedback");
+  }
 
-    // Limpiar feedback de ambos
-    const loginFeedback = document.getElementById("login-feedback");
-    const registerFeedback = document.getElementById("register-feedback");
-    if (loginFeedback) loginFeedback.textContent = "";
-    if (registerFeedback) registerFeedback.textContent = "";
-  });
-}
+  function setFeedback(element, text, color) {
+    if (!element) return;
+    element.textContent = text;
+    if (color) element.style.color = color;
+  }
 
-if (loginForm) {
-  loginForm.addEventListener("submit", async (e) => {
+  function abrirLoginModal() {
+    if (els.loginModal) els.loginModal.style.display = "flex";
+    if (els.closeModalBtn) els.closeModalBtn.style.display = "block";
+  }
+
+  function cerrarLoginModal() {
+    if (els.loginModal) els.loginModal.style.display = "none";
+  }
+
+  function abrirProfileModal() {
+    const usuario = state.usuarioLogueado;
+    if (!usuario || !els.profileModal) return;
+    if (els.profileNameInput) els.profileNameInput.value = usuario.nick;
+    if (els.profileAvatarInput) els.profileAvatarInput.value = usuario.avatar_url;
+    if (els.profileFeedback) els.profileFeedback.textContent = "";
+    els.profileModal.style.display = "flex";
+  }
+
+  function cerrarProfileModal() {
+    if (els.profileModal) els.profileModal.style.display = "none";
+  }
+
+  function renderAuthState(profile) {
+    state.usuarioLogueado = profile;
+
+    if (profile) {
+      if (els.userName) els.userName.textContent = profile.nick;
+      if (els.userRole) els.userRole.textContent = profile.rol.toUpperCase();
+      if (els.userAvatar) els.userAvatar.textContent = profile.avatar_url || "🐧";
+      if (els.profileEditBtn) els.profileEditBtn.style.display = "inline-flex";
+      if (els.loginNavBtn) els.loginNavBtn.style.display = "none";
+      if (els.logoutBtn) els.logoutBtn.style.display = "block";
+      if (els.guestAlert) els.guestAlert.style.display = "none";
+      if (els.commentForm) els.commentForm.style.display = "block";
+      cerrarLoginModal();
+      return;
+    }
+
+    if (els.userName) els.userName.textContent = "Invitado";
+    if (els.userRole) els.userRole.textContent = "SIN SESIÓN";
+    if (els.userAvatar) els.userAvatar.textContent = "🐧";
+    if (els.loginNavBtn) els.loginNavBtn.style.display = "block";
+    if (els.logoutBtn) els.logoutBtn.style.display = "none";
+    if (els.guestAlert) els.guestAlert.style.display = "block";
+    if (els.commentForm) els.commentForm.style.display = "none";
+    if (els.profileEditBtn) els.profileEditBtn.style.display = "none";
+  }
+
+  function configurarEventosAuth() {
+    if (els.loginNavBtn) els.loginNavBtn.addEventListener("click", abrirLoginModal);
+    if (els.closeModalBtn) els.closeModalBtn.addEventListener("click", cerrarLoginModal);
+    if (els.profileEditBtn) els.profileEditBtn.addEventListener("click", abrirProfileModal);
+    if (els.closeProfileModalBtn) {
+      els.closeProfileModalBtn.addEventListener("click", cerrarProfileModal);
+    }
+
+    if (els.tabLogin && els.tabRegister && els.loginForm && els.registerForm) {
+      els.tabLogin.addEventListener("click", () => {
+        els.tabLogin.classList.add("active");
+        els.tabRegister.classList.remove("active");
+        els.loginForm.style.display = "block";
+        els.registerForm.style.display = "none";
+        setFeedback(document.getElementById("login-feedback"), "");
+        setFeedback(document.getElementById("register-feedback"), "");
+      });
+
+      els.tabRegister.addEventListener("click", () => {
+        els.tabRegister.classList.add("active");
+        els.tabLogin.classList.remove("active");
+        els.registerForm.style.display = "block";
+        els.loginForm.style.display = "none";
+        setFeedback(document.getElementById("login-feedback"), "");
+        setFeedback(document.getElementById("register-feedback"), "");
+      });
+    }
+
+    if (els.loginForm) els.loginForm.addEventListener("submit", manejarLogin);
+    if (els.registerForm) els.registerForm.addEventListener("submit", manejarRegistro);
+    if (els.logoutBtn) els.logoutBtn.addEventListener("click", manejarLogout);
+    if (els.profileForm) els.profileForm.addEventListener("submit", manejarGuardarPerfil);
+  }
+
+  async function manejarLogin(e) {
     e.preventDefault();
     const email = document.getElementById("login-email").value.trim();
     const password = document.getElementById("login-password").value;
     const feedback = document.getElementById("login-feedback");
+    const submitBtn = els.loginForm.querySelector('button[type="submit"]');
 
-    if (!feedback) return;
-    feedback.textContent = "Procesando...";
-    feedback.style.color = "#eab308";
+    // Capturar el token de Cloudflare Turnstile desde el formulario
+    const turnstileToken = e.target.querySelector('[name="cf-turnstile-response"]')?.value || "";
+    console.log("[Turnstile] Token de login capturado:", turnstileToken);
+
+    // Validación básica en el frontend
+    if (!turnstileToken) {
+      setFeedback(feedback, "Por favor, resuelve el desafío de seguridad (Turnstile).", "#ff5555");
+      return;
+    }
+
+    setFeedback(feedback, "Procesando...", "#eab308");
+    if (submitBtn) submitBtn.disabled = true;
 
     try {
-      const { error: loginError } = await supabaseClient.auth.signInWithPassword({ email, password });
-      if (loginError) throw loginError;
-
-      feedback.textContent = "¡Ingreso correcto!";
-      feedback.style.color = "#22c55e";
-      loginForm.reset();
-      if (loginModal) loginModal.style.display = "none";
-      await chequearSesion();
+      // Nota: Aquí se pasará el token a Supabase en el futuro (options: { captchaToken: turnstileToken })
+      await state.auth.signIn(email, password);
+      setFeedback(feedback, "¡Ingreso correcto!", "#22c55e");
+      els.loginForm.reset();
+      
+      // Reiniciar el widget tras un inicio de sesión exitoso
+      if (window.turnstile) {
+        window.turnstile.reset(e.target.querySelector('.cf-turnstile'));
+      }
+      
+      cerrarLoginModal();
       await cargarComentarios();
     } catch (error) {
       console.error("Error de login:", error.message);
-      feedback.textContent = "Credenciales inválidas. Verificá tu email y contraseña.";
-      feedback.style.color = "#ff5555";
+      setFeedback(feedback, "Credenciales inválidas. Verificá tu email y contraseña.", "#ff5555");
+      
+      // Reiniciar el widget en caso de error para permitir un nuevo intento
+      if (window.turnstile) {
+        window.turnstile.reset(e.target.querySelector('.cf-turnstile'));
+      }
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
     }
-  });
-}
+  }
 
-if (registerForm) {
-  registerForm.addEventListener("submit", async (e) => {
+  async function manejarRegistro(e) {
     e.preventDefault();
     const nick = document.getElementById("register-nick").value.trim();
     const email = document.getElementById("register-email").value.trim();
     const password = document.getElementById("register-password").value;
     const feedback = document.getElementById("register-feedback");
+    const submitBtn = els.registerForm.querySelector('button[type="submit"]');
 
-    if (!feedback) return;
-    feedback.textContent = "Procesando...";
-    feedback.style.color = "#eab308";
+    // Capturar el token de Cloudflare Turnstile desde el formulario
+    const turnstileToken = e.target.querySelector('[name="cf-turnstile-response"]')?.value || "";
+    console.log("[Turnstile] Token de registro capturado:", turnstileToken);
+
+    // Validación básica en el frontend
+    if (!turnstileToken) {
+      setFeedback(feedback, "Por favor, resuelve el desafío de seguridad (Turnstile).", "#ff5555");
+      return;
+    }
+
+    if (nick.length < 3 || nick.length > 30) {
+      setFeedback(feedback, "El nombre debe tener entre 3 y 30 caracteres.", "#ff5555");
+      return;
+    }
+
+    setFeedback(feedback, "Procesando...", "#eab308");
+    if (submitBtn) submitBtn.disabled = true;
 
     try {
-      const { data: authData, error: signupError } = await supabaseClient.auth.signUp({
-        email,
-        password,
-        options: {
-          data: {
-            nombre_usuario: nick || "Nuevo miembro",
-            foto_usuario: "🐧",
-          },
-        },
-      });
+      // Nota: Aquí se pasará el token a Supabase en el futuro (options: { captchaToken: turnstileToken })
+      await state.auth.signUp({ nick, email, password });
+      setFeedback(feedback, "¡Registro exitoso! Redirigiendo a inicio de sesión...", "#22c55e");
 
-      if (signupError) throw signupError;
-
-      if (authData?.user) {
-        await supabaseClient.from("usuario").insert([
-          {
-            id_usuario: authData.user.id,
-            email: email,
-            nick: nick || "Nuevo miembro",
-            avatar_url: "🐧",
-            descripcion: "",
-            distro_favorita: "Distro favorita no indicada",
-            estado: "activo",
-            rol: "usuario",
-          },
-        ]);
-        feedback.textContent = "¡Registro exitoso! Redirigiendo a inicio de sesión...";
-        feedback.style.color = "#22c55e";
-        
-        setTimeout(() => {
-          registerForm.reset();
-          if (tabLogin) tabLogin.click();
-          const loginEmailInput = document.getElementById("login-email");
-          if (loginEmailInput) {
-            loginEmailInput.value = email;
-          }
-          const loginPassInput = document.getElementById("login-password");
-          if (loginPassInput) {
-            loginPassInput.focus();
-          }
-          feedback.textContent = "";
-        }, 2000);
+      // Reiniciar el widget tras un registro exitoso
+      if (window.turnstile) {
+        window.turnstile.reset(e.target.querySelector('.cf-turnstile'));
       }
+
+      setTimeout(() => {
+        els.registerForm.reset();
+        if (els.tabLogin) els.tabLogin.click();
+        const loginEmailInput = document.getElementById("login-email");
+        const loginPassInput = document.getElementById("login-password");
+        if (loginEmailInput) loginEmailInput.value = email;
+        if (loginPassInput) loginPassInput.focus();
+        setFeedback(feedback, "");
+      }, 1200);
     } catch (error) {
       console.error("Error de registro:", error.message);
-      feedback.textContent = "No se pudo completar el registro. Intentá de nuevo más tarde.";
-      feedback.style.color = "#ff5555";
+      setFeedback(feedback, "No se pudo completar el registro. Intentá de nuevo más tarde.", "#ff5555");
+      
+      // Reiniciar el widget en caso de error para permitir un nuevo intento
+      if (window.turnstile) {
+        window.turnstile.reset(e.target.querySelector('.cf-turnstile'));
+      }
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
     }
-  });
-}
+  }
 
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", async () => {
-    await supabaseClient.auth.signOut();
-    usuarioLogueado = null;
-    window.location.reload();
-  });
-}
+  async function manejarLogout() {
+    try {
+      await state.auth.signOut();
+      cerrarLoginModal();
+      cerrarProfileModal();
+      await cargarComentarios();
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error.message);
+    }
+  }
 
-// ========================================
-// 3. RENDERIZAR COMENTARIOS DEL MURO
-// ========================================
-async function cargarComentarios() {
-  try {
-    if (!loadingState || !commentList || !emptyState) return;
-    commentList.innerHTML = "";
-    loadingState.style.display = "block";
-    emptyState.style.display = "none";
+  async function cargarComentarios() {
+    try {
+      if (!els.loadingState || !els.commentList || !els.emptyState) return;
+      els.commentList.textContent = "";
+      els.loadingState.style.display = "block";
+      els.emptyState.style.display = "none";
 
-    // Traemos comentarios y hacemos el JOIN seguro con 'usuario'
-    const { data: comentarios, error } = await supabaseClient
-      .from("comentario")
-      .select(
-        "id_comentario, contenido, fecha, estado, id_usuario, usuario(nick, avatar_url, distro_favorita, rol)",
-      )
-      .eq("estado", "publicado")
-      .order("fecha", { ascending: false });
+      const { data: comentarios, error } = await state.supabase
+        .from("comentario")
+        .select(
+          "id_comentario, contenido, fecha, estado, id_usuario, usuario(nick, avatar_url, distro_favorita, rol)",
+        )
+        .eq("estado", "publicado")
+        .order("fecha", { ascending: false });
 
-    if (error) throw error;
+      if (error) throw error;
 
-    loadingState.style.display = "none";
+      els.loadingState.style.display = "none";
+      if (els.statComments) els.statComments.textContent = String(comentarios?.length || 0);
 
-    if (!comentarios || comentarios.length === 0) {
-      emptyState.style.display = "block";
-      if (document.getElementById("stat-comments"))
-        document.getElementById("stat-comments").textContent = "0";
-      return;
+      if (!comentarios || comentarios.length === 0) {
+        els.emptyState.style.display = "block";
+        return;
+      }
+
+      comentarios.forEach((comentario) => {
+        els.commentList.appendChild(crearTarjetaComentario(comentario));
+      });
+    } catch (error) {
+      console.error("Error al cargar comentarios:", error.message);
+      if (els.loadingState) els.loadingState.style.display = "none";
+    }
+  }
+
+  function crearTarjetaComentario(comentario) {
+    const autor = comentario.usuario || {};
+    const usuario = state.usuarioLogueado;
+    const esMio = usuario && comentario.id_usuario === usuario.id_usuario;
+    const esAdmin = usuario && String(usuario.rol).toLowerCase() === "admin";
+    const puedeModificar = esMio || esAdmin;
+
+    const card = document.createElement("article");
+    card.className = "comment-card";
+    card.dataset.commentId = comentario.id_comentario;
+
+    const header = document.createElement("div");
+    header.className = "comment-header";
+
+    const authorBox = document.createElement("div");
+    authorBox.className = "comment-author";
+
+    const avatar = document.createElement("div");
+    avatar.className = "avatar";
+    avatar.textContent = autor.avatar_url || "🐧";
+
+    const authorMeta = document.createElement("div");
+    authorMeta.className = "comment-author-meta";
+
+    const name = document.createElement("h4");
+    name.textContent = autor.nick || "Usuario de la comunidad";
+
+    const role = document.createElement("small");
+    role.className = "role-badge";
+    role.textContent = (autor.rol || "usuario").toUpperCase();
+
+    const distro = document.createElement("span");
+    distro.className = "comment-distro";
+    distro.textContent = autor.distro_favorita || "Distro no indicada";
+
+    authorMeta.append(name, role, distro);
+    authorBox.append(avatar, authorMeta);
+
+    const date = document.createElement("time");
+    date.className = "comment-date";
+    date.dateTime = comentario.fecha || "";
+    date.textContent = obtenerFechaRelativa(comentario.fecha);
+
+    header.append(authorBox, date);
+
+    const body = document.createElement("p");
+    body.className = "comment-body";
+    body.textContent = comentario.contenido || "";
+    card.append(header, body);
+
+    if (puedeModificar) {
+      const actions = document.createElement("div");
+      actions.className = "comment-actions";
+
+      const editBtn = document.createElement("button");
+      editBtn.type = "button";
+      editBtn.className = "btn-comment-action";
+      editBtn.textContent = esAdmin && !esMio ? "Moderar" : "Editar";
+      editBtn.addEventListener("click", () => activarEdicionComentario(card, comentario));
+
+      const deleteBtn = document.createElement("button");
+      deleteBtn.type = "button";
+      deleteBtn.className = "btn-comment-action btn-comment-danger";
+      deleteBtn.textContent = "Eliminar";
+      deleteBtn.addEventListener("click", () =>
+        mostrarConfirmacionEliminar(card, comentario.id_comentario),
+      );
+
+      actions.append(editBtn, deleteBtn);
+      card.append(actions);
     }
 
-    if (document.getElementById("stat-comments")) {
-      document.getElementById("stat-comments").textContent = comentarios.length;
-    }
+    return card;
+  }
 
-    comentarios.forEach((comentario) => {
-      commentList.appendChild(crearTarjetaComentario(comentario));
+  function activarEdicionComentario(card, comentario) {
+    const body = card.querySelector(".comment-body");
+    const actions = card.querySelector(".comment-actions");
+    if (!body || !actions) return;
+
+    const editor = document.createElement("textarea");
+    editor.className = "comment-edit-textarea";
+    editor.maxLength = 500;
+    editor.value = comentario.contenido;
+
+    const editActions = document.createElement("div");
+    editActions.className = "comment-edit-actions";
+
+    const feedback = document.createElement("span");
+    feedback.className = "comment-inline-feedback";
+
+    const saveBtn = document.createElement("button");
+    saveBtn.type = "button";
+    saveBtn.className = "btn-comment-action btn-comment-save";
+    saveBtn.textContent = "Guardar";
+    saveBtn.addEventListener("click", async () => {
+      const textoModificado = editor.value.trim();
+      if (!textoModificado) {
+        setFeedback(feedback, "El comentario no puede quedar vacío.", "#ff5555");
+        return;
+      }
+
+      saveBtn.disabled = true;
+      setFeedback(feedback, "Guardando...", "#eab308");
+      const resultado = await guardarEdicionComentario(comentario.id_comentario, textoModificado);
+
+      if (resultado.ok) {
+        await cargarComentarios();
+      } else {
+        setFeedback(feedback, "Error: " + resultado.msg, "#ff5555");
+        saveBtn.disabled = false;
+      }
     });
-  } catch (error) {
-    console.error("Error al cargar comentarios:", error.message);
-    if (loadingState) loadingState.style.display = "none";
-  }
-}
 
-function crearTarjetaComentario(comentario) {
-  const autor = comentario.usuario || {};
-  const esMio =
-    usuarioLogueado && comentario.id_usuario === usuarioLogueado.id_usuario;
-  const esAdmin = usuarioLogueado && usuarioLogueado.rol === "ADMIN";
-  const puedeModificar = esMio || esAdmin;
+    const cancelBtn = document.createElement("button");
+    cancelBtn.type = "button";
+    cancelBtn.className = "btn-comment-action";
+    cancelBtn.textContent = "Cancelar";
+    cancelBtn.addEventListener("click", cargarComentarios);
 
-  const card = document.createElement("article");
-  card.className = "comment-card";
-  card.dataset.commentId = comentario.id_comentario;
-
-  const header = document.createElement("div");
-  header.className = "comment-header";
-
-  const authorBox = document.createElement("div");
-  authorBox.className = "comment-author";
-
-  const avatar = document.createElement("div");
-  avatar.className = "avatar";
-  avatar.textContent = autor.avatar_url || "🐧";
-
-  const authorMeta = document.createElement("div");
-  authorMeta.className = "comment-author-meta";
-
-  const name = document.createElement("h4");
-  name.textContent = autor.nick || "Usuario de la comunidad";
-
-  const role = document.createElement("small");
-  role.className = "role-badge";
-  role.textContent = (autor.rol || "usuario").toUpperCase();
-
-  const distro = document.createElement("span");
-  distro.className = "comment-distro";
-  distro.textContent = autor.distro_favorita || "Distro no indicada";
-
-  authorMeta.append(name, role, distro);
-  authorBox.append(avatar, authorMeta);
-
-  const date = document.createElement("time");
-  date.className = "comment-date";
-  date.dateTime = comentario.fecha || "";
-  date.textContent = obtenerFechaRelativa(comentario.fecha);
-
-  header.append(authorBox, date);
-
-  const body = document.createElement("p");
-  body.className = "comment-body";
-  body.textContent = comentario.contenido || ""; // Render seguro contra XSS
-
-  card.append(header, body);
-
-  if (puedeModificar) {
-    const actions = document.createElement("div");
-    actions.className = "comment-actions";
-
-    const editBtn = document.createElement("button");
-    editBtn.type = "button";
-    editBtn.className = "btn-comment-action";
-    editBtn.textContent = esAdmin && !esMio ? "Moderar" : "Editar";
-    editBtn.addEventListener("click", () =>
-      activarEdicionComentario(card, comentario),
-    );
-
-    const deleteBtn = document.createElement("button");
-    deleteBtn.type = "button";
-    deleteBtn.className = "btn-comment-action btn-comment-danger";
-    deleteBtn.textContent = "Eliminar";
-    deleteBtn.addEventListener("click", () =>
-      mostrarConfirmacionEliminar(card, comentario.id_comentario),
-    );
-
-    actions.append(editBtn, deleteBtn);
-    card.append(actions);
+    editActions.append(feedback, saveBtn, cancelBtn);
+    body.replaceWith(editor);
+    actions.replaceWith(editActions);
+    editor.focus();
   }
 
-  return card;
-}
+  async function guardarEdicionComentario(idComentario, nuevoTexto) {
+    try {
+      const { error } = await state.supabase
+        .from("comentario")
+        .update({ contenido: nuevoTexto })
+        .eq("id_comentario", idComentario);
 
-function activarEdicionComentario(card, comentario) {
-  const body = card.querySelector(".comment-body");
-  const actions = card.querySelector(".comment-actions");
-  if (!body || !actions) return;
+      if (error) throw error;
+      return { ok: true };
+    } catch (error) {
+      console.error("Error al editar comentario en Supabase:", error.message);
+      return { ok: false, msg: error.message };
+    }
+  }
 
-  // Crear el área de texto para editar
-  const editor = document.createElement("textarea");
-  editor.className = "comment-edit-textarea";
-  editor.maxLength = 500;
-  editor.value = comentario.contenido; // Ponemos el texto actual
-
-  const editActions = document.createElement("div");
-  editActions.className = "comment-edit-actions";
-
-  const feedback = document.createElement("span");
-  feedback.className = "comment-inline-feedback";
-
-  const saveBtn = document.createElement("button");
-  saveBtn.type = "button";
-  saveBtn.className = "btn-comment-action btn-comment-save";
-  saveBtn.textContent = "Guardar";
-
-  // Al hacer clic en Guardar
-  saveBtn.addEventListener("click", async () => {
-    const textoModificado = editor.value.trim();
-    if (!textoModificado) {
-      feedback.textContent = "El comentario no puede quedar vacío.";
-      feedback.style.color = "#ff5555";
+  function mostrarConfirmacionEliminar(card, idComentario) {
+    let confirmBox = card.querySelector(".delete-confirm-box");
+    if (confirmBox) {
+      confirmBox.remove();
       return;
     }
 
-    saveBtn.disabled = true;
-    feedback.textContent = "Guardando...";
-    feedback.style.color = "#eab308";
+    confirmBox = document.createElement("div");
+    confirmBox.className = "delete-confirm-box";
 
-    // Llamamos a la función encargada de hablar con Supabase
-    const resultado = await guardarEdicionComentario(comentario.id_comentario, textoModificado);
+    const message = document.createElement("span");
+    message.textContent = "¿Eliminar este comentario?";
 
-    if (resultado.ok) {
-      await cargarComentarios(); // Forzamos a la pantalla a traer los comentarios actualizados
-    } else {
-      feedback.textContent = "Error: " + resultado.msg;
-      feedback.style.color = "#ff5555";
-      saveBtn.disabled = false;
+    const confirmBtn = document.createElement("button");
+    confirmBtn.type = "button";
+    confirmBtn.className = "btn-comment-action btn-comment-danger";
+    confirmBtn.textContent = "Sí, eliminar";
+    confirmBtn.addEventListener("click", () => eliminarComentario(idComentario));
+
+    const cancelBtn = document.createElement("button");
+    cancelBtn.type = "button";
+    cancelBtn.className = "btn-comment-action";
+    cancelBtn.textContent = "Cancelar";
+    cancelBtn.addEventListener("click", () => confirmBox.remove());
+
+    confirmBox.append(message, confirmBtn, cancelBtn);
+    card.append(confirmBox);
+  }
+
+  async function eliminarComentario(idComentario) {
+    try {
+      const { error } = await state.supabase
+        .from("comentario")
+        .delete()
+        .eq("id_comentario", idComentario);
+      if (error) throw error;
+      await cargarComentarios();
+    } catch (error) {
+      console.error("Error al eliminar comentario:", error.message);
     }
-  });
-
-  const cancelBtn = document.createElement("button");
-  cancelBtn.type = "button";
-  cancelBtn.className = "btn-comment-action";
-  cancelBtn.textContent = "Cancelar";
-  cancelBtn.addEventListener("click", () => cargarComentarios());
-
-  editActions.append(feedback, saveBtn, cancelBtn);
-  body.replaceWith(editor);
-  actions.replaceWith(editActions);
-  editor.focus();
-}
-
-async function guardarEdicionComentario(idComentario, nuevoTexto) {
-  try {
-    // Le pasamos explícitamente a la columna 'contenido' el valor de 'nuevoTexto'
-    const { error } = await supabaseClient
-      .from("comentario")
-      .update({ contenido: nuevoTexto })
-      .eq("id_comentario", idComentario);
-
-    if (error) throw error;
-    return { ok: true }; // Retorna éxito si no hubo errores
-  } catch (error) {
-    console.error("Error al editar comentario en Supabase:", error.message);
-    return { ok: false, msg: error.message };
-  }
-}
-
-function mostrarConfirmacionEliminar(card, idComentario) {
-  let confirmBox = card.querySelector(".delete-confirm-box");
-  if (confirmBox) {
-    confirmBox.remove();
-    return;
   }
 
-  confirmBox = document.createElement("div");
-  confirmBox.className = "delete-confirm-box";
+  function obtenerFechaRelativa(fecha) {
+    if (!fecha) return "Ahora";
+    const diferenciaMs = Date.now() - new Date(fecha).getTime();
+    const minutos = Math.floor(diferenciaMs / 60000);
+    const horas = Math.floor(minutos / 60);
+    const dias = Math.floor(horas / 24);
 
-  const message = document.createElement("span");
-  message.textContent = "¿Eliminar este comentario?";
+    if (minutos < 1) return "Ahora";
+    if (minutos < 60) return `Hace ${minutos} min`;
+    if (horas < 24) return `Hace ${horas} h`;
+    if (dias === 1) return "Ayer";
+    if (dias < 7) return `Hace ${dias} días`;
 
-  const confirmBtn = document.createElement("button");
-  confirmBtn.type = "button";
-  confirmBtn.className = "btn-comment-action btn-comment-danger";
-  confirmBtn.textContent = "Sí, eliminar";
-  confirmBtn.addEventListener("click", () => eliminarComentario(idComentario));
-
-  const cancelBtn = document.createElement("button");
-  cancelBtn.type = "button";
-  cancelBtn.className = "btn-comment-action";
-  cancelBtn.textContent = "Cancelar";
-  cancelBtn.addEventListener("click", () => confirmBox.remove());
-
-  confirmBox.append(message, confirmBtn, cancelBtn);
-  card.append(confirmBox);
-}
-
-async function eliminarComentario(idComentario) {
-  try {
-    const { error } = await supabaseClient
-      .from("comentario")
-      .delete()
-      .eq("id_comentario", idComentario);
-    if (error) throw error;
-    await cargarComentarios();
-  } catch (error) {
-    console.error("Error al eliminar comentario:", error.message);
+    return new Date(fecha).toLocaleDateString("es-AR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
   }
-}
 
-function obtenerFechaRelativa(fecha) {
-  if (!fecha) return "Ahora";
-  const diferenciaMs = Date.now() - new Date(fecha).getTime();
-  const minutos = Math.floor(diferenciaMs / 60000);
-  const horas = Math.floor(minutos / 60);
-  const dias = Math.floor(horas / 24);
+  function configurarEventosForo() {
+    if (els.commentForm) els.commentForm.addEventListener("submit", manejarPublicarComentario);
+    if (els.commentContent && els.charCount) {
+      els.commentContent.addEventListener("input", () => {
+        els.charCount.textContent = `${els.commentContent.value.length}/500`;
+      });
+    }
+  }
 
-  if (minutos < 1) return "Ahora";
-  if (minutos < 60) return `Hace ${minutos} min`;
-  if (horas < 24) return `Hace ${horas} h`;
-  if (dias === 1) return "Ayer";
-  if (dias < 7) return `Hace ${dias} días`;
-
-  return new Date(fecha).toLocaleDateString("es-AR", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  });
-}
-
-// ========================================
-// 4. PUBLICAR APORTE NUEVO
-// ========================================
-if (commentForm) {
-  commentForm.addEventListener("submit", async (e) => {
+  async function manejarPublicarComentario(e) {
     e.preventDefault();
-    const formFeedback = document.getElementById("form-feedback");
-    if (!formFeedback) return;
+    const usuario = state.usuarioLogueado;
+    const contenidoText = els.commentContent.value.trim();
+    const submitBtn = els.commentForm.querySelector('button[type="submit"]');
 
-    const contenidoText = commentContent.value.trim();
     if (!contenidoText) {
-      formFeedback.textContent = "Escribí un aporte antes de publicar.";
-      formFeedback.style.color = "#fde68a";
+      setFeedback(els.formFeedback, "Escribí un aporte antes de publicar.", "#fde68a");
       return;
     }
-    if (!usuarioLogueado) {
-      formFeedback.textContent = "Iniciá sesión para publicar.";
-      formFeedback.style.color = "#fde68a";
+    if (!usuario) {
+      setFeedback(els.formFeedback, "Iniciá sesión para publicar.", "#fde68a");
       return;
     }
-    if (usuarioLogueado.estado !== "activo") {
-      formFeedback.textContent = "Tu cuenta no está activa para publicar.";
-      formFeedback.style.color = "#ff5555";
+    if (usuario.estado !== "activo") {
+      setFeedback(els.formFeedback, "Tu cuenta no está activa para publicar.", "#ff5555");
       return;
     }
 
     try {
-      const submitBtn = commentForm.querySelector('button[type="submit"]');
       if (submitBtn) submitBtn.disabled = true;
-      formFeedback.textContent = "Publicando...";
-      formFeedback.style.color = "#eab308";
+      setFeedback(els.formFeedback, "Publicando...", "#eab308");
 
-      const payload = {
-        contenido: contenidoText,
-        estado: "publicado",
-        id_usuario: usuarioLogueado.id_usuario,
-      };
-
-      const { error } = await supabaseClient
-        .from("comentario")
-        .insert([payload]);
+      const { error } = await state.supabase.from("comentario").insert([
+        {
+          contenido: contenidoText,
+          estado: "publicado",
+          id_usuario: usuario.id_usuario,
+        },
+      ]);
       if (error) throw error;
 
-      commentContent.value = "";
-      if (charCount) charCount.textContent = "0/500";
-      formFeedback.textContent = "¡Publicado!";
-      formFeedback.style.color = "#22c55e";
-
+      els.commentContent.value = "";
+      if (els.charCount) els.charCount.textContent = "0/500";
+      setFeedback(els.formFeedback, "¡Publicado!", "#22c55e");
       await cargarComentarios();
-      if (submitBtn) submitBtn.disabled = false;
-
-      setTimeout(() => {
-        formFeedback.textContent = "";
-      }, 3000);
+      setTimeout(() => setFeedback(els.formFeedback, ""), 3000);
     } catch (error) {
       console.error("Error al guardar comentario:", error.message);
-      formFeedback.textContent = "Error al guardar.";
-      formFeedback.style.color = "#ff5555";
-      const submitBtn = commentForm.querySelector('button[type="submit"]');
+      setFeedback(els.formFeedback, "Error al guardar.", "#ff5555");
+    } finally {
       if (submitBtn) submitBtn.disabled = false;
     }
-  });
-}
+  }
 
-// Lógica de perfil
-if (profileForm) {
-  profileForm.addEventListener("submit", async (e) => {
+  async function manejarGuardarPerfil(e) {
     e.preventDefault();
-    if (!usuarioLogueado || !profileFeedback) return;
+    const usuario = state.usuarioLogueado;
+    if (!usuario || !els.profileFeedback) return;
 
-    const nombre_usuario = profileNameInput.value.trim();
-    const foto_usuario = profileAvatarInput.value.trim() || "🐧";
+    const nick = els.profileNameInput.value.trim();
+    const avatarUrl = els.profileAvatarInput.value.trim() || "🐧";
 
-    if (!nombre_usuario) {
-      profileFeedback.textContent =
-        "El nombre de usuario no puede quedar vacío.";
-      profileFeedback.style.color = "#fde68a";
+    if (!nick || nick.length < 3 || nick.length > 30) {
+      setFeedback(els.profileFeedback, "El nombre debe tener entre 3 y 30 caracteres.", "#fde68a");
       return;
     }
 
     try {
-      profileFeedback.textContent = "Guardando perfil...";
-      profileFeedback.style.color = "#eab308";
-
-      const { error } = await supabaseClient
-        .from("usuario")
-        .update({ nick: nombre_usuario, avatar_url: foto_usuario })
-        .eq("id_usuario", usuarioLogueado.id_usuario);
-
-      if (error) throw error;
-
-      usuarioLogueado.nick = nombre_usuario;
-      usuarioLogueado.avatar_url = foto_usuario;
-
-      if (document.getElementById("user-name"))
-        document.getElementById("user-name").textContent = nombre_usuario;
-      if (document.getElementById("user-avatar"))
-        document.getElementById("user-avatar").textContent = foto_usuario;
-
-      profileFeedback.textContent = "Perfil actualizado.";
-      profileFeedback.style.color = "#22c55e";
-
+      setFeedback(els.profileFeedback, "Guardando perfil...", "#eab308");
+      await state.auth.updateProfile({ nick, avatar_url: avatarUrl });
+      setFeedback(els.profileFeedback, "Perfil actualizado.", "#22c55e");
       await cargarComentarios();
-
       setTimeout(() => {
-        if (profileModal) profileModal.style.display = "none";
-        profileFeedback.textContent = "";
+        cerrarProfileModal();
+        setFeedback(els.profileFeedback, "");
       }, 900);
     } catch (error) {
       console.error("Error al actualizar perfil:", error.message);
-      profileFeedback.textContent = "No se pudo actualizar el perfil.";
-      profileFeedback.style.color = "#ff5555";
+      setFeedback(els.profileFeedback, "No se pudo actualizar el perfil.", "#ff5555");
     }
-  });
-}
+  }
 
-if (commentContent && charCount) {
-  commentContent.addEventListener("input", () => {
-    charCount.textContent = `${commentContent.value.length}/500`;
-  });
-}
+  async function inicializarForo() {
+    cacheDOM();
+    state.auth = await ensureAuthModule();
+    const authState = await state.auth.ready();
+    state.supabase = authState.client || (await state.auth.getClient());
+    renderAuthState(authState.profile);
 
-// INICIO CONTROLADO DE LA APP
-document.addEventListener("DOMContentLoaded", async () => {
-  await chequearSesion();
-  await cargarComentarios();
-});
+    state.auth.onChange(async ({ profile }, eventName) => {
+      renderAuthState(profile);
+      if (eventName !== "CURRENT_STATE") await cargarComentarios();
+    });
+
+    configurarEventosAuth();
+    configurarEventosForo();
+    await cargarComentarios();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", inicializarForo);
+  } else {
+    inicializarForo();
+  }
+})();
