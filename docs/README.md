@@ -15,7 +15,7 @@ Nuestra misión es guiarte en la transición hacia un sistema operativo libre, o
 
 ## Características Principales
 
-- **Categorización por Perfil:** Secciones dedicadas a Gaming, Desarrollo, Ciberseguridad, Computación Gráfica y Personalización.
+- **Categorización por Perfil:** Secciones dedicadas a Gaming, Desarrollo, Ciberseguridad, Computación Gráfica y Personalización (con guía de dotfiles y shells de escritorio).
 - **Manual de Usuario:** Guía detallada para dar los primeros pasos en Linux.
 - **Gestión de Perfil Global:** Modal interactivo integrado con Supabase Auth y Database para iniciar sesión, registrarse y editar perfil (avatar y descripción) con persistencia en todas las subpáginas de categorías.
 - **Foro Comunitario:** Espacio integrado con **Supabase** para compartir dudas, soluciones y experiencias.

@@ -31,6 +31,7 @@
             <li><a href="../index.html">Inicio</a></li>
             <li><a href="#Informacion">Informacion</a></li>
             <li><a href="#Carrusel">Carrusel</a></li>
+            <li><a href="#Shells">Shells & Dotfiles</a></li>
           </ul>
         </nav>
       </div>
@@ -106,7 +107,11 @@
                 </article>
               </div>
               <div class="animaciones-image">
-                <img src="../IMGS/InterfazLinux.png" alt="Interfaz fluida"  loading="lazy" />
+                <img
+                  src="../IMGS/InterfazLinux.png"
+                  alt="Interfaz fluida"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
@@ -135,7 +140,8 @@
                 <img
                   src="../IMGS/Escritorio-Hyperland.png"
                   alt="Efectos Hyprland"
-                 loading="lazy" />
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
@@ -161,7 +167,11 @@
                 </article>
               </div>
               <div class="animaciones-image">
-                <img src="../IMGS/Escritorio-tres.png" alt="Personalización"  loading="lazy" />
+                <img
+                  src="../IMGS/Escritorio-tres.png"
+                  alt="Personalización"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
@@ -195,6 +205,281 @@
       </section>
     </main>
 
+    <!-- Sección educativa: Dotfiles y Shells de Escritorio -->
+    <section id="Shells" class="shells-dotfiles-section">
+      <h2 class="section-title">Dotfiles y Shells de Escritorio</h2>
+      <p class="shells-subtitle">
+        Antes de lanzarte a "ricear" tu escritorio conviene entender dos
+        conceptos que se confunden todo el tiempo: los archivos de configuración
+        (dotfiles) y las shells de escritorio, que no son lo mismo que la shell
+        de la terminal.
+      </p>
+
+      <!-- Tabs de navegación interna -->
+      <div
+        class="shells-tabs"
+        role="tablist"
+        aria-label="Temas de shells y dotfiles"
+      >
+        <button class="shells-tab active" onclick="switchTab('dotfiles')">
+          Dotfiles
+        </button>
+        <button class="shells-tab" onclick="switchTab('shells')">
+          ¿Shell de qué?
+        </button>
+        <button class="shells-tab" onclick="switchTab('comparativa')">
+          Comparativa
+        </button>
+        <button class="shells-tab" onclick="switchTab('glosario')">
+          Glosario
+        </button>
+      </div>
+
+      <!-- Tab 1: Dotfiles -->
+      <div id="tab-dotfiles" class="shells-tab-content active">
+        <p class="shells-subtitle">
+          Los dotfiles son el "ADN" de tu configuración: pequeños archivos de
+          texto que definen cómo se ve y se comporta casi todo tu sistema.
+        </p>
+        <div class="shells-grid">
+          <div class="shells-card">
+            <div class="shells-card-header">
+              <h3>¿Qué son?</h3>
+            </div>
+            <p>
+              Archivos de configuración ocultos (empiezan con punto) que viven
+              en tu carpeta personal: <code>~/.bashrc</code>,
+              <code>~/.config/</code>, <code>~/.zshrc</code>, etc. Definen
+              atajos, temas, comportamiento de la terminal, del editor y de
+              muchas aplicaciones.
+            </p>
+            <ul class="shells-features">
+              <li>Ocultos por defecto (<code>ls -a</code> los muestra)</li>
+              <li>Texto plano: editables y legibles</li>
+            </ul>
+          </div>
+
+          <div class="shells-card">
+            <div class="shells-card-header">
+              <h3>¿Por qué versionarlos en git?</h3>
+            </div>
+            <p>
+              Tu configuración es valiosa: subirla a un repositorio te da backup
+              ante formateos, sincronización entre computadoras, historial de
+              cambios y la posibilidad de compartir tu setup con la comunidad.
+            </p>
+            <ul class="shells-features">
+              <li>Restaurar tu escritorio en minutos</li>
+              <li>Mismo look en todas tus máquinas</li>
+            </ul>
+          </div>
+
+          <div class="shells-card">
+            <div class="shells-card-header">
+              <h3>Gestores comunes</h3>
+            </div>
+            <p>
+              Para no enlazar archivos a mano existen herramientas dedicadas. No
+              hace falta instalarlas hoy: solo tené presente sus nombres cuando
+              quieras dar el paso siguiente.
+            </p>
+            <ul class="shells-features">
+              <li><code>GNU Stow</code> — symlinks simples</li>
+              <li><code>chezmoi</code> — plantillas y secretos</li>
+              <li><code>dotdrop</code> — multi-máquina</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Ambigüedad del término shell -->
+      <div id="tab-shells" class="shells-tab-content">
+        <p class="shells-subtitle">
+          La palabra "shell" significa dos cosas muy distintas según el
+          contexto. Confundirlas es el error número uno de quien empieza.
+        </p>
+        <div class="shells-grid">
+          <div class="shells-card">
+            <div class="shells-card-header">
+              <h3>Shell de login</h3>
+            </div>
+            <p>
+              El intérprete de comandos de tu terminal: <code>bash</code>,
+              <code>zsh</code> o <code>fish</code>. Ejecuta lo que escribís,
+              corre scripts y se configura con dotfiles. Es texto puro, sin
+              interfaz gráfica.
+            </p>
+          </div>
+
+          <div class="shells-card">
+            <div class="shells-card-header">
+              <h3>Shell de escritorio</h3>
+            </div>
+            <p>
+              La capa visual que corre sobre un compositor Wayland como
+              <a href="../HTML/Hyperland.html">Hyprland</a>: barra de estado,
+              launcher de apps, notificaciones y centro de control.
+              <strong>No es un entorno de escritorio completo:</strong> no
+              reemplaza a <a href="../HTML/Gnome.html">GNOME</a> ni
+              <a href="../HTML/KDE.html">KDE Plasma</a>, sino que se monta sobre
+              un WM/compositor tiling que vos ya gestionás. Hoy la mayoría se
+              construye con Quickshell (QML).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Comparativa de shells de escritorio -->
+      <div id="tab-comparativa" class="shells-tab-content">
+        <p class="shells-subtitle">
+          Dos shells modernas construidas sobre Quickshell (QML) y la opción
+          clásica, para que compares enfoques antes de elegir.
+        </p>
+
+        <div class="distro-carousel-wrapper shells-carousel">
+          <button
+            class="distro-prev"
+            onclick="changeDistroSlide(-1, '.shell-slide')"
+          >
+            ❮
+          </button>
+          <button
+            class="distro-next"
+            onclick="changeDistroSlide(1, '.shell-slide')"
+          >
+            ❯
+          </button>
+
+          <div class="distro-carousel-container">
+            <!-- Caelestia -->
+            <div class="shell-slide active">
+              <article class="distro-card card-caelestia">
+                <div class="distro-header">
+                  <h3>Caelestia</h3>
+                </div>
+                <div class="distro-body">
+                  <p>
+                    <strong>Tipo:</strong> Shell de escritorio (Quickshell/QML)
+                  </p>
+                  <p>
+                    <strong>Especialidad:</strong> Estética Material You con
+                    color dinámico extraído desde el wallpaper.
+                  </p>
+                  <p>
+                    Requiere <code>quickshell-git</code> y se gestiona con su
+                    propia CLI: <code>caelestia install</code> para instalar y
+                    <code>caelestia update</code> para actualizarse.
+                  </p>
+                  <ul class="distro-features">
+                    <li>Paleta dinámica desde el wallpaper</li>
+                    <li>CLI propia (install / update)</li>
+                    <li>Ideal si venís de Android/Material You</li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+
+            <!-- Noctalia -->
+            <div class="shell-slide">
+              <article class="distro-card card-noctalia">
+                <div class="distro-header">
+                  <h3>Noctalia</h3>
+                </div>
+                <div class="distro-body">
+                  <p>
+                    <strong>Tipo:</strong> Shell de escritorio (Quickshell/QML)
+                  </p>
+                  <p>
+                    <strong>Especialidad:</strong> Filosofía "quiet by design":
+                    minimalista, sobria y sin ruido visual.
+                  </p>
+                  <p>
+                    Soporte nativo para Hyprland, Niri, Sway, Labwc y MangoWC.
+                    Su instalador es más simple y suele ser la recomendada para
+                    quien recién empieza a ricear.
+                  </p>
+                  <ul class="distro-features">
+                    <li>Hyprland, Niri, Sway, Labwc y MangoWC</li>
+                    <li>Instalación sencilla</li>
+                    <li>Perfecta para principiantes</li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+
+            <!-- Opción clásica -->
+            <div class="shell-slide">
+              <article class="distro-card card-clasica">
+                <div class="distro-header">
+                  <h3>Waybar + AGS/Eww</h3>
+                </div>
+                <div class="distro-body">
+                  <p><strong>Tipo:</strong> Barra + widgets modulares</p>
+                  <p>
+                    <strong>Especialidad:</strong> El contraste histórico: barra
+                    tradicional vs shell moderna tipo Quickshell.
+                  </p>
+                  <p>
+                    Waybar aporta una barra de estado clásica y madura; AGS o
+                    Eww agregan widgets y launchers por separado. Más piezas,
+                    pero cada una se elige y configura de forma independiente.
+                  </p>
+                  <ul class="distro-features">
+                    <li>Waybar: barra estable y popular</li>
+                    <li>AGS/Eww: widgets a medida</li>
+                    <li>Enfoque modular pieza por pieza</li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 4: Glosario -->
+      <div id="tab-glosario" class="shells-tab-content">
+        <div class="glosario">
+          <details class="glosario-item">
+            <summary>WM (Window Manager)</summary>
+            <p>
+              Gestor de ventanas: programa que decide posición, tamaño y foco de
+              cada ventana. Los tiling (como Hyprland o Sway) las organizan
+              automáticamente sin superponerlas. No incluye barra,
+              notificaciones ni aplicaciones: eso se agrega aparte.
+            </p>
+          </details>
+
+          <details class="glosario-item">
+            <summary>Compositor Wayland</summary>
+            <p>
+              Servidor gráfico del protocolo Wayland: además de gestionar
+              ventanas, compone y dibuja en pantalla (efectos, animaciones,
+              escalado). Hyprland es un compositor Wayland; sobre él corre la
+              shell de escritorio.
+            </p>
+          </details>
+
+          <details class="glosario-item">
+            <summary>Dotfiles</summary>
+            <p>
+              Archivos de configuración ocultos (empiezan con punto) guardados
+              en tu home, como ~/.bashrc o ~/.config. Versionarlos en git
+              permite respaldar y replicar tu setup en cualquier máquina.
+            </p>
+          </details>
+
+          <details class="glosario-item">
+            <summary>Ricing</summary>
+            <p>
+              Término de la comunidad por personalizar el escritorio al detalle
+              hasta lograr una estética única y coherente: temas, barras,
+              animaciones, paletas y layouts propios.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <!-- Carrusel de distros recomendadas -->
     <section id="Carrusel" class="distros-section">
       <h2 class="section-title">Escritorios para Linux</h2>
@@ -213,7 +498,8 @@
                     src="../IMGS/hyprland_logo.png"
                     alt="Hyprland Logo"
                     class="distro-logo"
-                   loading="lazy" />
+                    loading="lazy"
+                  />
                   <h3>Hyprland</h3>
                 </a>
               </div>
@@ -243,7 +529,8 @@
                     src="../IMGS/KDE.png"
                     alt="KDE Logo"
                     class="distro-logo"
-                   loading="lazy" />
+                    loading="lazy"
+                  />
                   <h3>KDE Plasma</h3>
                 </a>
               </div>
@@ -274,7 +561,8 @@
                     src="../IMGS/Gnome_logo.png"
                     alt="GNOME Logo"
                     class="distro-logo"
-                   loading="lazy" />
+                    loading="lazy"
+                  />
                   <h3>GNOME</h3>
                 </a>
               </div>
@@ -300,7 +588,7 @@
     </section>
 
     <script src="../JS/Personalizacion.js"></script>
-        <script src="../JS/perfilGlobal.js"></script>
-<script src="../JS/script.js"></script>
+    <script src="../JS/perfilGlobal.js"></script>
+    <script src="../JS/script.js"></script>
   </body>
 </html>

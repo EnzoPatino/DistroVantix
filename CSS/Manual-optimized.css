@@ -77,6 +77,15 @@ body {
   margin-bottom: 20px;
 }
 
+/* Indicador de página */
+.page-indicator {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-bottom: 10px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
 /* --- Controles de Navegación --- */
 .nav-controls {
   display: flex;

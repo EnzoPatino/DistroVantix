@@ -235,7 +235,7 @@ proyecto_DistroVantix/
 ├── HTML/                          # 23 category and distribution pages
 │   ├── Foro.html                  # Community forum
 │   ├── Gaming.html                # Gaming category
-│   ├── Personalizacion.html       # Personalization category
+│   ├── Personalizacion.html       # Personalization category (+ Dotfiles & Desktop Shells section)
 │   ├── Trabajo.html               # Work category
 │   ├── Ciberseguridad.html        # Cybersecurity category
 │   ├── Desarrollo.html            # Development category
@@ -263,7 +263,7 @@ proyecto_DistroVantix/
 │   ├── script.js                  # Global functionality (sidebar toggle)
 │   ├── Distros.js                 # Distribution navigation logic
 │   ├── Gaming.js                  # Gaming section logic
-│   ├── Personalizacion.js         # Personalization section logic
+│   ├── Personalizacion.js         # Personalization carousels and tabs logic
 │   ├── Trabajo.js / Trabajos.js   # Work section logic
 │   ├── Manual.js                  # Manual logic
 │   ├── Debian.js / Kali.js / ...  # Per-distribution logic
