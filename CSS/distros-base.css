@@ -3,14 +3,14 @@
 /* ============================================ */
 
 :root {
-  /* COLORES BASE */
-  --bg-dark: #1a1b26;
-  --bg-darker: #0f0f15;
-  --bg-card: #24283b;
-  --bg-card-hover: #242823;
-  --text-main: #a9b1d6;
-  --text-white: #ffffff;
-  --border-subtle: rgba(169, 177, 214, 0.1);
+  /* COLORES BASE - alias al tema global */
+  --bg-dark: var(--bg-main);
+  --bg-darker: var(--bg-surface-alt);
+  --bg-card: var(--bg-surface);
+  --bg-card-hover: color-mix(in srgb, var(--bg-surface) 88%, var(--accent-default) 12%);
+  --text-main: var(--text-secondary);
+  --text-white: var(--text-primary);
+  --border-subtle: var(--border-color);
   --theme-bg: var(--bg-dark);
   --theme-card: var(--bg-card);
   --theme-card-hover: var(--bg-card-hover);
@@ -22,7 +22,7 @@
   );
   --theme-button-text: var(--text-white);
   --theme-highlight: var(--color-primary);
-  --theme-shine: rgba(255, 255, 255, 0.1);
+  --theme-shine: color-mix(in srgb, var(--text-primary) 10%, transparent);
 
   /* TRANSICIONES */
   --transition-fast: 0.3s ease;
@@ -769,7 +769,7 @@ body .tool-card:hover p {
     padding: 6px 8px;
     border: 1px solid var(--color-transparent);
     border-radius: var(--radius-sm);
-    background: rgba(255, 255, 255, 0.03);
+    background: color-mix(in srgb, var(--text-primary) 3%, transparent);
     font-size: 0.76rem;
     line-height: 1.1;
     text-align: center;
