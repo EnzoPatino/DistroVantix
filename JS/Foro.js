@@ -530,6 +530,7 @@
     }
     if (!usuario) {
       setFeedback(els.formFeedback, "Iniciá sesión para publicar.", "#fde68a");
+      abrirLoginModal();
       return;
     }
     if (usuario.estado !== "activo") {

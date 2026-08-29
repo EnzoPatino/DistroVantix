@@ -600,6 +600,7 @@ h1, h2, h3, h4 {
 
 /* Modals */
 .modal-overlay {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -608,7 +609,6 @@ h1, h2, h3, h4 {
   background: rgba(15, 23, 42, 0.6);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  display: flex;
   align-items: center;
   justify-content: center;
   z-index: 3000;

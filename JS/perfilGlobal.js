@@ -73,7 +73,7 @@
     if (document.getElementById("user-profile-modal")) return;
 
     const modalHTML = `
-      <div id="user-profile-modal" class="dv-modal-overlay" aria-hidden="true">
+      <div id="user-profile-modal" class="dv-modal-overlay" aria-hidden="true" style="opacity: 0; visibility: hidden;">
         <div class="dv-modal-card">
           <button id="dv-close-modal" class="dv-modal-close" aria-label="Cerrar modal">&times;</button>
 
@@ -260,6 +260,8 @@
     const modal = document.getElementById("user-profile-modal");
     if (!modal) return;
 
+    modal.style.opacity = "";
+    modal.style.visibility = "";
     modal.classList.add("active");
     modal.setAttribute("aria-hidden", "false");
 
@@ -403,6 +405,11 @@
     });
     await auth.ready();
   }
+
+  window.DistroVantixProfile = {
+    openModal: abrirModalUser,
+    closeModal: cerrarModalUser,
+  };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", inicializarPerfil);
