@@ -1,0 +1,13 @@
+/* PikaOS theme */
+@import url("./distros-base.css");
+
+:root {
+  --color-primary: #f6c945;
+  --color-primary-dark: #d89f19;
+  --color-primary-light: #ffe27a;
+  --color-transparent: rgba(246, 201, 69, 0.3);
+  --color-shadow: rgba(246, 201, 69, 0.2);
+  --color-shadow-hover: rgba(246, 201, 69, 0.4);
+  --color-glow: rgba(246, 201, 69, 0.3);
+  --theme-button-text: var(--bg-dark);
+}

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../CSS/PikaOS-optimized.css" />
+    <link rel="stylesheet" href="../CSS/style.css" />
+    <title>PikaOS - DistroVantix</title>
+  </head>
+  <body>
+    <!-- Barra de navegación mejorada -->
+    <header class="navbar-container">
+      <div class="navbar">
+        <a href="../index.html" class="navbar-logo">
+          <img
+            src="../IMGS/Logo futurista de DistroVantix(1).png"
+            alt="logo DistroVantix"
+            height="60"
+            width="60"
+            id="logo"
+          />
+        </a>
+        <nav aria-label="Navegación principal">
+          <ul class="navbar-links">
+            <li><a href="../index.html" target="_self">Inicio</a></li>
+            <li><a href="Gaming.html" target="_self">Gaming</a></li>
+            <li>
+              <a href="#caracteristicas" target="_self">Características</a>
+            </li>
+            <li><a href="#comparacion" target="_self">Comparacion</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="user-area">
+        <span class="distro-badge">PikaOS</span>
+      </div>
+    </header>
+
+    <!-- Contenedor principal -->
+    <main class="distro-detail">
+      <div class="detail-container">
+        <!-- Sección intro con imagen y texto lado a lado -->
+        <section id="informacion" class="intro-showcase">
+          <div class="showcase-image">
+            <img
+              src="../IMGS/Pikaos.webp"
+              alt="PikaOS"
+              class="showcase-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="showcase-content">
+            <h1 class="detail-title">
+              ¿Qué es? <span class="highlight">PikaOS</span>
+            </h1>
+            <p class="detail-text">
+              PikaOS es una distribución Linux enfocada en gaming,
+              rendimiento y uso diario. Está basada en <strong>Debian Sid</strong>
+              con paquetes propios, drivers recientes, kernel personalizado y
+              herramientas pensadas para que el sistema quede listo sin perder
+              control avanzado.
+            </p>
+            <h2 class="detail-subtitle">¿Por qué esta distro?</h2>
+            <p class="detail-text">
+              A diferencia de una instalación genérica, PikaOS mantiene su
+              propio stack de kernel, gráficos y utilidades. Esto la vuelve una
+              opción fuerte para jugar, crear contenido, manejar drivers GPU y
+              trabajar con un sistema rolling actualizado.
+            </p>
+            <div class="button-group">
+              <button class="cta-button" data-section="caracteristicas">
+                Conocer más
+              </button>
+              <a
+                href="https://pika-os.com/"
+                target="_blank"
+                class="cta-button cta-button-secondary"
+              >
+                Descargar PikaOS
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sección de características -->
+        <section id="caracteristicas" class="features-section">
+          <h2 class="section-title">Características principales</h2>
+          <div class="detail-grid">
+            <div class="info-box">
+              <h3>Gaming Listo</h3>
+              <p>
+                Incluye herramientas orientadas al juego como Steam, Wine,
+                Gamescope y MangoHud, además de soporte para controladores y
+                una configuración inicial pensada para reducir ajustes manuales.
+              </p>
+            </div>
+
+            <div class="info-box">
+              <h3>Base Debian Sid</h3>
+              <p>
+                Usa Debian Sid como base rolling, con paquetes curados,
+                parches propios y software actualizado para equilibrar
+                compatibilidad con novedades del ecosistema Linux.
+              </p>
+            </div>
+
+            <div class="info-box">
+              <h3>Kernel Personalizado</h3>
+              <p>
+                PikaOS mantiene un kernel de rendimiento con parches pensados
+                para baja latencia, juegos, hardware moderno y mejor respuesta
+                bajo carga.
+              </p>
+            </div>
+
+            <div class="info-box">
+              <h3>Drivers Recientes</h3>
+              <p>
+                Mantiene una pila gráfica actualizada para Mesa y NVIDIA, con
+                herramientas para gestionar controladores sin depender de una
+                instalación manual complicada.
+              </p>
+            </div>
+
+            <div class="info-box">
+              <h3>Herramientas Propias</h3>
+              <p>
+                Integra utilidades como Pikman para actualizar APT y Flatpak,
+                además de asistentes para kernels, drivers y configuración
+                inicial desde interfaces gráficas o CLI.
+              </p>
+            </div>
+
+            <div class="info-box">
+              <h3>Escritorios Flexibles</h3>
+              <p>
+                Ofrece ediciones con distintos entornos como GNOME, KDE,
+                Hyprland, Niri y COSMIC, permitiendo elegir entre escritorio
+                clásico, moderno o enfocado en teclado.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sección de comparación -->
+        <section id="comparacion" class="comparison-section">
+          <h2 class="section-title">Gaming en Debian</h2>
+          <div class="comparison-card">
+            <div class="comparison-item">
+              <h3>Debian genérico</h3>
+              <p class="fps-display">Manual</p>
+              <p class="low-display">Requiere más ajuste de drivers y gaming</p>
+            </div>
+            <div class="comparison-divider">vs</div>
+            <div class="comparison-item highlight-winner">
+              <h3>PikaOS</h3>
+              <p class="fps-display">Preparado</p>
+              <p class="low-display">Kernel, drivers y herramientas propias</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Sidebar/Menú -->
+    <aside class="tablero" id="sidebar">
+      <nav class="categorias">
+        <h3 class="sidebar-title">Navegación</h3>
+        <ul class="sidebar-links">
+          <li><a href="../index.html" class="cat-btn">Inicio</a></li>
+          <li><a href="#informacion" class="cat-btn">Información</a></li>
+          <li>
+            <a href="#caracteristicas" class="cat-btn">Características</a>
+          </li>
+          <li><a href="Gaming.html" class="cat-btn">Gaming</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <script src="../JS/Distros.js"></script>
+    <script src="../JS/perfilGlobal.js"></script>
+    <script src="../JS/script.js"></script>
+  </body>
+</html>

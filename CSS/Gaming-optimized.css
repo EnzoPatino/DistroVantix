@@ -157,6 +157,12 @@
   transform: translateY(-10px);
 }
 
+.card-pikaos:hover {
+  border-color: #f6c945;
+  box-shadow: 0 10px 30px rgba(246, 201, 69, 0.3);
+  transform: translateY(-10px);
+}
+
 .distro-header {
   display: flex;
   align-items: center;
@@ -323,4 +329,3 @@
     font-size: clamp(1.4rem, 5vw, 1.8rem);
   }
 }
-

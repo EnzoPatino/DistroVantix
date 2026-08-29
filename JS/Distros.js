@@ -40,6 +40,9 @@ function getDistroInfo() {
   if (pageText.includes("bazzite")) {
     return { name: "Bazzite", color: "rgba(0, 191, 255, 0.4)" };
   }
+  if (pageText.includes("pikaos")) {
+    return { name: "PikaOS", color: "rgba(246, 201, 69, 0.4)" };
+  }
   if (pageText.includes("garuda")) {
     return { name: "Garuda Linux", color: "rgba(233, 30, 99, 0.4)" };
   }
